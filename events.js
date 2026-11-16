@@ -24,7 +24,9 @@ window.NP_EVENTS=[
   "demo": false,
   "imagem": "img/mariana-aydar.jpg",
   "foco": "67% 65%",
-  "ajuste": "cover"
+  "ajuste": "cover",
+  "spotify": "artist/3rE82NMVBb5C5tQ83o8u8N",
+  "bio": "Cantora e compositora paulistana, Mariana Aydar é uma das vozes centrais do forró contemporâneo. Em duas décadas de carreira aproximou o xote e o baião da MPB e do pop, em discos como Veia Nordestina e no projeto em dupla com o sanfoneiro Mestrinho.\n\nVenceu o Grammy Latino em 2020 e em 2024."
  },
  {
   "id": 18,
@@ -49,7 +51,9 @@ window.NP_EVENTS=[
   "demo": false,
   "imagem": "img/rubel.jpg",
   "foco": "46% 69%",
-  "ajuste": "cover"
+  "ajuste": "cover",
+  "spotify": "artist/0slVGXBggrLglTLNKbeEyW",
+  "bio": "Cantor e compositor carioca, Rubel ficou conhecido pelo violão e pelas letras de contador de histórias. Do disco de estreia Pearl a AS PALAVRAS, VOL. 1 & 2, cruza a MPB com samba, rap e R&B.\n\nJá foi indicado três vezes ao Grammy Latino. O álbum mais recente, Beleza. Mas agora a gente faz o que com isso?, saiu em 2025."
  },
  {
   "id": 19,
@@ -74,7 +78,9 @@ window.NP_EVENTS=[
   "demo": false,
   "imagem": "img/rubel.jpg",
   "foco": "71% 56%",
-  "ajuste": "cover"
+  "ajuste": "cover",
+  "spotify": "artist/0slVGXBggrLglTLNKbeEyW",
+  "bio": "Cantor e compositor carioca, Rubel ficou conhecido pelo violão e pelas letras de contador de histórias. Do disco de estreia Pearl a AS PALAVRAS, VOL. 1 & 2, cruza a MPB com samba, rap e R&B.\n\nJá foi indicado três vezes ao Grammy Latino. O álbum mais recente, Beleza. Mas agora a gente faz o que com isso?, saiu em 2025."
  },
  {
   "id": 20,
@@ -99,7 +105,9 @@ window.NP_EVENTS=[
   "demo": false,
   "imagem": "img/o-filho.jpg",
   "foco": "55% 44%",
-  "ajuste": "contain"
+  "ajuste": "contain",
+  "spotify": "",
+  "bio": ""
  },
  {
   "id": 22,
@@ -124,7 +132,9 @@ window.NP_EVENTS=[
   "demo": false,
   "imagem": "img/chico-chico.jpg",
   "foco": "44% 62%",
-  "ajuste": "contain"
+  "ajuste": "contain",
+  "spotify": "artist/2HZV6IQokyem99FJAWom0X",
+  "bio": "Cantor e compositor carioca, filho de Cássia Eller, Chico Chico mistura rock, blues, folk e MPB. Os álbuns Pomares e Estopim firmaram a sua voz na nova geração da música brasileira e renderam indicações ao Grammy Latino."
  },
  {
   "id": 21,
@@ -149,7 +159,9 @@ window.NP_EVENTS=[
   "demo": false,
   "imagem": "img/portatil.jpg",
   "foco": "46% 39%",
-  "ajuste": "contain"
+  "ajuste": "contain",
+  "spotify": "",
+  "bio": ""
  },
  {
   "id": 23,
@@ -174,7 +186,9 @@ window.NP_EVENTS=[
   "demo": false,
   "imagem": "img/dominguinho.jpg",
   "foco": "47% 51%",
-  "ajuste": "contain"
+  "ajuste": "contain",
+  "spotify": "album/6laUDBtyfu4ngRbOsblhfS",
+  "bio": "Dominguinho reúne três vozes do forró de hoje: o pernambucano João Gomes, o sanfoneiro sergipano Mestrinho e o cantor e compositor paulista Jota.pê. O projeto acústico, gravado em Olinda, virou fenómeno em 2025 com Lembrei de Nós e Beija Flor.\n\nEm 2026 ganhou um segundo volume, gravado ao vivo."
  },
  {
   "id": 24,
@@ -199,7 +213,9 @@ window.NP_EVENTS=[
   "demo": false,
   "imagem": "img/dominguinho.jpg",
   "foco": "50% 50%",
-  "ajuste": "contain"
+  "ajuste": "contain",
+  "spotify": "album/6laUDBtyfu4ngRbOsblhfS",
+  "bio": "Dominguinho reúne três vozes do forró de hoje: o pernambucano João Gomes, o sanfoneiro sergipano Mestrinho e o cantor e compositor paulista Jota.pê. O projeto acústico, gravado em Olinda, virou fenómeno em 2025 com Lembrei de Nós e Beija Flor.\n\nEm 2026 ganhou um segundo volume, gravado ao vivo."
  },
  {
   "id": 27,
@@ -224,7 +240,9 @@ window.NP_EVENTS=[
   "demo": false,
   "imagem": "img/ana-carolina.jpg",
   "foco": "39% 46%",
-  "ajuste": "cover"
+  "ajuste": "cover",
+  "spotify": "artist/4HP9KltldfmkH2M2pQozzN",
+  "bio": "Cantora, compositora e instrumentista mineira, Ana Carolina lançou o primeiro disco em 1999 e logo emplacou Garganta. Desde então somou cerca de 30 singles nas paradas e mais de cinco milhões de discos vendidos, entre a MPB, o pop e o samba.\n\nA turnê 25 Anas celebra essa trajetória."
  },
  {
   "id": 26,
@@ -249,6 +267,8 @@ window.NP_EVENTS=[
   "demo": false,
   "imagem": "img/ana-carolina.jpg",
   "foco": "81% 47%",
-  "ajuste": "cover"
+  "ajuste": "cover",
+  "spotify": "artist/4HP9KltldfmkH2M2pQozzN",
+  "bio": "Cantora, compositora e instrumentista mineira, Ana Carolina lançou o primeiro disco em 1999 e logo emplacou Garganta. Desde então somou cerca de 30 singles nas paradas e mais de cinco milhões de discos vendidos, entre a MPB, o pop e o samba.\n\nA turnê 25 Anas celebra essa trajetória."
  }
 ];

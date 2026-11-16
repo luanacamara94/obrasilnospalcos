@@ -400,7 +400,7 @@ p{margin:0}
 .scrim{position:fixed;inset:0;z-index:var(--z-overlay)}
 .drawer,.evd{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);z-index:var(--z-drawer);display:flex;flex-direction:column;overflow:auto;overscroll-behavior:contain;background:var(--color-bg-surface-raised);box-shadow:var(--shadow-xl)}
 .drawer{padding:var(--space-card-padding)}
-@media (min-width:600px){.evd,.drawer{border-radius:var(--radius-modal) 0 0 var(--radius-modal)}}
+@media (min-width:600px){.evd,.drawer{border-radius:12px 0 0 12px}}
 .dhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-200)}
 .dhead h2{font:700 var(--heading-xs) var(--font-text)}
 .ditem{display:flex;justify-content:space-between;gap:var(--space-200);padding:var(--space-150) 0;border-top:1px solid var(--color-border-subtle)}
@@ -555,6 +555,12 @@ footer{margin-top:var(--space-section-gap);padding:var(--space-400) 0 var(--spac
 .evi div{padding:var(--space-150);border-right:1px dashed var(--color-border-default)}.evi div:last-child{border-right:none}
 .evi dt{margin-bottom:var(--space-050);font:500 var(--text-xs) var(--font-text);color:var(--color-text-tertiary)}
 .evi dd{margin:0;font:700 var(--text-sm) var(--font-text)}
+.evtabs{margin:0;gap:0}.evtabs .ptab{flex:1 1 0;padding:0 var(--space-100)}
+.evpanel{display:flex;flex-direction:column;gap:var(--space-group-gap)}
+.evmap,.evspot{display:block;width:100%;border:0;border-radius:12px;background:var(--color-bg-surface-subtle)}
+.evmap{margin:var(--space-100) 0 0;border:1px solid var(--color-border-default)}
+.evbio{display:grid;gap:var(--space-150)}.evbio p{margin:0;max-width:var(--layout-container-reading)}
+.evlink{display:inline-flex;align-items:center;min-height:44px;color:var(--color-text-brand);font-weight:500}
 .evloc{display:grid;gap:var(--space-050)}.evloc a{display:inline-flex;align-items:center;min-height:44px;color:var(--color-text-brand);font-weight:500}
 .evact{display:flex;gap:var(--space-100);flex-wrap:wrap;margin-top:var(--space-150)}
 .evact .shbtn{min-height:44px;font-size:14px}
@@ -1153,7 +1159,15 @@ function sessoesDe(e){
 }
 const hh=t=>t.replace(":00","h").replace(/^(\d+):(\d+)$/,"$1h$2");
 const CLOSE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>';
-let evOpen=null,evFrom=null;
+let evOpen=null,evFrom=null,evTab="resumo";
+const MUSICA=t=>t==="Show"||t==="Concerto";
+const mapSrc=e=>"https://maps.google.com/maps?q="+encodeURIComponent(e.venue+", "+(e.bairro?e.bairro+", ":"")+e.city+", Portugal")+"&z=16&output=embed";
+function evArtista(e){
+  const bio=e.bio?e.bio.split(/\n{2,}/).map(p=>`<p>${esc(p)}</p>`).join(""):`<p class="aumute">Ainda não temos a bio de ${esc(e.artist)}.</p>`;
+  const sp=e.spotify?`<iframe class="evspot" title="Músicas mais ouvidas de ${esc(e.artist)} no Spotify" src="https://open.spotify.com/embed/${esc(e.spotify)}?utm_source=generator&theme=0" height="352" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`:`<a class="evlink" href="https://open.spotify.com/search/${encodeURIComponent(e.artist)}" target="_blank" rel="noopener">Ouvir ${esc(e.artist)} no Spotify ↗</a>`;
+  return `<section class="evsec"><h3>Sobre ${esc(e.artist)}</h3><div class="evbio">${bio}</div></section><section class="evsec"><h3>Ver e ouvir</h3>${sp}</section>`}
+function evLocal(e){
+  return `<section class="evsec evloc"><h3>${esc(e.venue)}</h3><p>${esc(e.bairro)}, ${esc(e.city)}</p><iframe class="evmap" title="Mapa: ${esc(e.venue)}, ${esc(e.city)}" src="${mapSrc(e)}" height="320" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="${gmaps(e)}" target="_blank" rel="noopener">Como chegar (abre o mapa em nova aba) ↗</a><p class="aumute">Acessibilidade e duração: confirme com a sala ou na bilheteira.</p></section>`}
 function renderEvent(e){
   const on=saved.has(e.id),k=TS[e.type],ss=sessoesDe(e);
   const fdt=x=>DOW[x.getDay()]+" "+x.getDate()+"/"+(x.getMonth()+1);
@@ -1162,17 +1176,21 @@ function renderEvent(e){
   $("evd").innerHTML=`<div class="media m-${k}${e.imagem?" has-photo":""}">${art(e)}<span class="pname">${esc(e.artist)}</span><button class="evx" data-evclose aria-label="Fechar detalhes">${CLOSE}</button></div>
   <div class="evb">${(e.estado||"")?`<span class="badge${/Esgotado|Adiado/.test((e.estado||""))?" off":""}">${(e.estado||"")}</span>`:""}<h2>${esc(e.title)}</h2>
   <div class="evk"><span class="k">${esc(e.type)} · ${esc(e.city)}</span><b>${esc(e.venue)}</b><span>${esc(e.bairro)}, ${esc(e.city)}</span></div>
+  ${MUSICA(e.type)?`<div class="ptabs evtabs" role="tablist" aria-label="Detalhes do evento">${[["resumo","Resumo"],["artista","Artista"],["local","Localização"]].map(([k,l])=>`<button type="button" class="ptab" role="tab" id="evt-${k}" aria-controls="evp" aria-selected="${evTab===k}" tabindex="${evTab===k?0:-1}" data-evtab="${k}">${l}</button>`).join("")}</div>`:""}
+  <div id="evp" class="evpanel"${MUSICA(e.type)?` role="tabpanel" aria-labelledby="evt-${evTab}"`:""}>${MUSICA(e.type)&&evTab==="artista"?evArtista(e):MUSICA(e.type)&&evTab==="local"?evLocal(e):`
   <dl class="evi"><div><dt>Preço</dt><dd>${esc(precoTxt(e))}</dd></div><div><dt>Idade</dt><dd>${esc(idadeTxt(e.idade))}</dd></div><div><dt>Via</dt><dd>${esc(e.src)}</dd></div></dl>
   <p class="evtax">Preço da bilheteira. Taxas podem ser somadas no pagamento.</p>
   <section class="evsec"><h3>${e.sessoes==null?"Período":"Próximas sessões"}</h3>${sess}</section>
   <section class="evsec evloc"><h3>Local</h3><p>${esc(e.venue)}, ${esc(e.bairro)}, ${esc(e.city)}</p><a href="${gmaps(e)}" target="_blank" rel="noopener">Como chegar (abre o mapa em nova aba) ↗</a><p class="aumute">Acessibilidade e duração: confirme com a sala ou na bilheteira.</p></section>
   <div class="evact"><a class="shbtn" href="${icsLink(e)}" target="_blank" rel="noopener">Adicionar ao Google Agenda ↗</a><button type="button" class="shbtn" data-lembrete="${e.id}" aria-pressed="${lembr.has(e.id)}">${lembr.has(e.id)?"Lembrete ativo (1 dia antes)":"Lembrar-me 1 dia antes"}</button></div>
-  <section class="evsec"><h3>Sinopse</h3><p>${esc(e.sinopse||"")}</p></section>
+  <section class="evsec"><h3>Sinopse</h3><p>${esc(e.sinopse||"")}</p></section>`}</div>
   <p class="evnote"><span>Atualizado em</span> ${npUpd()}. <span>Confirme datas e preços no site da bilheteira antes de comprar.</span></p></div>
   <div class="evcta">${(e.estado||"")==="Esgotado"?`<button type="button" class="buy" data-lembrete="${e.id}">Avisar-me se abrir</button>`:`<a class="buy" href="${e.url}" target="_blank" rel="noopener">Ir para ${esc(e.src)} ↗</a>`}<button class="plus fav" data-id="${e.id}" aria-pressed="${on}" aria-label="${on?"Remover da minha lista":"Salvar na minha lista"}">${HEART()}</button><button class="plus shr" data-share="${e.id}" aria-label="Compartilhar">${SHARE}</button></div>`;
 }
-function openEvent(id,from){const e=EVENTS.find(x=>x.id===id);if(!e)return;evOpen=id;evFrom=from||document.activeElement;renderEvent(e);$("evd").hidden=false;$("evd").scrollTop=0;$("scrim").hidden=false;document.body.style.overflow="hidden";$("evd").querySelector(".evx").focus()}
+function openEvent(id,from){const e=EVENTS.find(x=>x.id===id);if(!e)return;if(evOpen!==id)evTab="resumo";evOpen=id;evFrom=from||document.activeElement;renderEvent(e);$("evd").hidden=false;$("evd").scrollTop=0;$("scrim").hidden=false;document.body.style.overflow="hidden";$("evd").querySelector(".evx").focus()}
 function closeEvent(){if(evOpen==null)return;evOpen=null;$("evd").hidden=true;if($("drawer").hidden)$("scrim").hidden=true;document.body.style.overflow="";try{evFrom&&evFrom.focus()}catch(x){}}
+document.addEventListener("click",ev=>{const t=ev.target.closest("[data-evtab]");if(!t||evOpen==null)return;evTab=t.dataset.evtab;const e=EVENTS.find(x=>x.id===evOpen);renderEvent(e);const b=$("evd").querySelector(`[data-evtab="${evTab}"]`);b&&b.focus()});
+document.addEventListener("keydown",ev=>{const t=ev.target.closest&&ev.target.closest("[data-evtab]");if(!t||!["ArrowLeft","ArrowRight","Home","End"].includes(ev.key))return;ev.preventDefault();const L=["resumo","artista","local"];let i=L.indexOf(t.dataset.evtab);i=ev.key==="Home"?0:ev.key==="End"?L.length-1:(i+(ev.key==="ArrowRight"?1:-1)+L.length)%L.length;evTab=L[i];renderEvent(EVENTS.find(x=>x.id===evOpen));const b=$("evd").querySelector(`[data-evtab="${evTab}"]`);b&&b.focus()});
 document.addEventListener("click",ev=>{
   const a=ev.target.closest("a.stretch");
   if(a){ev.preventDefault();ev.stopPropagation();const id=+(a.dataset.ev||a.closest(".card").querySelector("[data-id]").dataset.id);openEvent(id,a);return}
@@ -1208,15 +1226,17 @@ document.addEventListener("keydown",ev=>{if(shOpen==null)return;
   if(ev.key==="Tab"){const f=[...$("shm").querySelectorAll("a[href],button,input,textarea")].filter(n=>!n.hidden&&!n.disabled);const i=f.indexOf(document.activeElement);if(ev.shiftKey&&i<=0){ev.preventDefault();f[f.length-1].focus()}else if(!ev.shiftKey&&(i===f.length-1||i<0)){ev.preventDefault();f[0].focus()}}});
 /* Dados da primeira dobra: edite aqui. br = eventos em palcos do Brasil, pt = eventos em palcos de Portugal. */
 const PALCOS={setores:[
-  {id:"teatros",tipo:"Teatro",icone:"mask",rotulo:"Teatros",setor:"A",fila:"01",br:214,pt:142},
-  {id:"shows",tipo:"Show",icone:"pandeiro",rotulo:"Shows",setor:"B",fila:"01",br:538,pt:311},
-  {id:"concertos",tipo:"Concerto",icone:"nota",rotulo:"Concertos",setor:"C",fila:"01",br:176,pt:203},
-  {id:"exposicoes",tipo:"Exposição",icone:"quadro",rotulo:"Exposições",setor:"D",fila:"01",br:129,pt:97}
+  {id:"teatros",tipo:"Teatro",icone:"mask",rotulo:"Teatros",setor:"A",fila:"01"},
+  {id:"shows",tipo:"Show",icone:"pandeiro",rotulo:"Shows",setor:"B",fila:"01"},
+  {id:"concertos",tipo:"Concerto",icone:"nota",rotulo:"Concertos",setor:"C",fila:"01"},
+  {id:"exposicoes",tipo:"Exposição",icone:"quadro",rotulo:"Exposições",setor:"D",fila:"01"}
 ]};
+/* Os números dos cards vêm da agenda publicada (events.js): eventos em cartaz, por tipo. */
+PALCOS.setores.forEach(s=>{s.br=0;s.pt=EVENTS.filter(e=>e.type===s.tipo&&d0(e.fim||e.date)>=HOJE).length});
 const REDUCED=matchMedia("(prefers-reduced-motion: reduce)").matches;
 function countUp(el,n){el.textContent="0";const t0=performance.now();const f=t=>{const p=Math.min(1,(t-t0)/1100);el.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
 function seatsSvg(s,total,grand,si){
-  const C=8,R=5,occ=Math.round(C*R*total/grand),nbr=Math.round(occ*s.br/total);let h="",k=0;
+  const C=8,R=5,occ=Math.round(C*R*total/grand),nbr=total?Math.round(occ*s.br/total):0;let h="",k=0;
   for(let r=R-1;r>=0;r--)for(let c=0;c<C;c++){
     const cx=(7+c*12.3).toFixed(1),cy=(7+r*12+0.22*Math.pow(c-3.5,2)).toFixed(1),i=k++;
     let cls="seat",st="";
@@ -1226,12 +1246,12 @@ function seatsSvg(s,total,grand,si){
   return h;
 }
 function initFold(){
-  const L=PALCOS.setores,grand=L.reduce((a,s)=>a+s.br+s.pt,0);
+  const L=PALCOS.setores,grand=Math.max(1,L.reduce((a,s)=>a+s.br+s.pt,0));
   $("sectors").innerHTML=L.map((s,si)=>{const t=s.br+s.pt;return `<a class="sector k-${s.id}" href="#seg-${TS[s.tipo]}" aria-labelledby="cat-${s.id}" style="--dg:${Math.max(3,String(t).length)}">
     <h2 class="cat" id="cat-${s.id}">${s.rotulo}</h2>
     <svg class="ic ico" aria-hidden="true"><use href="#i-${s.icone}"/></svg>
     <svg class="seats" viewBox="0 0 100 66" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${seatsSvg(s,t,grand,si)}</svg>
-    <div class="stub"><p class="num"><span class="n" data-n="${t}">${t}</span><span class="sr"> eventos: ${s.br} no Brasil e ${s.pt} em Portugal.</span></p></div></a>`}).join("");
+    <div class="stub"><p class="num"><span class="n" data-n="${t}">${t}</span><span class="sr"> ${t===1?"evento publicado":"eventos publicados"}</span></p></div></a>`}).join("");
   const els=[...document.querySelectorAll(".sector")];
   const light=el=>{if(el.classList.contains("lit"))return;el.classList.add("lit");const n=el.querySelector(".n");if(!REDUCED)countUp(n,+n.dataset.n)};
   if(REDUCED||!("IntersectionObserver" in window)){els.forEach(el=>el.classList.add("lit"));return}
@@ -1735,7 +1755,7 @@ const OBT={
 "Receba os avisos no seu número":["Get alerts on your number","Recibe los avisos en tu número"],"Digite um número válido.":["Enter a valid number.","Escribe un número válido."],"Número de WhatsApp":["WhatsApp number","Número de WhatsApp"],"País":["Country","País"],"Portugal +351":["Portugal +351","Portugal +351"],"Brasil +55":["Brazil +55","Brasil +55"],
 "Ativar alertas por e-mail":["Turn on email alerts","Activar alertas por correo"],"Ativar alertas por WhatsApp":["Turn on WhatsApp alerts","Activar alertas por WhatsApp"],
 "Você pode mudar isso depois em Perfil › Configurações. Protótipo: nenhum aviso é enviado de verdade.":["You can change this later in Profile › Settings. Prototype: no alerts are actually sent.","Puedes cambiarlo después en Perfil › Configuración. Prototipo: no se envía ningún aviso de verdad."],
-"Preferências atualizadas":["Preferences updated","Preferencias actualizadas"],"Personalização":["Personalisation","Personalización"],"Refazer personalização":["Redo personalisation","Rehacer personalización"],"Cidade, tipos de evento, gêneros, artistas e alertas.":["City, event types, genres, artists and alerts.","Ciudad, tipos de evento, géneros, artistas y alertas."],"O Brasil nos palcos":["Brazil on stage","Brasil en los escenarios"],
+"Preferências atualizadas":["Preferences updated","Preferencias actualizadas"],"Personalização":["Personalisation","Personalización"],"Refazer personalização":["Redo personalisation","Rehacer personalización"],"Cidade, tipos de evento, gêneros, artistas e alertas.":["City, event types, genres, artists and alerts.","Ciudad, tipos de evento, géneros, artistas y alertas."],"O Brasil nos palcos":["Brazil on stage","Brasil en los escenarios"],"Resumo":["Overview","Resumen"],"Artista":["Artist","Artista"],"Localização":["Location","Ubicación"],"Ver e ouvir":["Watch and listen","Ver y escuchar"],"Detalhes do evento":["Event details","Detalles del evento"],"eventos publicados":["published events","eventos publicados"],"evento publicado":["published event","evento publicado"],
 "Bossa nova":["Bossa nova","Bossa nova"],"Rock brasileiro":["Brazilian rock","Rock brasileño"],"Rap e hip hop":["Rap and hip hop","Rap y hip hop"],"Pop e indie":["Pop and indie","Pop e indie"],"Axé":["Axé","Axé"],"Choro":["Choro","Choro"],"Forró":["Forró","Forró"],"Sertanejo":["Sertanejo","Sertanejo"],"Pagode":["Pagode","Pagode"],"Funk":["Funk","Funk"],"Samba":["Samba","Samba"],"MPB":["MPB","MPB"],
 "Música de câmara":["Chamber music","Música de cámara"],"Orquestra sinfónica":["Symphony orchestra","Orquesta sinfónica"],"Ópera":["Opera","Ópera"],"Coral":["Choral","Coral"],"Jazz instrumental":["Instrumental jazz","Jazz instrumental"],"Música contemporânea":["Contemporary music","Música contemporánea"],"Violão e guitarra clássica":["Classical guitar","Guitarra clásica"],"Villa-Lobos e modernistas":["Villa-Lobos and modernists","Villa-Lobos y modernistas"],
 "Pintura":["Painting","Pintura"],"Fotografia":["Photography","Fotografía"],"Escultura":["Sculpture","Escultura"],"Gravura":["Printmaking","Grabado"],"Arte contemporânea":["Contemporary art","Arte contemporáneo"],"Modernismo":["Modernism","Modernismo"],"Arte popular":["Folk art","Arte popular"],"Design e arquitetura":["Design and architecture","Diseño y arquitectura"],
