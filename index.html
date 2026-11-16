@@ -614,7 +614,17 @@ footer{margin-top:var(--space-section-gap);padding:var(--space-400) 0 var(--spac
    Página do perfil
    ===================================================================== */
 body.on-perfil header.fold,body.on-perfil .controls,body.on-perfil main{display:none}
-.pg{display:none;padding-bottom:var(--space-600)}body.on-perfil .pg{display:block}
+.pg{display:none;padding-bottom:var(--space-600)}
+.legal{display:none;padding:var(--space-400) 0 var(--space-600)}
+body.on-legal header.fold,body.on-legal .controls,body.on-legal main{display:none}body.on-legal .legal{display:block}
+.legal article{max-width:var(--layout-container-reading,720px);display:grid;gap:var(--space-200)}
+.legal h1{margin:0;font:800 clamp(30px,4vw,44px)/1.15 var(--font-display);letter-spacing:-.01em;color:var(--color-text-primary)}
+.legal h2{margin:var(--space-300) 0 0;font:700 var(--text-xl) var(--font-display);color:var(--color-text-primary)}
+.legal p,.legal li{margin:0;font:400 var(--text-md) var(--font-text);color:var(--color-text-secondary)}.legal ul{margin:0;padding-left:var(--space-300);display:grid;gap:var(--space-100)}
+.legal .upd{color:var(--color-text-tertiary);font:400 var(--text-sm) var(--font-text)}.legal a{color:var(--color-text-brand)}
+.legal .lgback{justify-self:start;display:inline-flex;align-items:center;gap:var(--space-100);min-height:44px;color:var(--color-text-brand);font:600 var(--text-sm) var(--font-text);text-decoration:none}
+.ck{position:fixed;left:50%;bottom:var(--space-200);translate:-50% 0;z-index:var(--z-toast);width:min(720px,calc(100vw - 2 * var(--space-200)));display:flex;align-items:center;gap:var(--space-200) var(--space-300);flex-wrap:wrap;padding:var(--space-200) var(--space-250);border:1px solid var(--color-border-default);border-radius:4px;background:var(--color-bg-surface-raised);color:var(--color-text-primary);box-shadow:var(--shadow-lg)}
+.ck[hidden]{display:none}.ck p{flex:1 1 320px;margin:0;font:400 var(--text-sm) var(--font-text)}.ck a{color:var(--color-text-brand)}.ckb{display:flex;gap:var(--space-100);margin-left:auto}.ckb .shbtn{min-height:44px}body.on-perfil .pg{display:block}
 .pcover{position:relative;height:220px;margin-top:var(--space-300);overflow:hidden;border-radius:var(--radius-card-expressive);background:var(--color-bg-surface-subtle)}
 .pcover>svg{position:absolute;inset:0;width:100%;height:100%}
 
@@ -956,8 +966,9 @@ body.on-login>*:not(#lg):not(#toast):not(svg):not(script):not(#ob){display:none!
 </main>
 
 <section id="pg" class="pg" aria-label="Perfil"><div class="wrap" id="pgin"></div></section>
+<section id="legal" class="legal" aria-label="Informações legais"><div class="wrap" id="legalin"></div></section>
 
-<footer><div class="wrap ft"><p>Horários e preços podem mudar. Confirme sempre na bilheteira.<br><a href="#">Termos de uso</a> · <a href="#">Política de privacidade</a> · <a href="#">Cookies</a></p><p class="credit">Feito com muito café <span aria-hidden="true">☕</span> por <a class="link" href="https://www.luanacamara.com/" target="_blank" rel="noopener">Luana Camará</a></p></div></footer>
+<footer><div class="wrap ft"><p>Horários e preços podem mudar. Confirme sempre na bilheteira.<br><a href="#/termos">Termos de uso</a> · <a href="#/privacidade">Política de privacidade</a> · <a href="#/cookies">Cookies</a></p><p class="credit">Feito com muito café <span aria-hidden="true">☕</span> por <a class="link" href="https://www.luanacamara.com/" target="_blank" rel="noopener">Luana Camará</a></p></div></footer>
 
 <section id="lg" class="lg" aria-label="Entrar" hidden>
   <div class="lgl"><div class="lgtop"><button type="button" class="lgbrand"><svg viewBox="0 0 46 32" aria-hidden="true"><use href="#f-br"/></svg>O Brasil nos palcos</button><div id="lglang" class="lglang" role="group" aria-label="Idioma"></div></div>
@@ -980,6 +991,7 @@ body.on-login>*:not(#lg):not(#toast):not(svg):not(script):not(#ob){display:none!
   <div id="obbody" class="obbody"><div id="obcol" class="obcol"></div></div></div></div>
 <div id="offl" class="offl" role="status" hidden>Sem ligação à internet. Você vê a última lista carregada; preços e datas podem ter mudado.</div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="ck" class="ck" role="region" aria-label="Cookies" hidden><p>Usamos cookies do Google Analytics para entender como o site é usado e melhorá-lo. Só ativamos se você aceitar. <a href="#/cookies">Saber mais</a></p><div class="ckb"><button type="button" class="shbtn" data-ck="nao">Recusar</button><button type="button" class="shbtn pri" data-ck="sim">Aceitar</button></div></div>
 <div id="scrim" class="scrim" hidden></div>
 <div id="shbk" class="shbk" hidden><div id="shm" class="shm" role="dialog" aria-modal="true" aria-labelledby="sht"></div></div>
 <div id="aubk" class="shbk" hidden><div id="aum" class="shm" role="dialog" aria-modal="true" aria-labelledby="aut"></div></div>
@@ -987,6 +999,7 @@ body.on-login>*:not(#lg):not(#toast):not(svg):not(script):not(#ob){display:none!
 <aside id="evd" class="evd" hidden role="dialog" aria-modal="true" aria-label="Detalhes do evento"></aside>
 <aside id="drawer" class="drawer" hidden aria-label="Minha lista"><div class="dhead"><h2>Minha lista</h2><button id="closeDrawer" class="save">Fechar</button></div><div id="dnudge"></div><div id="dlist"></div></aside>
 <script src="events.js"></script>
+<script type="module" src="conta.js"></script>
 <script>
 const HOM={"Gal Costa":[1945,2022],"Elis Regina":[1945,1982],"Beth Carvalho":[1946,2019],"Cartola":[1908,1980],"Clara Nunes":[1942,1983],"Dona Ivone Lara":[1921,2018],"Nelson Cavaquinho":[1911,1986],"João Gilberto":[1931,2019],"Tom Jobim":[1927,1994],"Vinicius de Moraes":[1913,1980],"Nara Leão":[1942,1989],"Astrud Gilberto":[1940,2023],"Carlos Lyra":[1933,2023],"Pixinguinha":[1897,1973],"Jacob do Bandolim":[1918,1969],"Waldir Azevedo":[1923,1980],"Altamiro Carrilho":[1924,2012],"Ernesto Nazareth":[1863,1934],"Paulo Moura":[1932,2010],"Rafael Rabello":[1962,1995],"Luiz Gonzaga":[1912,1989],"Dominguinhos":[1941,2013],"Marília Mendonça":[1995,2021],"Cazuza":[1958,1990],"Raul Seixas":[1945,1989],"Rita Lee":[1947,2023],"Chico Science":[1966,1997],"Cássia Eller":[1962,2001],"Erasmo Carlos":[1941,2022],"Wilson Simonal":[1938,2000]};
 const isHom=a=>Object.prototype.hasOwnProperty.call(HOM,a);
@@ -1023,7 +1036,7 @@ const npUpd=()=>{const d=new Date((window.NP_EVENTS_UPDATED||"")+"T12:00:00");re
 const S={city:"Lisboa",type:"Todos",q:"",per:"tudo",view:"cards"};
 let saved=new Set();
 try{saved=new Set(JSON.parse(localStorage.getItem("agenda")||"[]"))}catch(e){}
-const persist=()=>{try{localStorage.setItem("agenda",JSON.stringify([...saved]))}catch(e){}};
+const persist=()=>{try{localStorage.setItem("agenda",JSON.stringify([...saved]))}catch(e){}if(typeof nuvem==="function")nuvem()};
 const $=id=>document.getElementById(id);
 const ICON={Show:"pandeiro",Teatro:"mask",Concerto:"nota","Exposição":"quadro"};
 const ic=n=>n?`<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`:"";
@@ -1040,7 +1053,7 @@ const idadeAbbr=i=>{const m=String(i).match(/^M\/(\d+)$/);return m?`<abbr title=
 const precoTxt=e=>{const p=String(e.price);return /–/.test(p)?"a partir de "+p.split("–")[0].trim()+" €":p};
 const gmaps=e=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(e.venue+", "+e.city);
 const lembr=new Set((()=>{try{return JSON.parse(localStorage.getItem("lembretes")||"[]")}catch(x){return[]}})());
-const lembrSave=()=>{try{localStorage.setItem("lembretes",JSON.stringify([...lembr]))}catch(x){}};
+const lembrSave=()=>{try{localStorage.setItem("lembretes",JSON.stringify([...lembr]))}catch(x){}if(typeof nuvem==="function")nuvem()};
 function icsLink(e){const st=d0(e.date)<HOJE?HOJE:d0(e.date),pad=n=>String(n).padStart(2,"0"),[h,mi]=e.time.split(":"),ds=st.getFullYear()+pad(st.getMonth()+1)+pad(st.getDate());const eh=pad(Math.min(23,+h+(e.sessoes==null?1:2)));
  return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(e.title)+"&dates="+ds+"T"+pad(+h)+mi+"00/"+ds+"T"+eh+mi+"00&location="+encodeURIComponent(e.venue+", "+e.city)+"&details="+encodeURIComponent("Confirme data e preço na bilheteira ("+e.src+").")}
 const TS={Show:"show",Teatro:"teatro",Concerto:"concerto","Exposição":"expo"};
@@ -1188,7 +1201,7 @@ function renderEvent(e){
   <p class="evnote"><span>Atualizado em</span> ${npUpd()}. <span>Confirme datas e preços no site da bilheteira antes de comprar.</span></p></div>
   <div class="evcta">${(e.estado||"")==="Esgotado"?`<button type="button" class="buy" data-lembrete="${e.id}">Avisar-me se abrir</button>`:`<a class="buy" href="${e.url}" target="_blank" rel="noopener">Ir para ${esc(e.src)} ↗</a>`}<button class="plus fav" data-id="${e.id}" aria-pressed="${on}" aria-label="${on?"Remover da minha lista":"Salvar na minha lista"}">${HEART()}</button><button class="plus shr" data-share="${e.id}" aria-label="Compartilhar">${SHARE}</button></div>`;
 }
-function openEvent(id,from){const e=EVENTS.find(x=>x.id===id);if(!e)return;if(evOpen!==id)evTab="resumo";evOpen=id;evFrom=from||document.activeElement;renderEvent(e);$("evd").hidden=false;$("evd").scrollTop=0;$("scrim").hidden=false;document.body.style.overflow="hidden";$("evd").querySelector(".evx").focus()}
+function openEvent(id,from){const e=EVENTS.find(x=>x.id===id);if(!e)return;if(evOpen!==id){evTab="resumo";mtr("ver_evento",evInfo(id))}evOpen=id;evFrom=from||document.activeElement;renderEvent(e);$("evd").hidden=false;$("evd").scrollTop=0;$("scrim").hidden=false;document.body.style.overflow="hidden";$("evd").querySelector(".evx").focus()}
 function closeEvent(){if(evOpen==null)return;evOpen=null;$("evd").hidden=true;if($("drawer").hidden)$("scrim").hidden=true;document.body.style.overflow="";try{evFrom&&evFrom.focus()}catch(x){}}
 document.addEventListener("click",ev=>{const t=ev.target.closest("[data-evtab]");if(!t||evOpen==null)return;evTab=t.dataset.evtab;const e=EVENTS.find(x=>x.id===evOpen);renderEvent(e);const b=$("evd").querySelector(`[data-evtab="${evTab}"]`);b&&b.focus()});
 document.addEventListener("keydown",ev=>{const t=ev.target.closest&&ev.target.closest("[data-evtab]");if(!t||!["ArrowLeft","ArrowRight","Home","End"].includes(ev.key))return;ev.preventDefault();const L=["resumo","artista","local"];let i=L.indexOf(t.dataset.evtab);i=ev.key==="Home"?0:ev.key==="End"?L.length-1:(i+(ev.key==="ArrowRight"?1:-1)+L.length)%L.length;evTab=L[i];renderEvent(EVENTS.find(x=>x.id===evOpen));const b=$("evd").querySelector(`[data-evtab="${evTab}"]`);b&&b.focus()});
@@ -1267,7 +1280,7 @@ window.addEventListener("resize",syncArrows);
 const GICON='<svg viewBox="0 0 18 18" width="20" height="20" aria-hidden="true"><path fill="#EA4335" d="M9 3.48c1.69 0 2.83.73 3.48 1.34l2.54-2.48C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.96l2.91 2.26C4.6 5.05 6.62 3.48 9 3.48z"/><path fill="#4285F4" d="M17.64 9.2c0-.74-.06-1.28-.19-1.84H9v3.34h4.96c-.1.83-.64 2.08-1.84 2.92l2.84 2.2c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#FBBC05" d="M3.88 10.78A5.54 5.54 0 0 1 3.58 9c0-.62.11-1.22.29-1.78L.96 4.96A9.008 9.008 0 0 0 0 9c0 1.45.35 2.82.96 4.04l2.92-2.26z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.84-2.2c-.76.53-1.78.9-3.12.9-2.38 0-4.4-1.57-5.12-3.74L.97 13.04C2.45 15.98 5.48 18 9 18z"/></svg>';
 const DEMO={nome:"Ana Souza",email:"ana.souza@gmail.com"};
 const lsj=k=>{try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}};
-const lss=(k,v)=>{try{v==null?localStorage.removeItem(k):localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const lss=(k,v)=>{try{v==null?localStorage.removeItem(k):localStorage.setItem(k,JSON.stringify(v))}catch(e){}if((k==="conta"||k==="sessao")&&v!=null&&typeof nuvem==="function")nuvem()};
 
 /* ---------- capas: ícones arquitetônicos de cidades brasileiras e portuguesas ---------- */
 const mono3=(g,fg,sw)=>`<g transform="translate(597 51) scale(3.4)" fill="none" stroke="${fg}" stroke-width="${sw||1.5}" stroke-linecap="round" stroke-linejoin="round">${g}</g>`;
@@ -1326,7 +1339,6 @@ function auStep(step,busy){
   const head=`<div class="media m-concerto">${art({id:2})}<button class="evx" data-au-close aria-label="Fechar">${CLOSE}</button></div>`;
   if(step==="entrar")$("aum").innerHTML=head+`<div class="shb"><div><h2 id="aut">Entrar ou criar conta</h2><div class="shsub"><span>Guarde a sua lista de eventos e receba avisos de novidades na sua cidade.</span></div></div>
     <button class="gbtn" data-au-google ${busy?"disabled":""}>${GICON}<span>${busy?"Conectando ao Google…":"Continuar com Google"}</span></button>
-    <p class="demo">Protótipo: este botão entra com uma conta de demonstração. Na versão real, abre a janela de login do Google.</p>
     <p class="aumute">Se você ainda não tem conta, ela é criada automaticamente. Ao continuar, você concorda com os Termos e a Política de Privacidade.</p></div>`;
   else $("aum").innerHTML=head+`<div class="shb"><div><h2 id="aut">Conta criada, ${esc(first(DEMO.nome))}!</h2><div class="shsub"><span>Entrou com Google como ${esc(DEMO.email)}. Só falta personalizar.</span></div></div>
     <div class="shf"><span class="lb">Sua cidade</span><div class="opts" role="group" aria-label="Sua cidade">${CITIES.map(c=>`<button class="opt" data-au-city="${c}" aria-pressed="${c===auCity}">${c}</button>`).join("")}</div></div>
@@ -1336,11 +1348,86 @@ function auStep(step,busy){
 function entrou(msg){lss("sessao",true);ACC=mig(lsj("conta"));if(ACC.cidade&&CITIES.includes(ACC.cidade))S.city=ACC.cidade;render();renderAuth();closeAuth();toast(msg)}
 const salvarConta=()=>{lss("conta",ACC);renderAuth()};
 
+/* ---------- conta real: Firebase (ver conta.js). A página guarda uma cópia local e sincroniza com a nuvem. ---------- */
+const fbOff=()=>toast("Para entrar, use o site obrasilnospalcos.com.");
+let nuvemT=null;
+function nuvem(){if(!window.FB||!FB.user||!lsj("sessao"))return;clearTimeout(nuvemT);nuvemT=setTimeout(()=>{const c=lsj("conta");if(!c||!FB.user)return;FB.salvar({conta:c,agenda:[...saved],lembretes:[...lembr]}).catch(e=>console.warn("[conta] não sincronizou",e))},700)}
+const nomeDe=u=>u.nome||(u.email||"").split("@")[0].replace(/[._-]+/g," ").replace(/\b\w/g,c=>c.toUpperCase());
+function trazerPerfil(p,email){lss("conta",{...p.conta,email:email||p.conta.email});(p.agenda||[]).forEach(i=>saved.add(i));persist();(p.lembretes||[]).forEach(i=>lembr.add(i));lembrSave()}
+function aposLogin(r,to){
+  DEMO.nome=nomeDe(r.user);DEMO.email=r.user.email;DEMO.metodo=r.user.metodo;
+  if(r.perfil&&r.perfil.conta){trazerPerfil(r.perfil,r.user.email);entrou("Que bom te ver de novo, "+first(r.perfil.conta.nome||DEMO.nome));if(to||ROUTE==="#/entrar")go(to||"");FB.track("login",{method:r.user.metodo})}
+  else{lss("conta",null);go("");openOb(false);FB.track("sign_up",{method:r.user.metodo})}
+}
+/* ---------- métricas: só depois de a pessoa aceitar os cookies (o Analytics é carregado por conta.js) ---------- */
+const CONTATO="ajuda@obrasilnospalcos.com";
+const mtr=(n,p)=>{try{window.FB&&FB.track(n,p)}catch(e){}};
+const evInfo=id=>{const e=EVENTS.find(x=>x.id===+id);return e?{evento:e.title,artista:e.artist,tipo:e.type,cidade:e.city}:{}};
+function ckAplicar(){if(lsj("cookies")==="sim"&&window.FB)FB.consentir(true)}
+function ckMostrar(v){$("ck").hidden=!v}
+addEventListener("fb:carregado",ckAplicar);
+document.addEventListener("click",ev=>{const t=ev.target;
+  const ck=t.closest("[data-ck]");if(ck){const sim=ck.dataset.ck==="sim";lss("cookies",sim?"sim":"nao");ckMostrar(false);if(sim){ckAplicar();setTimeout(()=>mtr("cookies_aceitos"),1500)}else toast("Tudo bem. Não vamos medir a sua visita.");return}
+  if(t.closest("[data-ck-rever]")){ckMostrar(true);return}
+  const b=t.closest("a.buy");if(b){const e=EVENTS.find(x=>x.id===evOpen);mtr("clique_bilheteira",{...evInfo(evOpen),bilheteira:e?e.src:"",link_url:b.href})}
+  const f=t.closest(".save,.fav");if(f&&f.dataset.id)mtr(saved.has(+f.dataset.id)?"remover_lista":"adicionar_lista",evInfo(f.dataset.id));
+  const sh=t.closest("[data-share]");if(sh)mtr("share",{...evInfo(sh.dataset.share),content_type:"evento"});
+  const lb=t.closest("[data-lembrete]");if(lb)mtr("lembrete",evInfo(lb.dataset.lembrete));
+  const tb=t.closest("[data-evtab]");if(tb)mtr("aba_gaveta",{aba:tb.dataset.evtab,...evInfo(evOpen)});
+  const c=t.closest("[data-city]");if(c)mtr("trocar_cidade",{cidade:c.dataset.city});
+  const ch=t.closest(".chip");if(ch&&ch.dataset.k)mtr("filtro",{filtro:ch.dataset.k,valor:ch.dataset.v});
+},true);
+let trBusca=null;$("q").addEventListener("input",e=>{clearTimeout(trBusca);const v=e.target.value.trim();if(v.length>=3)trBusca=setTimeout(()=>mtr("search",{search_term:v}),1200)});
+
+const LEGAL={
+privacidade:`<h1>Política de privacidade</h1><p class="upd">Última atualização: 16 de novembro de 2026</p>
+<p>O Brasil nos palcos é um portal independente que reúne shows, teatro, concertos e exposições de artistas brasileiros em Portugal. Esta política explica, em linguagem simples, que dados guardamos, para quê e como você controla tudo.</p>
+<h2>Quem é responsável</h2><p>O site é criado e mantido por Luana Camará. Para qualquer pedido sobre os seus dados, escreva para <a href="mailto:${CONTATO}">${CONTATO}</a>.</p>
+<h2>Que dados guardamos</h2><ul>
+<li><b>Sem conta:</b> a sua lista, os lembretes, o idioma e a cidade escolhida ficam só no seu navegador. Não chegam até nós.</li>
+<li><b>Com conta:</b> nome, e-mail, método de login (Google ou e-mail e senha), cidade, preferências, interesses, bio, avatar ou foto, lista de eventos, lembretes e, se você ativar avisos por WhatsApp, o seu número.</li>
+<li><b>Senha:</b> nunca vemos nem guardamos a sua senha. Quem a verifica é o Google Firebase, de forma cifrada.</li>
+<li><b>Métricas de uso:</b> só se você aceitar os cookies. Páginas vistas, eventos abertos, cliques para as bilheteiras, buscas e filtros, de forma agregada, pelo Google Analytics.</li></ul>
+<h2>Para que usamos</h2><ul>
+<li>Criar e manter a sua conta e guardar a sua lista em qualquer aparelho (execução do serviço que você pediu).</li>
+<li>Entender como o site é usado e melhorá-lo (só com o seu consentimento).</li>
+<li>Proteger o site contra abusos (interesse legítimo).</li></ul>
+<p>Não vendemos dados, não fazemos publicidade e não partilhamos a sua informação com as bilheteiras.</p>
+<h2>Com quem os dados ficam</h2><ul>
+<li><b>Google Firebase</b> (login e base de dados), com os dados guardados na União Europeia.</li>
+<li><b>Google Analytics</b>, apenas se aceitar os cookies.</li>
+<li><b>GitHub Pages</b>, que hospeda o site e pode registar dados técnicos de acesso, como o endereço IP.</li>
+<li><b>Spotify e Google Maps</b>: quando você abre as abas Artista ou Localização de um evento, estes serviços são carregados e podem recolher dados segundo as suas próprias políticas.</li></ul>
+<p>Alguns destes fornecedores podem tratar dados fora da União Europeia, com as garantias exigidas pelo RGPD.</p>
+<h2>Por quanto tempo</h2><p>Os dados da conta ficam guardados enquanto a conta existir. Quando você exclui a conta, apagamos o seu perfil e a sua lista. As métricas do Analytics são mantidas pelo período configurado no Google Analytics, no máximo 14 meses.</p>
+<h2>Os seus direitos</h2><p>Você pode pedir acesso, correção, cópia ou exclusão dos seus dados, opor-se ao tratamento e retirar o consentimento a qualquer momento. Pode excluir a conta você mesmo em <b>Meu perfil › Configurações › Excluir conta</b>, ou escrever para <a href="mailto:${CONTATO}">${CONTATO}</a>. Se achar que os seus direitos não foram respeitados, pode apresentar queixa à <a href="https://www.cnpd.pt" target="_blank" rel="noopener">CNPD</a>, a autoridade portuguesa de proteção de dados.</p>
+<h2>Mudanças</h2><p>Se esta política mudar, atualizamos a data no topo da página. Mudanças importantes serão avisadas no site.</p>`,
+termos:`<h1>Termos de uso</h1><p class="upd">Última atualização: 16 de novembro de 2026</p>
+<h2>O que é o site</h2><p>O Brasil nos palcos é uma agenda gratuita de eventos de artistas brasileiros em Portugal. Não vendemos bilhetes: o botão de compra leva sempre ao site da bilheteira ou da sala, onde a compra acontece segundo as regras deles.</p>
+<h2>Informação dos eventos</h2><p>Datas, horários, preços e classificação etária vêm das bilheteiras e das salas e são conferidos antes de publicar. Ainda assim, podem mudar sem aviso. Confirme sempre na bilheteira antes de comprar. Não nos responsabilizamos por cancelamentos, alterações ou problemas na compra.</p>
+<h2>A sua conta</h2><p>A conta é pessoal. Mantenha a sua senha em segurança e não use o site para fins ilegais ou para prejudicar outras pessoas. Podemos suspender contas usadas de forma abusiva. Você pode excluir a sua conta quando quiser.</p>
+<h2>Conteúdo</h2><p>Imagens e nomes de eventos pertencem aos seus artistas, produtoras e salas e são usados apenas para divulgar os eventos. Se for titular de algum conteúdo e quiser que seja retirado, escreva para <a href="mailto:${CONTATO}">${CONTATO}</a>.</p>
+<h2>Lei aplicável</h2><p>Estes termos seguem a lei portuguesa. Ao usar o site, você concorda com eles e com a <a href="#/privacidade">Política de privacidade</a>.</p>`,
+cookies:`<h1>Cookies</h1><p class="upd">Última atualização: 16 de novembro de 2026</p>
+<h2>Essenciais (sempre ativos)</h2><p>Guardamos no seu navegador a sua lista, os lembretes, o idioma, a cidade escolhida, a sua escolha sobre cookies e, se tiver conta, a sessão de login do Google Firebase. Sem isto o site não funciona como espera. Estes dados não servem para medir nem para publicidade.</p>
+<h2>Métricas (só com o seu consentimento)</h2><p>Se aceitar, o Google Analytics usa os cookies <code>_ga</code> e <code>_ga_YJYBDFL18L</code> para contar visitas e entender como o site é usado. Se recusar, nada disso é carregado.</p>
+<h2>Conteúdo de terceiros</h2><p>O player do Spotify e o mapa do Google Maps, nas abas Artista e Localização, só carregam quando você abre essas abas e podem usar cookies próprios.</p>
+<p><button type="button" class="shbtn pri" data-ck-rever>Rever a minha escolha</button></p>`};
+
+function sairLocal(){lss("sessao",null);lss("conta",null);ACC=null;saved.clear();persist();lembr.clear();lembrSave();renderAuth();render()}
+if(lsj("cookies")==null)setTimeout(()=>ckMostrar(true),800);else ckAplicar();
+addEventListener("fb:auth",ev=>{const u=ev.detail.user;
+  if(!u&&lsj("sessao")){sairLocal();if(ROUTE.startsWith("#/perfil"))go("");return}
+  if(u&&!lsj("sessao")&&!OB&&ROUTE!=="#/entrar")FB.carregar().then(p=>{if(p&&p.conta&&!lsj("sessao")&&FB.user){trazerPerfil(p,u.email);lss("sessao",true);ACC=mig(lsj("conta"));if(ACC.cidade&&CITIES.includes(ACC.cidade))S.city=ACC.cidade;render();renderAuth()}});
+});
+
 /* ---------- rotas: página do perfil ---------- */
 const PERFIL=/^#\/perfil(?:\/(lista|config|editar))?$/;
 function applyRoute(){
   const lm=ROUTE==="#/entrar";document.body.classList.toggle("on-login",lm);$("lg").hidden=!lm;
   if(lm){if(ACC){go("");return}try{renderLogin()}catch(e){}window.scrollTo(0,0);return}
+  const lgl=ROUTE.match(/^#\/(privacidade|termos|cookies)$/);document.body.classList.toggle("on-legal",!!lgl);
+  if(lgl){document.body.classList.remove("on-perfil");$("legalin").innerHTML=`<article><a class="lgback" href="#">← Voltar para a agenda</a>${LEGAL[lgl[1]]}</article>`;window.scrollTo(0,0);return}
   const m=ROUTE.match(PERFIL);
   if(m&&!ACC){LGfrom=ROUTE;go("#/entrar");return}
   document.body.classList.toggle("on-perfil",!!m);
@@ -1405,13 +1492,13 @@ document.addEventListener("click",ev=>{
   if(t.closest("[data-city]")&&ROUTE.startsWith("#/perfil")){go("")}
   const ao=t.closest("[data-auth-open]");if(ao){setMenu("profMenu","profBtn",false);if(!$("drawer").hidden)drawer(false);LGfrom=ROUTE;go("#/entrar");return}
   if(t.id==="aubk"||t.closest("[data-au-close]")){closeAuth();return}
-  if(t.closest("[data-au-google]")){auStep("entrar",true);setTimeout(()=>{if(!auOpen)return;if(lsj("conta"))entrou("Que bom te ver de novo, "+first(lsj("conta").nome));else{closeAuth();openOb(false)}},700);return}
+  if(t.closest("[data-au-google]")){closeAuth();LGfrom=ROUTE;go("#/entrar");return}
   const ac=t.closest("[data-au-city]");if(ac){auCity=ac.dataset.auCity;$("aum").querySelectorAll("[data-au-city]").forEach(b=>b.setAttribute("aria-pressed",b===ac));return}
   if(t.closest("[data-au-done]")){lss("conta",{...DEMO,cidade:auCity,avisos:$("auavisos").checked,capa:CITYCOVER[auCity]||"lisboa",avatar:null,foto:null,bio:"",interesses:[],desde:hoje()});entrou("Conta criada. Boas-vindas, "+first(DEMO.nome)+"!");return}
   const pl=t.closest("[data-pf-list]");if(pl){setMenu("profMenu","profBtn",false);drawer(true);return}
-  if(t.closest("[data-pf-out]")){lss("sessao",null);ACC=null;setMenu("profMenu","profBtn",false);renderAuth();if(ROUTE)go("");toast("Você saiu da conta");return}
+  if(t.closest("[data-pf-out]")){if(window.FB)FB.sair().catch(()=>{});sairLocal();setMenu("profMenu","profBtn",false);if(ROUTE)go("");toast("Você saiu da conta");return}
   const pc=t.closest("[data-pf-city]");if(pc&&ACC){ACC.cidade=pc.dataset.pfCity;salvarConta();S.city=ACC.cidade;render();return}
-  const pd=t.closest("[data-pf-del]");if(pd){if(delArm){clearTimeout(delArm);delArm=null;lss("conta",null);lss("sessao",null);ACC=null;renderAuth();go("");toast("Conta excluída")}else{pd.textContent="Confirmar exclusão";delArm=setTimeout(()=>{delArm=null;if(pd.isConnected)pd.textContent="Excluir conta"},4000)}return}
+  const pd=t.closest("[data-pf-del]");if(pd){if(delArm){clearTimeout(delArm);delArm=null;const fim=()=>{sairLocal();go("");toast("Conta excluída")};if(!window.FB||!FB.user){fim();return}pd.disabled=true;pd.textContent="Excluindo…";FB.excluir().then(()=>{FB.track("conta_excluida");fim()}).catch(e=>{pd.disabled=false;pd.textContent="Excluir conta";toast(FB.erro(e));if(e&&e.code==="auth/requires-recent-login"){FB.sair().catch(()=>{});sairLocal();LGfrom="#/perfil/config";go("#/entrar")}})}else{pd.textContent="Confirmar exclusão";delArm=setTimeout(()=>{delArm=null;if(pd.isConnected)pd.textContent="Excluir conta"},4000)}return}
   const oe=t.closest("[data-open-ev]");if(oe){openEvent(+oe.dataset.openEv,oe);return}
   const ii=t.closest("[data-int]");if(ii&&ACC){const k=ii.dataset.int,s=ACC.interesses;s.includes(k)?s.splice(s.indexOf(k),1):s.push(k);salvarConta();renderPerfil();return}
   const st=t.closest("[data-step]");if(st){const k=st.dataset.step;if(k==="home")go("");else if(k==="int"){const el=$("pint");el&&el.scrollIntoView({behavior:"smooth",block:"center"})}else goEdit(k);return}
@@ -1675,7 +1762,7 @@ function obRender(first){
     <form id="obacc" class="obacc" novalidate><div class="shf"><label for="obnome">Nome</label><input id="obnome" class="shin" autocomplete="name" placeholder="Seu nome" maxlength="40" value="${esc(ac.nome||"")}"></div>
     <div class="shf"><label for="obemail">E-mail</label><input id="obemail" class="shin" type="email" autocomplete="email" placeholder="seu@email.com" value="${esc(ac.email||"")}"></div>
     <div class="shf"><label for="obpass">Senha</label><div class="lgpw"><input id="obpass" class="shin" type="password" autocomplete="new-password" placeholder="Crie uma senha" aria-describedby="obhint obmsg"><button type="button" class="lgeye" data-ob-eye aria-label="Mostrar senha" aria-pressed="false">${EYE}</button></div><small id="obhint" class="hint">Mínimo de 8 caracteres.</small></div>
-    <p id="obmsg" class="lgmsg" role="alert"></p><button type="submit" class="shbtn pri obgo">Criar conta e continuar</button><p class="legal">Ao criar conta, você aceita os <a href="#">Termos de uso</a> e a <a href="#">Política de privacidade</a>.</p></form>
+    <p id="obmsg" class="lgmsg" role="alert"></p><button type="submit" class="shbtn pri obgo">Criar conta e continuar</button><p class="legal">Ao criar conta, você aceita os <a href="#/termos">Termos de uso</a> e a <a href="#/privacidade">Política de privacidade</a>.</p></form>
     <p class="lgswap">Já tem conta? <button type="button" data-ob-login>Entrar</button></p>`}
   else if(id==="cidade")h=q("Em que cidade você está?","Vamos mostrar primeiro o que está em cartaz perto de você.")+`<div class="obrows" role="group" aria-label="Sua cidade">${CITIES.map(c=>`<button type="button" class="obrow" data-ob-city="${c}" aria-pressed="${c===d.cidade}"><span>${c}</span><svg class="ic" aria-hidden="true"><use href="#i-chev"/></svg></button>`).join("")}</div>`;
   else if(id==="tipos")h=q("O que você gosta de ver nos palcos?","Escolha um ou mais. Cada escolha abre perguntas mais específicas.")+`<div class="obcards" role="group" aria-label="Tipos de evento">${OBTIPOS.map(x=>`<button type="button" class="obcard" data-ob-tipo="${x.t}" aria-pressed="${d.tipos.includes(x.t)}"><span class="obck" aria-hidden="true"><svg viewBox="0 0 256 256"><use href="#i-check"/></svg></span><svg class="ic" aria-hidden="true"><use href="#i-${x.i}"/></svg><b>${x.l}</b><small>${x.d}</small></button>`).join("")}</div>`+cont(d.tipos.length>0,"Continuar");
@@ -1689,7 +1776,7 @@ function obRender(first){
     <div class="obalrow"><div class="obalh"><span class="obalico"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></span><div><b>E-mail</b><small>${esc(DEMO.email)} · novidades, até 1 por semana</small></div><label class="sw"><input type="checkbox" data-ob-email ${d.email?"checked":""} aria-label="Ativar alertas por e-mail"><i></i></label></div></div>
     <div class="obalrow"><div class="obalh"><span class="obalico wa"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg></span><div><b>WhatsApp</b><small>Eventos da sua cidade, até 1 por semana. Responda PARAR para cancelar.</small></div><label class="sw"><input type="checkbox" data-ob-whats ${d.whats?"checked":""} aria-label="Ativar alertas por WhatsApp"><i></i></label></div>
       <div class="obtel" ${d.whats?"":"hidden"}><div class="ddi"><span class="ddiv" aria-hidden="true">${ddiFace(d.ddi)}</span><select id="obddi" aria-label="País">${[["+351","Portugal +351"],["+55","Brasil +55"]].map(([v,l])=>`<option value="${v}" ${v===d.ddi?"selected":""}>${l}</option>`).join("")}</select></div><input id="obtel" class="shin" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="912 345 678" value="${esc(d.tel)}" aria-label="Número de WhatsApp"><span id="obtelerr" class="obtelerr" role="alert"></span></div></div></div>
-    <p class="aumute">Você pode mudar isso depois em Perfil › Configurações. Protótipo: nenhum aviso é enviado de verdade.</p>`+cont(true,OB.redo?"Salvar":"Concluir");
+    <p class="aumute">Você pode mudar isso depois em Perfil › Configurações. Em breve: os avisos ainda não estão sendo enviados.</p>`+cont(true,OB.redo?"Salvar":"Concluir");
   const col=$("obcol");col.innerHTML=h;col.classList.remove("in");void col.offsetWidth;col.classList.add("in");
   if(id==="artistas")obArtChips();
   const hd=$("obq");if(hd)hd.focus({preventScroll:true});
@@ -1705,12 +1792,16 @@ function obBack(){if(OB.i>0){OB.i--;obRender()}else if(OB.signup)obCancel()}
 document.addEventListener("click",ev=>{if(!OB||!OB.signup)return;const t=ev.target;
   if(t.closest("[data-ob-login]")){obCancel();return}
   const oe=t.closest("[data-ob-eye]");if(oe){const i=$("obpass"),x=i.type==="password";i.type=x?"text":"password";oe.setAttribute("aria-pressed",x);oe.setAttribute("aria-label",x?"Ocultar senha":"Mostrar senha");return}
-  const g=t.closest("[data-ob-google]");if(g){g.disabled=true;g.querySelector("span").textContent="Conectando ao Google…";setTimeout(()=>{if(OB&&OB.signup&&OB.i===0){OB.acct={nome:DEMO.nome,email:DEMO.email,metodo:"google"};obNext()}},700)}});
+  const g=t.closest("[data-ob-google]");if(g){if(!window.FB){fbOff();return}const sp=g.querySelector("span"),m=$("obmsg");g.disabled=true;sp.textContent="Conectando ao Google…";if(m)m.textContent="";
+    FB.google().then(r=>{if(!OB)return;if(r.perfil&&r.perfil.conta){OB=null;$("ob").hidden=true;document.body.style.overflow="";aposLogin(r,"");return}DEMO.nome=nomeDe(r.user);DEMO.email=r.user.email;DEMO.metodo="google";OB.acct={nome:DEMO.nome,email:DEMO.email,metodo:"google"};FB.track("sign_up",{method:"google"});obNext()})
+    .catch(e=>{g.disabled=false;sp.textContent="Continuar com Google";const x=FB.erro(e);if(x&&m){m.className="lgmsg err";m.textContent=x}})}});
 document.addEventListener("submit",ev=>{if(ev.target.id!=="obacc"||!OB)return;ev.preventDefault();const m=$("obmsg"),n=$("obnome").value.trim(),e=$("obemail").value.trim(),p=$("obpass").value;m.className="lgmsg err";["obnome","obemail","obpass"].forEach(i=>$(i).removeAttribute("aria-invalid"));const bad=i=>{$(i).setAttribute("aria-invalid","true");$(i).focus()};
   if(!n){m.textContent="Digite seu nome.";bad("obnome");return}
   if(!/^\S+@\S+\.\S+$/.test(e)){m.textContent="Digite um e-mail válido.";bad("obemail");return}
   if(p.length<8){m.textContent="A senha precisa ter pelo menos 8 caracteres.";bad("obpass");return}
-  m.textContent="";DEMO.nome=n;DEMO.email=e;OB.acct={nome:n,email:e,metodo:"email"};obNext()});
+  m.textContent="";if(!window.FB){fbOff();return}const b=ev.target.querySelector(".obgo");b.disabled=true;b.textContent="Criando conta…";
+  FB.criar(n,e,p).then(r=>{if(!OB)return;DEMO.nome=n;DEMO.email=r.user.email;DEMO.metodo="email";OB.acct={nome:n,email:r.user.email,metodo:"email"};FB.track("sign_up",{method:"email"});obNext()})
+  .catch(x=>{b.disabled=false;b.textContent="Criar conta e continuar";m.className="lgmsg err";m.textContent=FB.erro(x);if(x&&x.code==="auth/email-already-in-use")bad("obemail")})});
 function obFinish(partial){
   const d=OB.d;let tel=d.tel.replace(/\D/g,"");
   if(!partial&&d.whats&&(tel.length<9||tel.length>11)){const e=$("obtelerr");if(e){e.textContent="Digite um número válido.";$("obtel").focus()}return}
@@ -1755,8 +1846,8 @@ const OBT={
 "Quer ser avisado quando chegar algo para você?":["Want to be alerted when something for you comes up?","¿Quieres que te avisemos cuando llegue algo para ti?"],"Avisamos só do que combina com as suas escolhas.":["We only alert you about what matches your choices.","Solo avisamos de lo que encaja con tus elecciones."],
 "Receba os avisos no seu número":["Get alerts on your number","Recibe los avisos en tu número"],"Digite um número válido.":["Enter a valid number.","Escribe un número válido."],"Número de WhatsApp":["WhatsApp number","Número de WhatsApp"],"País":["Country","País"],"Portugal +351":["Portugal +351","Portugal +351"],"Brasil +55":["Brazil +55","Brasil +55"],
 "Ativar alertas por e-mail":["Turn on email alerts","Activar alertas por correo"],"Ativar alertas por WhatsApp":["Turn on WhatsApp alerts","Activar alertas por WhatsApp"],
-"Você pode mudar isso depois em Perfil › Configurações. Protótipo: nenhum aviso é enviado de verdade.":["You can change this later in Profile › Settings. Prototype: no alerts are actually sent.","Puedes cambiarlo después en Perfil › Configuración. Prototipo: no se envía ningún aviso de verdad."],
-"Preferências atualizadas":["Preferences updated","Preferencias actualizadas"],"Personalização":["Personalisation","Personalización"],"Refazer personalização":["Redo personalisation","Rehacer personalización"],"Cidade, tipos de evento, gêneros, artistas e alertas.":["City, event types, genres, artists and alerts.","Ciudad, tipos de evento, géneros, artistas y alertas."],"O Brasil nos palcos":["Brazil on stage","Brasil en los escenarios"],"Resumo":["Overview","Resumen"],"Artista":["Artist","Artista"],"Localização":["Location","Ubicación"],"Ver e ouvir":["Watch and listen","Ver y escuchar"],"Detalhes do evento":["Event details","Detalles del evento"],"eventos publicados":["published events","eventos publicados"],"evento publicado":["published event","evento publicado"],
+"Você pode mudar isso depois em Perfil › Configurações. Em breve: os avisos ainda não estão sendo enviados.":["You can change this later in Profile › Settings. Prototype: no alerts are actually sent.","Puedes cambiarlo después en Perfil › Configuración. Prototipo: no se envía ningún aviso de verdad."],
+"Preferências atualizadas":["Preferences updated","Preferencias actualizadas"],"Personalização":["Personalisation","Personalización"],"Refazer personalização":["Redo personalisation","Rehacer personalización"],"Cidade, tipos de evento, gêneros, artistas e alertas.":["City, event types, genres, artists and alerts.","Ciudad, tipos de evento, géneros, artistas y alertas."],"O Brasil nos palcos":["Brazil on stage","Brasil en los escenarios"],"Usamos cookies do Google Analytics para entender como o site é usado e melhorá-lo. Só ativamos se você aceitar.":["We use Google Analytics cookies to understand how the site is used and improve it. They only turn on if you accept.","Usamos cookies de Google Analytics para entender cómo se usa el sitio y mejorarlo. Solo se activan si aceptas."],"Saber mais":["Learn more","Saber más"],"Recusar":["Decline","Rechazar"],"Aceitar":["Accept","Aceptar"],"Tudo bem. Não vamos medir a sua visita.":["All right. We won't measure your visit.","De acuerdo. No mediremos tu visita."],"Resumo":["Overview","Resumen"],"Artista":["Artist","Artista"],"Localização":["Location","Ubicación"],"Ver e ouvir":["Watch and listen","Ver y escuchar"],"Detalhes do evento":["Event details","Detalles del evento"],"eventos publicados":["published events","eventos publicados"],"evento publicado":["published event","evento publicado"],
 "Bossa nova":["Bossa nova","Bossa nova"],"Rock brasileiro":["Brazilian rock","Rock brasileño"],"Rap e hip hop":["Rap and hip hop","Rap y hip hop"],"Pop e indie":["Pop and indie","Pop e indie"],"Axé":["Axé","Axé"],"Choro":["Choro","Choro"],"Forró":["Forró","Forró"],"Sertanejo":["Sertanejo","Sertanejo"],"Pagode":["Pagode","Pagode"],"Funk":["Funk","Funk"],"Samba":["Samba","Samba"],"MPB":["MPB","MPB"],
 "Música de câmara":["Chamber music","Música de cámara"],"Orquestra sinfónica":["Symphony orchestra","Orquesta sinfónica"],"Ópera":["Opera","Ópera"],"Coral":["Choral","Coral"],"Jazz instrumental":["Instrumental jazz","Jazz instrumental"],"Música contemporânea":["Contemporary music","Música contemporánea"],"Violão e guitarra clássica":["Classical guitar","Guitarra clásica"],"Villa-Lobos e modernistas":["Villa-Lobos and modernists","Villa-Lobos y modernistas"],
 "Pintura":["Painting","Pintura"],"Fotografia":["Photography","Fotografía"],"Escultura":["Sculpture","Escultura"],"Gravura":["Printmaking","Grabado"],"Arte contemporânea":["Contemporary art","Arte contemporáneo"],"Modernismo":["Modernism","Modernismo"],"Arte popular":["Folk art","Arte popular"],"Design e arquitetura":["Design and architecture","Diseño y arquitectura"],
@@ -1884,12 +1975,11 @@ function renderLogin(){const sg=LGM==="criar";
    ${sg?"":`<button type="button" class="lgforgot" data-lg-forgot>Esqueci minha senha</button>`}
    <p id="lgmsg" class="lgmsg" role="alert"></p>
    <button type="submit" class="shbtn pri lgbtn">${sg?"Criar conta":"Entrar"}</button>
-  ${sg?`<p class="legal">Ao criar conta, você aceita os <a href="#">Termos de uso</a> e a <a href="#">Política de privacidade</a>.</p>`:""}
+  ${sg?`<p class="legal">Ao criar conta, você aceita os <a href="#/termos">Termos de uso</a> e a <a href="#/privacidade">Política de privacidade</a>.</p>`:""}
   </form>
   <div class="lgor"><span>ou</span></div>
   <button type="button" class="gbtn" data-lg-google>${GICON}<span>Entrar com Google</span></button>
-  <p class="lgswap">${sg?"Já tem conta?":"Ainda não tem conta?"} <button type="button" data-lg-swap>${sg?"Entrar":"Criar conta"}</button></p>
-  <p class="demo" style="margin-top:var(--space-200)">Protótipo: qualquer e-mail e senha válidos entram com a conta de demonstração. Na versão real, a senha é verificada no servidor.</p>`;
+  <p class="lgswap">${sg?"Já tem conta?":"Ainda não tem conta?"} <button type="button" data-lg-swap>${sg?"Entrar":"Criar conta"}</button></p>`;
   $("lglang").innerHTML=Object.entries(LANGS).map(([k,v])=>`<button type="button" data-lang="${k}" aria-pressed="${k===LANG}" aria-label="${v.nome}">${v.cod}</button>`).join("")}
 function lgSuccess(){const to=LGfrom&&LGfrom!=="#/entrar"?LGfrom:"";LGfrom="";
   if(lsj("conta")){entrou("Que bom te ver de novo, "+first(lsj("conta").nome));go(to)}else{go("");openOb(false)}}
@@ -1897,17 +1987,16 @@ document.addEventListener("click",ev=>{if(ROUTE!=="#/entrar")return;const t=ev.t
   if(t.closest("[data-lg-swap]")&&LGM==="entrar"){go("");openOb(false,true);return}
   if(t.closest("[data-lg-swap]")){LGM=LGM==="criar"?"entrar":"criar";renderLogin();$("lgemail").focus();return}
   const ey=t.closest("[data-lg-eye]");if(ey){const i=$("lgpass"),s=i.type==="password";i.type=s?"text":"password";ey.setAttribute("aria-pressed",s);ey.setAttribute("aria-label",s?"Ocultar senha":"Mostrar senha");return}
-  if(t.closest("[data-lg-forgot]")){const m=$("lgmsg"),e=$("lgemail").value.trim();m.className="lgmsg";if(!/^\S+@\S+\.\S+$/.test(e)){m.textContent="Digite seu e-mail acima para receber o link.";m.classList.add("err");$("lgemail").focus()}else{m.textContent="Se existir uma conta com esse e-mail, enviamos um link para redefinir a senha.";m.classList.add("ok")}return}
-  if(t.closest("[data-lg-google]")){const b=t.closest("[data-lg-google]");b.disabled=true;b.querySelector("span").textContent="Conectando ao Google…";setTimeout(()=>{if(ROUTE!=="#/entrar")return;lgSuccess()},700);return}
+  if(t.closest("[data-lg-forgot]")){const m=$("lgmsg"),e=$("lgemail").value.trim();m.className="lgmsg";if(!/^\S+@\S+\.\S+$/.test(e)){m.textContent="Digite seu e-mail acima para receber o link.";m.classList.add("err");$("lgemail").focus()}else{if(!window.FB){fbOff();return}FB.recuperar(e).then(()=>{m.className="lgmsg ok";m.textContent="Se existir uma conta com esse e-mail, enviamos um link para redefinir a senha."}).catch(x=>{m.className="lgmsg err";m.textContent=FB.erro(x)})}return}
+  if(t.closest("[data-lg-google]")){if(!window.FB){fbOff();return}const b=t.closest("[data-lg-google]"),sp=b.querySelector("span"),m=$("lgmsg");b.disabled=true;sp.textContent="Conectando ao Google…";m.textContent="";FB.google().then(r=>{const to=LGfrom&&LGfrom!=="#/entrar"?LGfrom:"";LGfrom="";aposLogin(r,to)}).catch(e=>{b.disabled=false;sp.textContent="Entrar com Google";const x=FB.erro(e);if(x){m.className="lgmsg err";m.textContent=x}});return}
   if(t.closest(".lgbrand")){go("")}
 });
 document.addEventListener("submit",ev=>{if(ev.target.id!=="lgf")return;ev.preventDefault();const sg=LGM==="criar",m=$("lgmsg"),e=$("lgemail").value.trim(),p=$("lgpass").value,n=sg?$("lgnome").value.trim():"";m.className="lgmsg err";["lgnome","lgemail","lgpass"].forEach(i=>{const x=$(i);if(x){x.removeAttribute("aria-invalid");x.setAttribute("aria-describedby",(i==="lgpass"&&sg?"lghint ":"")+"lgmsg")}});const bad=i=>{const x=$(i);x.setAttribute("aria-invalid","true");x.focus()};
   if(sg&&!n){m.textContent="Digite seu nome.";bad("lgnome");return}
   if(!/^\S+@\S+\.\S+$/.test(e)){m.textContent="Digite um e-mail válido.";bad("lgemail");return}
   if(p.length<(sg?8:6)){m.textContent=sg?"A senha precisa ter pelo menos 8 caracteres.":"Digite sua senha (mínimo de 6 caracteres).";bad("lgpass");return}
-  m.textContent="";DEMO.email=e;if(sg||!lsj("conta"))DEMO.nome=n||e.split("@")[0].replace(/[._-]+/g," ").replace(/\b\w/g,c=>c.toUpperCase());
-  if(sg&&lsj("conta")){lss("conta",null)}
-  const b=ev.target.querySelector(".lgbtn");b.disabled=true;setTimeout(lgSuccess,500)});
+  m.textContent="";if(!window.FB){fbOff();return}const b=ev.target.querySelector(".lgbtn"),lb=b.textContent;b.disabled=true;b.textContent=sg?"Criando conta…":"Entrando…";const to=LGfrom&&LGfrom!=="#/entrar"?LGfrom:"";
+  (sg?FB.criar(n,e,p):FB.entrar(e,p)).then(r=>{LGfrom="";aposLogin(r,to)}).catch(x=>{b.disabled=false;b.textContent=lb;m.className="lgmsg err";m.textContent=FB.erro(x);if(x&&/email|user-not-found/.test(x.code))$("lgemail").setAttribute("aria-invalid","true")})});
 
 Object.assign(DICT,{"Entrar":["Sign in","Entrar"],"Criar conta":["Create account","Crear cuenta"],"Boas-vindas de volta! Continue de onde parou.":["Welcome back! Pick up where you left off.","¡Bienvenida de vuelta! Continúa donde lo dejaste."],"Crie sua conta para guardar sua lista e receber avisos.":["Create your account to keep your list and get alerts.","Crea tu cuenta para guardar tu lista y recibir avisos."],"Senha":["Password","Contraseña"],"Digite sua senha":["Enter your password","Escribe tu contraseña"],"Crie uma senha":["Create a password","Crea una contraseña"],"Seu nome":["Your name","Tu nombre"],"seu@email.com":["you@email.com","tu@correo.com"],"Mostrar senha":["Show password","Mostrar contraseña"],"Ocultar senha":["Hide password","Ocultar contraseña"],"Esqueci minha senha":["Forgot my password","Olvidé mi contraseña"],"Entrar com Google":["Sign in with Google","Entrar con Google"],"ou":["or","o"],"Ainda não tem conta?":["Don't have an account yet?","¿Aún no tienes cuenta?"],"Já tem conta?":["Already have an account?","¿Ya tienes cuenta?"],
 "Digite seu nome.":["Enter your name.","Escribe tu nombre."],"Digite um e-mail válido.":["Enter a valid email.","Escribe un correo válido."],"Digite sua senha (mínimo de 6 caracteres).":["Enter your password (minimum 6 characters).","Escribe tu contraseña (mínimo 6 caracteres)."],"A senha precisa ter pelo menos 8 caracteres.":["The password needs at least 8 characters.","La contraseña necesita al menos 8 caracteres."],"Digite seu e-mail acima para receber o link.":["Enter your email above to get the link.","Escribe tu correo arriba para recibir el enlace."],"Se existir uma conta com esse e-mail, enviamos um link para redefinir a senha.":["If an account exists with that email, we've sent a link to reset the password.","Si existe una cuenta con ese correo, enviamos un enlace para restablecer la contraseña."],
