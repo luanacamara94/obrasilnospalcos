@@ -555,11 +555,14 @@ footer{margin-top:var(--space-section-gap);padding:var(--space-400) 0 var(--spac
 .evi div{padding:var(--space-150);border-right:1px dashed var(--color-border-default)}.evi div:last-child{border-right:none}
 .evi dt{margin-bottom:var(--space-050);font:500 var(--text-xs) var(--font-text);color:var(--color-text-tertiary)}
 .evi dd{margin:0;font:700 var(--text-sm) var(--font-text)}
-.evtabs{margin:0;gap:0}.evtabs .ptab{flex:1 1 0;padding:0 var(--space-100)}
-.evpanel{display:flex;flex-direction:column;gap:var(--space-group-gap)}
+.evb .evtabs{margin:calc(var(--space-200) - var(--space-group-gap)) 0 0;gap:0}.evtabs .ptab{flex:1 1 0;padding:0 var(--space-100)}
+.evpanel{display:flex;flex-direction:column;gap:var(--space-group-gap)}.evpanel>.evi{margin:0}
 .evmap,.evspot{display:block;width:100%;border:0;border-radius:12px;background:var(--color-bg-surface-subtle)}
 .evmap{margin:var(--space-100) 0 0;border:1px solid var(--color-border-default)}
 .evbio{display:grid;gap:var(--space-150)}.evbio p{margin:0;max-width:var(--layout-container-reading)}
+.evext{display:flex;align-items:center;gap:var(--space-150);min-height:64px;padding:var(--space-150) var(--space-200);border:1px solid var(--color-border-default);border-radius:12px;background:var(--color-bg-surface-subtle);color:var(--color-text-primary);text-decoration:none;transition:background-color var(--duration-fast) var(--ease-standard)}
+.evext:hover{background-image:linear-gradient(var(--color-control-hover),var(--color-control-hover))}
+.evext .ic{flex:none;width:24px;height:24px;color:var(--color-text-brand)}.evext span:nth-of-type(1){display:grid;flex:1}.evext small{color:var(--color-text-tertiary);font-size:var(--text-xs)}
 .evlink{display:inline-flex;align-items:center;min-height:44px;color:var(--color-text-brand);font-weight:500}
 .evloc{display:grid;gap:var(--space-050)}.evloc a{display:inline-flex;align-items:center;min-height:44px;color:var(--color-text-brand);font-weight:500}
 .evact{display:flex;gap:var(--space-100);flex-wrap:wrap;margin-top:var(--space-150)}
@@ -1161,13 +1164,15 @@ const hh=t=>t.replace(":00","h").replace(/^(\d+):(\d+)$/,"$1h$2");
 const CLOSE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>';
 let evOpen=null,evFrom=null,evTab="resumo";
 const MUSICA=t=>t==="Show"||t==="Concerto";
+/* Player do Spotify e mapa do Google só carregam no site próprio; dentro do Claude os iframes são bloqueados, então mostramos um cartão com link. */
+const EMBED_OK=/(^|\.)obrasilnospalcos\.com$|\.github\.io$|^localhost$|^127\./.test(location.hostname);
 const mapSrc=e=>"https://maps.google.com/maps?q="+encodeURIComponent(e.venue+", "+(e.bairro?e.bairro+", ":"")+e.city+", Portugal")+"&z=16&output=embed";
 function evArtista(e){
   const bio=e.bio?e.bio.split(/\n{2,}/).map(p=>`<p>${esc(p)}</p>`).join(""):`<p class="aumute">Ainda não temos a bio de ${esc(e.artist)}.</p>`;
-  const sp=e.spotify?`<iframe class="evspot" title="Músicas mais ouvidas de ${esc(e.artist)} no Spotify" src="https://open.spotify.com/embed/${esc(e.spotify)}?utm_source=generator&theme=0" height="352" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`:`<a class="evlink" href="https://open.spotify.com/search/${encodeURIComponent(e.artist)}" target="_blank" rel="noopener">Ouvir ${esc(e.artist)} no Spotify ↗</a>`;
+  const sp=e.spotify&&!EMBED_OK?`<a class="evext" href="https://open.spotify.com/${esc(e.spotify)}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-nota"/></svg><span><b>Ouvir ${esc(e.artist)} no Spotify</b><small>Abre as músicas mais ouvidas em nova aba</small></span><span aria-hidden="true">↗</span></a>`:e.spotify?`<iframe class="evspot" title="Músicas mais ouvidas de ${esc(e.artist)} no Spotify" src="https://open.spotify.com/embed/${esc(e.spotify)}?utm_source=generator&theme=0" height="352" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`:`<a class="evlink" href="https://open.spotify.com/search/${encodeURIComponent(e.artist)}" target="_blank" rel="noopener">Ouvir ${esc(e.artist)} no Spotify ↗</a>`;
   return `<section class="evsec"><h3>Sobre ${esc(e.artist)}</h3><div class="evbio">${bio}</div></section><section class="evsec"><h3>Ver e ouvir</h3>${sp}</section>`}
 function evLocal(e){
-  return `<section class="evsec evloc"><h3>${esc(e.venue)}</h3><p>${esc(e.bairro)}, ${esc(e.city)}</p><iframe class="evmap" title="Mapa: ${esc(e.venue)}, ${esc(e.city)}" src="${mapSrc(e)}" height="320" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a href="${gmaps(e)}" target="_blank" rel="noopener">Como chegar (abre o mapa em nova aba) ↗</a><p class="aumute">Acessibilidade e duração: confirme com a sala ou na bilheteira.</p></section>`}
+  return `<section class="evsec evloc"><h3>${esc(e.venue)}</h3><p>${esc(e.bairro)}, ${esc(e.city)}</p>${EMBED_OK?`<iframe class="evmap" title="Mapa do Google: ${esc(e.venue)}, ${esc(e.city)}" src="${mapSrc(e)}" height="320" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`:`<a class="evext" href="${gmaps(e)}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span><b>Ver ${esc(e.venue)} no Google Maps</b><small>Abre o mapa em nova aba</small></span><span aria-hidden="true">↗</span></a>`}${EMBED_OK?`<a href="${gmaps(e)}" target="_blank" rel="noopener">Como chegar (abre o mapa em nova aba) ↗</a>`:""}<p class="aumute">Acessibilidade e duração: confirme com a sala ou na bilheteira.</p></section>`}
 function renderEvent(e){
   const on=saved.has(e.id),k=TS[e.type],ss=sessoesDe(e);
   const fdt=x=>DOW[x.getDay()]+" "+x.getDate()+"/"+(x.getMonth()+1);
