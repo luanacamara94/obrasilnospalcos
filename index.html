@@ -489,7 +489,7 @@ p{margin:0}
 
 /* card de evento: card clicável → shadow-md no hover */
 .card{position:relative;display:flex;flex-direction:column;overflow:hidden;background:var(--color-bg-surface-card);border:var(--border-width-card) solid var(--color-border-default);border-radius:var(--radius-card);transition:box-shadow var(--duration-base) var(--ease-standard),translate var(--duration-base) var(--ease-standard)}
-.card:hover,.card:focus-within{box-shadow:var(--shadow-signature)}
+.card:hover,.card:focus-within{background-color:var(--ochre-100);border-color:var(--ochre-500)}
 .media{position:relative;aspect-ratio:4/3;overflow:hidden;display:flex;align-items:flex-end;background:var(--cat-bg)}
 .m-show{background:var(--ill-cobalt)}.m-teatro{background:var(--ill-ochre)}.m-concerto{background:var(--ill-green)}.m-expo{background:var(--ill-flag)}
 .poster{position:absolute;inset:0;width:100%;height:100%;filter:contrast(1.1) saturate(1.12)}
@@ -812,14 +812,10 @@ body.on-login>*:not(#lg):not(#toast):not(svg):not(script):not(#ob){display:none!
 .tkline::before,.tkline::after{content:"";position:absolute;top:calc(1px - var(--notch));width:calc(2 * var(--notch));height:calc(2 * var(--notch));box-sizing:border-box;border:var(--border-width-card) solid var(--color-border-default);border-radius:50%;background:var(--color-bg-canvas)}
 .tkline::before{left:calc(-1 * var(--notch) - var(--border-width-card));clip-path:inset(-2px -2px -2px 50%)}
 .tkline::after{right:calc(-1 * var(--notch) - var(--border-width-card));clip-path:inset(-2px 50% -2px -2px)}
-.card:hover .tkline::after,.card:focus-within .tkline::after{background:var(--color-brand-signature)}
-/* Hover com contraste de elevação: o card em foco ganha a sombra verde e os vizinhos recuam levemente */
-.card{transition:box-shadow var(--duration-base) var(--ease-standard),translate var(--duration-base) var(--ease-standard),scale var(--duration-base) var(--ease-standard),opacity var(--duration-base) var(--ease-standard)}
-@media (hover:hover) and (pointer:fine){
-  .cards:has(.card:hover) .card:not(:hover),.strip:has(.card:hover) .card:not(:hover){scale:.97}
-  .is-list .cards:has(.card:hover) .card:not(:hover),.cards.is-list:has(.card:hover) .card:not(:hover){scale:.985}
-}
-@media (prefers-reduced-motion:reduce){.card{transition:box-shadow var(--duration-base) var(--ease-standard)}.cards:has(.card:hover) .card:not(:hover),.strip:has(.card:hover) .card:not(:hover){scale:1}}
+/* Hover flat: o card ganha fundo ocre claro e borda ocre, sem sombra nem elevação */
+.card{transition:background-color var(--duration-base) var(--ease-standard),border-color var(--duration-base) var(--ease-standard)}
+:is(.card:hover,.card:focus-within) .tkline::before,:is(.card:hover,.card:focus-within) .tkline::after{border-color:var(--ochre-500)}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
 .cmeta{border-top:1px solid var(--color-border-subtle)}
 .is-list .tkline{display:none}
 
