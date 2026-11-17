@@ -3,7 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>O Brasil nos palcos</title>
+<title>O Brasil nos palcos · Shows, teatro, concertos e exposições brasileiras em Portugal</title>
+<meta name="description" content="Agenda de shows, peças de teatro, concertos e exposições de artistas brasileiros em Lisboa, Porto e outras cidades de Portugal.">
+<link rel="canonical" href="https://obrasilnospalcos.com/">
+<meta property="og:title" content="O Brasil nos palcos">
+<meta property="og:description" content="Agenda de shows, teatro, concertos e exposições de artistas brasileiros em Portugal.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://obrasilnospalcos.com/">
+<meta property="og:locale" content="pt_PT">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400&family=Hanken+Grotesk:wght@800;900&display=swap" rel="stylesheet">
@@ -563,6 +570,20 @@ footer{margin-top:var(--space-section-gap);padding:var(--space-400) 0 var(--spac
 .evext{display:flex;align-items:center;gap:var(--space-150);min-height:64px;padding:var(--space-150) var(--space-200);border:1px solid var(--color-border-default);border-radius:12px;background:var(--color-bg-surface-subtle);color:var(--color-text-primary);text-decoration:none;transition:background-color var(--duration-fast) var(--ease-standard)}
 .evext:hover{background-image:linear-gradient(var(--color-control-hover),var(--color-control-hover))}
 .evext .ic{flex:none;width:24px;height:24px;color:var(--color-text-brand)}.evext span:nth-of-type(1){display:grid;flex:1}.evext small{color:var(--color-text-tertiary);font-size:var(--text-xs)}
+/* Aba Elenco (teatro) */
+.evcast{list-style:none;margin:0;padding:0;display:grid;gap:var(--space-150)}
+.evp{display:grid;grid-template-columns:48px minmax(0,1fr);gap:var(--space-150);align-items:start;padding:var(--space-200);border:1px solid var(--color-border-default);border-radius:12px;background:var(--color-bg-surface-subtle)}
+.evp-av{width:48px;height:48px;display:grid;place-items:center;border-radius:8px;background:var(--color-bg-brand-subtle);color:var(--color-text-brand);font:700 var(--text-sm) var(--font-display);letter-spacing:.02em}
+.evp-tx{display:grid;gap:var(--space-050);min-width:0}
+.evp-tx b{font:700 var(--text-md) var(--font-display);color:var(--color-text-primary)}
+.evp-role{font:500 var(--text-xs) var(--font-text);color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.06em}
+.evp-tx p{margin:0;color:var(--color-text-secondary);max-width:var(--layout-container-reading)}
+.evsoc{display:flex;flex-wrap:wrap;gap:var(--space-100);margin-top:var(--space-050)}
+.evsoc a{display:inline-flex;align-items:center;gap:var(--space-075,6px);min-height:36px;padding:0 var(--space-150);border:1px solid var(--color-border-default);border-radius:8px;background:var(--color-bg-surface-raised);color:var(--color-text-primary);font:500 var(--text-sm) var(--font-text);text-decoration:none;transition:background-color var(--duration-fast) var(--ease-standard)}
+.evsoc a:hover{background-image:linear-gradient(var(--color-control-hover),var(--color-control-hover))}
+.evsoc a:focus-visible{outline:2px solid var(--color-border-focus,var(--color-text-brand));outline-offset:2px}
+.evsoc .ic{width:18px;height:18px;color:currentColor}
+.evsoc-none{font:400 var(--text-xs) var(--font-text);color:var(--color-text-tertiary)}
 .evlink{display:inline-flex;align-items:center;min-height:44px;color:var(--color-text-brand);font-weight:500}
 .evloc{display:grid;gap:var(--space-050)}.evloc a{display:inline-flex;align-items:center;min-height:44px;color:var(--color-text-brand);font-weight:500}
 .evact{display:flex;gap:var(--space-100);flex-wrap:wrap;margin-top:var(--space-150)}
@@ -910,6 +931,55 @@ body.on-login>*:not(#lg):not(#toast):not(svg):not(script):not(#ob){display:none!
 .media .photo-bg{inset:-24px;width:calc(100% + 48px);height:calc(100% + 48px);filter:blur(20px) saturate(1.15);opacity:.8}
 .media.has-photo .pname{display:none}
 
+
+/* Login: fundo preto, holofotes no estilo do onboarding no topo direito, luz apontada para o copy */
+.lgstage{position:relative;isolation:isolate;overflow:hidden;flex:1;min-height:560px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:var(--space-400);border-radius:0;background:var(--ink-950)}
+.lgspot{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.lgstage .lgcopy{position:relative;z-index:1;width:min(100%,500px)}
+.lgstage .lgkick{color:var(--ochre-400)}
+.lgstage .lgcopy h2{color:var(--ill-cream)}
+.lgstage .lgcopy p:not(.lgkick){color:var(--ink-200)}
+
+/* Onboarding: ilustração centralizada no container (antes ancorada no rodapé) */
+.ob .obill{align-items:center;padding:7% 7% 7%}
+.ob .obill .ill{width:100%;max-width:560px;height:auto;max-height:100%}
+@media (max-width:899px){.ob .obill{align-items:center;padding:var(--space-150) 0 38px}.ob .obill .ill{height:100%;width:auto;max-height:none}}
+
+/* =====================================================================
+   Notificação (feedback do sistema): título + texto, ancorada sob o header
+   ===================================================================== */
+.notifs{position:fixed;top:calc(80px + var(--space-200));left:50%;translate:-50% 0;z-index:var(--z-toast);display:flex;flex-direction:column;gap:var(--space-150);width:min(520px,calc(100vw - 2 * var(--space-200)));pointer-events:none}
+body.on-login .notifs{top:var(--space-300)}
+.ntf{--ntf-main:var(--color-brand-primary);--ntf-subtle:var(--color-bg-brand-subtle);position:relative;overflow:hidden;pointer-events:auto;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--space-150);align-items:start;padding:var(--space-200);background:var(--color-bg-surface-raised);border:1px solid var(--color-border-default);border-radius:var(--radius-md);box-shadow:var(--shadow-xl);font-family:var(--font-text);animation:ntf-in var(--duration-base) ease-out both}
+.ntf-success{--ntf-main:var(--color-feedback-success-main);--ntf-subtle:var(--color-feedback-success-subtle)}
+.ntf-warning{--ntf-main:var(--color-feedback-warning-main);--ntf-subtle:var(--color-feedback-warning-subtle)}
+.ntf-error{--ntf-main:var(--color-feedback-danger-main);--ntf-subtle:var(--color-feedback-danger-subtle)}
+.ntf-ic{width:40px;height:40px;display:grid;place-items:center;border-radius:var(--radius-sm);background:var(--ntf-subtle);color:var(--ntf-main)}
+.ntf-ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ntf-tx{min-width:0;padding-top:2px}
+.ntf-t{margin:0;font:700 var(--text-md) var(--font-text);color:var(--color-text-primary)}
+.ntf-b{margin:var(--space-050) 0 0;font:400 var(--text-sm) var(--font-text);color:var(--color-text-secondary);overflow-wrap:anywhere}
+.ntf-a{margin-top:var(--space-100);padding:0;border:0;background:none;font:700 var(--text-sm) var(--font-text);color:var(--color-text-brand);cursor:pointer;min-height:24px}
+.ntf-a:hover{text-decoration:underline}
+.ntf-x{width:32px;height:32px;display:grid;place-items:center;margin:-4px -4px 0 0;padding:0;border:0;border-radius:var(--radius-sm);background:none;color:var(--color-text-tertiary);cursor:pointer}
+.ntf-x:hover{background:var(--color-bg-surface-subtle);color:var(--color-text-primary)}
+.ntf-x svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.ntf-bar{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--ntf-main);transform-origin:left;animation:ntf-time var(--ntf-ms,5000ms) linear forwards}
+.ntf:hover .ntf-bar,.ntf:focus-within .ntf-bar{animation-play-state:paused}
+.ntf.out{animation:ntf-out var(--duration-fast) ease-in forwards}
+@keyframes ntf-in{from{opacity:0;transform:translateY(-12px)}}
+@keyframes ntf-out{to{opacity:0;transform:translateY(-8px)}}
+@keyframes ntf-time{to{transform:scaleX(0)}}
+@media (max-width:899px){.notifs{top:calc(72px + var(--space-150))}}
+@media (prefers-reduced-motion:reduce){.ntf,.ntf.out{animation:none}.ntf-bar{animation:none;display:none}}
+.toast{display:none!important}
+
+/* Linha de resultados: feedback contextual dos filtros e da busca */
+.rstat{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-100) var(--space-200);margin:var(--space-300) 0 0;padding:var(--space-150) var(--space-200);border-radius:var(--radius-sm);font:500 var(--text-sm) var(--font-text);color:var(--color-text-secondary);transition:background-color var(--duration-slow) ease}
+.rstat b{color:var(--color-text-primary)}
+.rstat.pulse{background:var(--color-bg-brand-subtle)}
+.rstat-clear{padding:0;border:0;background:none;font:700 var(--text-sm) var(--font-text);color:var(--color-text-brand);cursor:pointer;min-height:24px}
+.rstat-clear:hover{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -945,7 +1015,7 @@ body.on-login>*:not(#lg):not(#toast):not(svg):not(script):not(#ob){display:none!
 <symbol id="i-share" viewBox="0 0 256 256"><path d="M208,104V216H48V104Z" fill="currentColor" stroke="none" style="fill:var(--ic-tint,currentColor);opacity:var(--duo,.2)"/><path d="M216,112v96a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V112A16,16,0,0,1,56,96H80a8,8,0,0,1,0,16H56v96H200V112H176a8,8,0,0,1,0-16h24A16,16,0,0,1,216,112ZM93.66,69.66,120,43.31V136a8,8,0,0,0,16,0V43.31l26.34,26.35a8,8,0,0,0,11.32-11.32l-40-40a8,8,0,0,0-11.32,0l-40,40A8,8,0,0,0,93.66,69.66Z" fill="currentColor" stroke="none"/></symbol>
 <symbol id="i-wa" viewBox="0 0 256 256"><path d="M128,32A96,96,0,0,0,44.89,176.07L32.42,213.46a8,8,0,0,0,10.12,10.12l37.39-12.47A96,96,0,1,0,128,32Zm24,152a80,80,0,0,1-80-80,32,32,0,0,1,32-32l16,32-12.32,18.47a48.19,48.19,0,0,0,25.85,25.85L152,136l32,16A32,32,0,0,1,152,184Z" fill="currentColor" stroke="none" style="fill:var(--ic-tint,currentColor);opacity:var(--duo,.2)"/><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.62-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z" fill="currentColor" stroke="none"/></symbol>
 <symbol id="i-copy" viewBox="0 0 256 256"><path d="M216,40V168H168V88H88V40Z" fill="currentColor" stroke="none" style="fill:var(--ic-tint,currentColor);opacity:var(--duo,.2)"/><path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z" fill="currentColor" stroke="none"/></symbol>
-<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="M3 7l9 7 9-7"/></symbol>
+<symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="M3 7l9 7 9-7"/></symbol>
 <symbol id="i-camera" viewBox="0 0 256 256"><path d="M208,64H176L160,40H96L80,64H48A16,16,0,0,0,32,80V192a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V80A16,16,0,0,0,208,64ZM128,168a36,36,0,1,1,36-36A36,36,0,0,1,128,168Z" fill="currentColor" stroke="none" style="fill:var(--ic-tint,currentColor);opacity:var(--duo,.2)"/><path d="M208,56H180.28L166.65,35.56A8,8,0,0,0,160,32H96a8,8,0,0,0-6.65,3.56L75.71,56H48A24,24,0,0,0,24,80V192a24,24,0,0,0,24,24H208a24,24,0,0,0,24-24V80A24,24,0,0,0,208,56Zm8,136a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H80a8,8,0,0,0,6.66-3.56L100.28,48h55.43l13.63,20.44A8,8,0,0,0,176,72h32a8,8,0,0,1,8,8ZM128,88a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,88Zm0,72a28,28,0,1,1,28-28A28,28,0,0,1,128,160Z" fill="currentColor" stroke="none"/></symbol>
 <symbol id="i-pencil" viewBox="0 0 256 256"><path d="M221.66,90.34,192,120,136,64l29.66-29.66a8,8,0,0,1,11.31,0L221.66,79A8,8,0,0,1,221.66,90.34Z" fill="currentColor" stroke="none" style="fill:var(--ic-tint,currentColor);opacity:var(--duo,.2)"/><path d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.68,147.31,64l24-24L216,84.68Z" fill="currentColor" stroke="none"/></symbol>
 <symbol id="i-pin" viewBox="0 0 256 256"><path d="M128,24a80,80,0,0,0-80,80c0,72,80,128,80,128s80-56,80-128A80,80,0,0,0,128,24Zm0,112a32,32,0,1,1,32-32A32,32,0,0,1,128,136Z" fill="currentColor" stroke="none" style="fill:var(--ic-tint,currentColor);opacity:var(--duo,.2)"/><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z" fill="currentColor" stroke="none"/></symbol>
@@ -971,7 +1041,7 @@ body.on-login>*:not(#lg):not(#toast):not(svg):not(script):not(#ob){display:none!
   </div></div></nav>
 <header class="fold mode-brand">
   <div class="wrap">
-    <h1 class="hero-h">O Brasil nos palcos de Portugal</h1><p class="hero-p">Shows, teatro, concertos e exposições brasileiras em cartaz nas cidades portuguesas, num só lugar.</p>
+    <h1 class="hero-h">O Brasil nos palcos de Portugal</h1><p class="hero-p">Shows, teatro, concertos e exposições brasileiras em cartaz nas cidades portuguesas, em um só lugar.</p>
     <div id="sectors" class="sectors"></div>
     <p class="note" id="legend">e contando…</p>
   </div>
@@ -994,36 +1064,38 @@ body.on-login>*:not(#lg):not(#toast):not(svg):not(script):not(#ob){display:none!
 </div></div>
 
 <main class="wrap">
+  <p id="rstat" class="rstat" role="status" aria-live="polite"></p>
   <div id="list"></div>
-  <div class="notice">A agenda é atualizada todos os dias com eventos à venda nas bilheteiras e salas de Portugal. Horários e preços podem mudar: confirme sempre antes de comprar.</div>
+  <div class="notice">A agenda é atualizada todos os dias com eventos à venda nas bilheterias e salas de Portugal. Horários e preços podem mudar: confirme sempre antes de comprar.</div>
 </main>
 
 <section id="pg" class="pg" aria-label="Perfil"><div class="wrap" id="pgin"></div></section>
 <section id="legal" class="legal" aria-label="Informações legais"><div class="wrap" id="legalin"></div></section>
 
-<footer><div class="wrap ft"><p>Horários e preços podem mudar. Confirme sempre na bilheteira.<br><a href="#/termos">Termos de uso</a> · <a href="#/privacidade">Política de privacidade</a> · <a href="#/cookies">Cookies</a></p><p class="credit">Feito com muito café <span aria-hidden="true">☕</span> por <a class="link" href="https://www.luanacamara.com/" target="_blank" rel="noopener">Luana Camará</a></p></div></footer>
+<footer><div class="wrap ft"><p>Horários e preços podem mudar. Confirme sempre na bilheteria.<br><a href="#/termos">Termos de uso</a> · <a href="#/privacidade">Política de privacidade</a> · <a href="#/cookies">Cookies</a></p><p class="credit">Feito com muito café <span aria-hidden="true">☕</span> por <a class="link" href="https://www.luanacamara.com/" target="_blank" rel="noopener">Luana Camará</a></p></div></footer>
 
 <section id="lg" class="lg" aria-label="Entrar" hidden>
   <div class="lgl"><div class="lgtop"><button type="button" class="lgbrand"><svg viewBox="0 0 46 32" aria-hidden="true"><use href="#f-br"/></svg>O Brasil nos palcos</button><div id="lglang" class="lglang" role="group" aria-label="Idioma"></div></div>
    <div class="lgmid"><div id="lgform" class="lgform"></div></div>
    <div class="lgfoot"><span>© O Brasil nos palcos 2026</span><span>ajuda@obrasilnospalcos.com</span></div></div>
-  <div class="lgr"><div class="lgstage obart mode-dark" aria-hidden="true">
-<div class="lgcopy"><p class="lgkick">Guia · Brasil em cartaz</p><h2>O Brasil nos palcos de Portugal</h2><p>Shows, teatro, concertos e exposições brasileiras em cartaz nas cidades portuguesas, num só lugar.</p></div>
-<svg class="lgspot" viewBox="0 0 620 760" preserveAspectRatio="xMaxYMin slice" aria-hidden="true">
-<defs><g id="lglamp"><path d="M0,-30V0" stroke="#F2E6C9" stroke-width="2.5"/><path d="M-12,0H12L22,52H-22Z" fill="#F2E6C9"/><path d="M-22,52H22L30,62H-30Z" fill="#E2A62B"/></g></defs>
-<g transform="translate(450,64) rotate(38)"><polygon points="-18,0 18,0 180,690 -180,690" fill="#F2E6C9" opacity=".07"/></g>
-<g transform="translate(541,68) rotate(30)"><polygon points="-18,0 18,0 140,690 -140,690" fill="#F2E6C9" opacity=".05"/></g>
-<path d="M400,0H620" stroke="#F2E6C9" stroke-width="2.5"/>
-<g transform="translate(486,16) rotate(38)"><use href="#lglamp"/></g><g transform="translate(572,16) rotate(30)"><use href="#lglamp"/></g>
+  <div class="lgr"><div class="lgstage" aria-hidden="true">
+<svg class="lgspot" viewBox="0 0 620 760" preserveAspectRatio="xMaxYMin slice" aria-hidden="true" focusable="false">
+<defs><g id="lgholofote"><path d="M0,-34V-6" stroke="var(--ill-cream)" stroke-width="3" stroke-linecap="round"/><path d="M-30,-6H30M-30,-6V26M30,-6V26" fill="none" stroke="var(--ill-cream)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><rect x="-22" y="0" width="44" height="54" rx="7" fill="var(--ill-cream)" stroke="var(--ill-ink)" stroke-width="3"/><path d="M-10,14V30M0,14V30M10,14V30" stroke="var(--ill-ink)" stroke-width="2.5" stroke-linecap="round"/><circle cx="30" cy="26" r="5" fill="var(--ill-cream)"/><circle cx="-30" cy="26" r="5" fill="var(--ill-cream)"/><path d="M-26,54H26L33,72H-33Z" fill="var(--ill-ochre)" stroke="var(--ill-ink)" stroke-width="3" stroke-linejoin="round"/><ellipse cx="0" cy="72" rx="33" ry="7" fill="var(--ill-cream)" stroke="var(--ill-ink)" stroke-width="3"/></g></defs>
+<g transform="translate(450,68) rotate(38)"><polygon class="lgbeam" points="-30,72 30,72 180,762 -180,762" fill="var(--ill-cream)" opacity=".10"/></g><g transform="translate(565,68) rotate(30)"><polygon class="lgbeam" points="-30,72 30,72 140,762 -140,762" fill="var(--ill-cream)" opacity=".08"/></g>
+<path d="M390,34H640" stroke="var(--ill-cream)" stroke-width="3" stroke-linecap="round"/>
+<g transform="translate(450,68) rotate(38)"><use href="#lgholofote"/></g>
+<g transform="translate(565,68) rotate(30)"><use href="#lgholofote"/></g>
 </svg>
+<div class="lgcopy"><p class="lgkick">Guia · Brasil em cartaz</p><h2>O Brasil nos palcos de Portugal</h2><p>Shows, teatro, concertos e exposições brasileiras em cartaz nas cidades portuguesas, em um só lugar.</p></div>
 </div></div>
 </section>
 <div id="ob" class="ob" role="dialog" aria-modal="true" aria-labelledby="obq" hidden>
   <div id="obart" class="obart" aria-hidden="true"><div class="obill"></div><div class="obgnd"><div class="obbrand"><svg viewBox="0 0 46 32"><use href="#f-br"/></svg>O Brasil nos palcos</div><div class="obsumw"></div></div></div>
   <div class="obmain"><div class="obtop"><button type="button" id="obback" class="obicon" aria-label="Voltar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="obbar" id="obbar" role="progressbar" aria-label="Progresso do cadastro" aria-valuemin="1" aria-valuemax="9" aria-valuenow="1"><div id="obfill" class="obfill"></div></div><span id="obstep" class="obstep" aria-hidden="true"></span><button type="button" id="obx" class="obicon" aria-label="Concluir depois" title="Concluir depois"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg></button></div>
   <div id="obbody" class="obbody"><div id="obcol" class="obcol"></div></div></div></div>
-<div id="offl" class="offl" role="status" hidden>Sem ligação à internet. Você vê a última lista carregada; preços e datas podem ter mudado.</div>
-<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="offl" class="offl" role="status" hidden>Sem conexão com a internet. Você vê a última lista carregada; preços e datas podem ter mudado.</div>
+<div id="toast" class="toast" aria-hidden="true"></div>
+<div id="notifs" class="notifs" aria-live="polite"></div>
 <div id="ck" class="ck" role="region" aria-label="Cookies" hidden><p>Usamos cookies do Google Analytics para entender como o site é usado e melhorá-lo. Só ativamos se você aceitar. <a href="#/cookies">Saber mais</a></p><div class="ckb"><button type="button" class="shbtn" data-ck="nao">Recusar</button><button type="button" class="shbtn pri" data-ck="sim">Aceitar</button></div></div>
 <div id="scrim" class="scrim" hidden></div>
 <div id="shbk" class="shbk" hidden><div id="shm" class="shm" role="dialog" aria-modal="true" aria-labelledby="sht"></div></div>
@@ -1032,6 +1104,7 @@ body.on-login>*:not(#lg):not(#toast):not(svg):not(script):not(#ob){display:none!
 <aside id="evd" class="evd" hidden role="dialog" aria-modal="true" aria-label="Detalhes do evento"></aside>
 <aside id="drawer" class="drawer" hidden aria-label="Minha lista"><div class="dhead"><h2>Minha lista</h2><button id="closeDrawer" class="save">Fechar</button></div><div id="dnudge"></div><div id="dlist"></div></aside>
 <script src="events.js"></script>
+<script src="elenco.js"></script>
 <script type="module" src="conta.js"></script>
 <script>
 const HOM={"Gal Costa":[1945,2022],"Elis Regina":[1945,1982],"Beth Carvalho":[1946,2019],"Cartola":[1908,1980],"Clara Nunes":[1942,1983],"Dona Ivone Lara":[1921,2018],"Nelson Cavaquinho":[1911,1986],"João Gilberto":[1931,2019],"Tom Jobim":[1927,1994],"Vinicius de Moraes":[1913,1980],"Nara Leão":[1942,1989],"Astrud Gilberto":[1940,2023],"Carlos Lyra":[1933,2023],"Pixinguinha":[1897,1973],"Jacob do Bandolim":[1918,1969],"Waldir Azevedo":[1923,1980],"Altamiro Carrilho":[1924,2012],"Ernesto Nazareth":[1863,1934],"Paulo Moura":[1932,2010],"Rafael Rabello":[1962,1995],"Luiz Gonzaga":[1912,1989],"Dominguinhos":[1941,2013],"Marília Mendonça":[1995,2021],"Cazuza":[1958,1990],"Raul Seixas":[1945,1989],"Rita Lee":[1947,2023],"Chico Science":[1966,1997],"Cássia Eller":[1962,2001],"Erasmo Carlos":[1941,2022],"Wilson Simonal":[1938,2000]};
@@ -1064,6 +1137,8 @@ const DDI_FLAG={"+351":'<svg viewBox="0 0 24 16" width="24" height="16"><rect wi
 function ddiFace(v){v=v||"+351";return (DDI_FLAG[v]||"")+'<span>'+v+'</span>'}
 document.addEventListener("change",ev=>{const sel=ev.target.closest&&ev.target.closest(".ddi select");if(sel)sel.previousElementSibling.innerHTML=ddiFace(sel.value)});
 
+/* Alertas por WhatsApp: desligados até o WhatsApp Business estar configurado na Meta. Mude para true para reativar. */
+const ALERTAS_WHATS=true;
 const EVENTS=(window.NP_EVENTS||[]).map(e=>({...e}));
 const npUpd=()=>{const d=new Date((window.NP_EVENTS_UPDATED||"")+"T12:00:00");return isNaN(d)?"":d.toLocaleDateString("pt-PT",{day:"numeric",month:"short",year:"numeric"})};
 const S={city:"Lisboa",type:"Todos",q:"",per:"tudo",view:"cards"};
@@ -1088,7 +1163,7 @@ const gmaps=e=>"https://www.google.com/maps/search/?api=1&query="+encodeURICompo
 const lembr=new Set((()=>{try{return JSON.parse(localStorage.getItem("lembretes")||"[]")}catch(x){return[]}})());
 const lembrSave=()=>{try{localStorage.setItem("lembretes",JSON.stringify([...lembr]))}catch(x){}if(typeof nuvem==="function")nuvem()};
 function icsLink(e){const st=d0(e.date)<HOJE?HOJE:d0(e.date),pad=n=>String(n).padStart(2,"0"),[h,mi]=e.time.split(":"),ds=st.getFullYear()+pad(st.getMonth()+1)+pad(st.getDate());const eh=pad(Math.min(23,+h+(e.sessoes==null?1:2)));
- return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(e.title)+"&dates="+ds+"T"+pad(+h)+mi+"00/"+ds+"T"+eh+mi+"00&location="+encodeURIComponent(e.venue+", "+e.city)+"&details="+encodeURIComponent("Confirme data e preço na bilheteira ("+e.src+").")}
+ return "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(e.title)+"&dates="+ds+"T"+pad(+h)+mi+"00/"+ds+"T"+eh+mi+"00&location="+encodeURIComponent(e.venue+", "+e.city)+"&details="+encodeURIComponent("Confirme data e preço na bilheteria ("+e.src+").")}
 const TS={Show:"show",Teatro:"teatro",Concerto:"concerto","Exposição":"expo"};
 const d0=x=>new Date(x+"T00:00:00");
 const fd=x=>{const[,m,d]=x.split("-");return +d+"/"+ +m};
@@ -1161,9 +1236,66 @@ function paraVoce(base){if(typeof ACC==="undefined"||!ACC||S.q||(S.preco&&S.prec
 document.addEventListener("click",ev=>{
   const c=ev.target.closest(".chip"),s=ev.target.closest(".save,.fav");
   if(c){S[c.dataset.k]=c.dataset.v;render()}
-  if(s){const id=+s.dataset.id;saved.has(id)?saved.delete(id):saved.add(id);persist();render()}
+  if(s){const id=+s.dataset.id;saved.has(id)?saved.delete(id):saved.add(id);persist();render();fbLista(id)}
 });
-let tt;function toast(m){let t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),2200)}
+let tt;
+/* ---------- Feedback do sistema ----------
+   Regra: toda interação recebe feedback contextual.
+   1) Escolha reversível na própria tela (abas, chips, avatar…): o estado muda no lugar.
+   2) Filtros e busca: a linha de resultados (#rstat) atualiza e pisca.
+   3) Ação com efeito fora da vista (guardar, remover, copiar, sair, salvar, idioma, cidade, abrir app externo): notify(). */
+const txl=(pt,en,es)=>{try{return LANG==="en"?en:LANG==="es"?es:pt}catch(e){return pt}};
+const NIC={success:'<path d="M20 6 9 17l-5-5"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',warning:'<path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/>',error:'<circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/>'};
+function notify(o){
+  const box=$("notifs");if(!box||!o||!o.title)return;
+  const type=o.type||"info",key=o.key||o.title,ms=o.ms||(type==="error"?9000:o.body||o.action?6000:4000);
+  let el=[...box.children].find(n=>n.dataset.key===key);
+  if(!el){el=document.createElement("div");box.prepend(el)}
+  clearTimeout(el._t);clearTimeout(el._r);
+  el.dataset.key=key;el.className="ntf ntf-"+type;el.setAttribute("role",type==="error"?"alert":"status");el.style.setProperty("--ntf-ms",ms+"ms");
+  el.innerHTML=`<span class="ntf-ic" aria-hidden="true"><svg viewBox="0 0 24 24">${NIC[type]||NIC.info}</svg></span><div class="ntf-tx"><p class="ntf-t">${esc(o.title)}</p>${o.body?`<p class="ntf-b">${esc(o.body)}</p>`:""}${o.action?`<button type="button" class="ntf-a">${esc(o.action.label)}</button>`:""}</div><button type="button" class="ntf-x" aria-label="${txl("Fechar aviso","Close notice","Cerrar aviso")}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button><span class="ntf-bar" aria-hidden="true"></span>`;
+  const bar=el.querySelector(".ntf-bar");bar.style.animation="none";void bar.offsetWidth;bar.style.animation="";
+  const close=()=>{clearTimeout(el._t);el.classList.add("out");el._r=setTimeout(()=>el.remove(),REDUCED?0:160)};
+  let left=ms,t0=Date.now();
+  const arm=()=>{t0=Date.now();el._t=setTimeout(close,left)};
+  el.onmouseenter=el.onfocusin=()=>{clearTimeout(el._t);left-=Date.now()-t0};
+  el.onmouseleave=el.onfocusout=ev=>{if(ev.relatedTarget&&el.contains(ev.relatedTarget))return;clearTimeout(el._t);arm()};
+  el.querySelector(".ntf-x").onclick=close;
+  if(o.action)el.querySelector(".ntf-a").onclick=()=>{close();o.action.fn()};
+  arm();
+  while(box.children.length>3)box.lastElementChild.remove();
+}
+/* compatível com chamadas antigas (inclusive conta.js): "Título. Texto" vira título + texto */
+function toast(m,type){m=String(m||"");const i=m.indexOf(". ");notify(i>0&&i<m.length-2?{type:type||"info",title:m.slice(0,i),body:m.slice(i+2)}:{type:type||"info",title:m.replace(/\.$/,"")})}
+const evTit=id=>(EVENTS.find(x=>x.id===id)||{}).title||"";
+const emCartaz=c=>EVENTS.filter(e=>e.city===c&&d0(e.fim||e.date)>=HOJE).length;
+function fbLista(id){
+  if(saved.has(id))notify({key:"lista",type:"success",title:txl("Salvo na sua lista","Saved to your list","Guardado en tu lista"),body:evTit(id),action:{label:txl("Ver minha lista","See my list","Ver mi lista"),fn:()=>drawer(true)}});
+  else notify({key:"lista",type:"info",title:txl("Removido da sua lista","Removed from your list","Quitado de tu lista"),body:evTit(id),action:{label:txl("Desfazer","Undo","Deshacer"),fn:()=>{saved.add(id);persist();render();if(evOpen===id){const e=EVENTS.find(x=>x.id===id);e&&renderEvent(e)}fbLista(id)}}});
+}
+function fbCidade(c){const n=emCartaz(c);notify({key:"cidade",type:"info",title:txl("A mostrar "+c,"Showing "+c,"Mostrando "+c),body:n?txl(n+(n===1?" evento em cartaz.":" eventos em cartaz."),n+(n===1?" event on now.":" events on now."),n+(n===1?" evento en cartel.":" eventos en cartel.")):txl("Ainda não há eventos em cartaz nesta cidade.","No events on in this city yet.","Todavía no hay eventos en esta ciudad.")})}
+let rstatPrev=null;
+function renderRstat(){
+  const el=$("rstat");if(!el)return;
+  const q=S.q.toLowerCase();
+  const n=EVENTS.filter(e=>e.city===S.city&&(S.type==="Todos"||e.type===S.type)&&d0(e.fim)>=HOJE&&(e.artist+e.title+e.venue+e.bairro).toLowerCase().includes(q)&&(S.preco!=="ate20"||minPreco(e)<=20)&&inPer(e,S.per)).length;
+  const f=[];
+  if(S.per==="semana")f.push(txl("esta semana","this week","esta semana"));
+  if(S.per==="mes")f.push(txl("este mês","this month","este mes"));
+  if(S.type&&S.type!=="Todos")f.push(S.type);
+  if(S.preco==="ate20")f.push(txl("até 20 €","up to €20","hasta 20 €"));
+  if(S.q.trim())f.push("“"+S.q.trim()+"”");
+  const txt=`<span><b>${n}</b> ${txl(n===1?"evento":"eventos",n===1?"event":"events",n===1?"evento":"eventos")} ${txl("em","in","en")} ${esc(S.city)}${f.length?" · "+f.map(esc).join(" · "):""}</span>`;
+  el.innerHTML=txt+(f.length?` <button type="button" class="rstat-clear" data-clear>${txl("Limpar filtros","Clear filters","Borrar filtros")}</button>`:"");
+  const sig=n+"|"+f.join("|")+"|"+S.city;
+  if(rstatPrev!==null&&rstatPrev!==sig&&!REDUCED){el.classList.add("pulse");clearTimeout(el._p);el._p=setTimeout(()=>el.classList.remove("pulse"),900)}
+  rstatPrev=sig;
+}
+document.addEventListener("click",ev=>{const t=ev.target;
+  if(t.closest("#shwa"))notify({key:"externo",type:"info",title:txl("Abrindo o WhatsApp","Opening WhatsApp","Abriendo WhatsApp"),body:txl("Escolha o contato e envie a mensagem.","Pick a contact and send the message.","Elige el contacto y envía el mensaje.")});
+  const b=t.closest("a.buy");if(b){const e=EVENTS.find(x=>x.id===evOpen);notify({key:"externo",type:"info",title:txl("Abrindo a bilheteria","Opening the box office","Abriendo la taquilla"),body:txl((e?e.src:"O site")+" abre em uma nova aba.",(e?e.src:"The site")+" opens in a new tab.",(e?e.src:"El sitio")+" se abre en una nueva pestaña.")})}
+});
+
 $("q").addEventListener("input",e=>{S.q=e.target.value;render()});
 const CITIES=["Lisboa","Porto","Guimarães","Coimbra","Faro"];
 const MON={
@@ -1179,13 +1311,13 @@ function renderBar(){
   $("cityMenu").innerHTML=CITIES.map((c,i)=>{const n=EVENTS.filter(e=>e.city===c).length;return `<button class="cc t${i}" data-city="${c}" aria-current="${c===S.city}"><span class="art"><svg viewBox="0 0 96 72" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${MON[c].d}</svg></span><span class="txt"><b>${c}</b><em>${n} ${n===1?"evento":"eventos"}</em></span></button>`}).join("");
   $("cnt").textContent=saved.size;$("cnt").hidden=!saved.size;
   const it=EVENTS.filter(e=>saved.has(e.id));
-  $("dlist").innerHTML=it.length?it.map(e=>`<div class="ditem"><div><b>${esc(e.title)}</b><br><small>${new Date(e.date+"T12:00:00").toLocaleDateString("pt-PT",{day:"numeric",month:"short"})} · ${esc(e.venue)}, ${esc(e.city)}</small></div><button class="save" data-id="${e.id}">Remover</button></div>`).join(""):emptyState({ill:"ingresso",t:"Nenhum evento salvo ainda",p:"Toque no coração de um evento para guardá-lo aqui e não perder a data.",cta:'<button class="shbtn" data-es-agenda>Explorar a agenda</button>'});
+  $("dlist").innerHTML=it.length?it.map(e=>`<div class="ditem"><div><b>${esc(e.title)}</b><br><small>${new Date(e.date+"T12:00:00").toLocaleDateString("pt-PT",{day:"numeric",month:"short"})} · ${esc(e.venue)}, ${esc(e.city)}</small></div><button class="save" data-id="${e.id}">Remover</button></div>`).join(""):emptyState({ill:"ingresso",t:"Nenhum evento salvo ainda",p:"Toque no coração de um evento para salvá-lo aqui e não perder a data.",cta:'<button class="shbtn" data-es-agenda>Explorar a agenda</button>'});
 }
 const setMenu=(m,b,o)=>{$(m).hidden=!o;$(b).setAttribute("aria-expanded",o)};
 const drawer=o=>{$("drawer").hidden=!o;$("scrim").hidden=!o;if(o)$("closeDrawer").focus();else $("listBtn").focus()};
 document.addEventListener("click",ev=>{
   const t=ev.target,cb=t.closest("[data-city]");
-  if(cb){S.city=cb.dataset.city;render()}
+  if(cb){const mud=S.city!==cb.dataset.city;S.city=cb.dataset.city;render();if(mud)fbCidade(S.city)}
   setMenu("cityMenu","cityBtn",t.closest("#cityBtn")?$("cityMenu").hidden:false);
   setMenu("profMenu","profBtn",t.closest("#profBtn")?$("profMenu").hidden:t.closest("#profMenu")!==null);
   if(t.closest("#listBtn"))drawer(true);
@@ -1206,15 +1338,32 @@ const hh=t=>t.replace(":00","h").replace(/^(\d+):(\d+)$/,"$1h$2");
 const CLOSE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>';
 let evOpen=null,evFrom=null,evTab="resumo";
 const MUSICA=t=>t==="Show"||t==="Concerto";
+const TEATRO=t=>t==="Teatro";
+const tabsDe=e=>[["resumo","Resumo"],["artista",TEATRO(e.type)?"Elenco":"Artista"],["local","Localização"]];
+const ELENCO=()=>window.NP_ELENCO||{};
+const iniciais=n=>n.replace(/\(.*?\)/g,"").trim().split(/\s+/).filter(w=>w.length>2||/^[A-ZÀ-Ý]/.test(w)).map(w=>w[0]).slice(0,2).join("").toUpperCase();
+const nomesDe=s=>s.replace(/\s+e\s+/g,", ").split(/\s*,\s*/).map(x=>x.trim()).filter(Boolean);
+const igLink=(h,nome)=>`<a href="https://www.instagram.com/${encodeURIComponent(h)}/" target="_blank" rel="noopener" aria-label="Instagram de ${esc(nome)}: @${esc(h)} (abre em nova aba)"><svg class="ic" aria-hidden="true"><use href="#i-ig"/></svg>@${esc(h)}</a>`;
+function pessoa(p){
+  const redes=p.redes&&p.redes.instagram?`<div class="evsoc">${igLink(p.redes.instagram,p.nome)}</div>`:"";
+  return `<li class="evp"><span class="evp-av" aria-hidden="true">${esc(iniciais(p.nome))}</span><div class="evp-tx">${p.papel?`<span class="evp-role">${esc(p.papel)}</span>`:""}<b>${esc(p.nome)}</b>${p.resumo?`<p>${esc(p.resumo)}</p>`:""}${redes}</div></li>`}
+function evElenco(e){
+  const c=ELENCO()[slug(e.title)];
+  if(!c){
+    const ns=nomesDe(e.artist);
+    return `<section class="evsec"><h3>Elenco</h3><ul class="evcast">${ns.map(n=>pessoa({nome:n})).join("")}</ul><p class="aumute">Ainda não temos o resumo do elenco desta peça.</p></section>`}
+  const dir=c.direcao&&c.direcao.length?`<section class="evsec"><h3>Direção</h3><ul class="evcast">${c.direcao.map(pessoa).join("")}</ul></section>`:"";
+  const peca=c.peca&&c.peca.instagram?`<section class="evsec"><h3>Perfil oficial da peça</h3><div class="evsoc">${igLink(c.peca.instagram,e.title)}</div></section>`:"";
+  return `<section class="evsec"><h3>Elenco principal</h3><ul class="evcast">${c.elenco.map(pessoa).join("")}</ul></section>${dir}${peca}<p class="aumute">Resumo feito pela curadoria a partir de fontes públicas. Só mostramos redes sociais oficiais confirmadas.</p>`}
 /* Player do Spotify e mapa do Google só carregam no site próprio; dentro do Claude os iframes são bloqueados, então mostramos um cartão com link. */
 const EMBED_OK=/(^|\.)obrasilnospalcos\.com$|\.github\.io$|^localhost$|^127\./.test(location.hostname);
 const mapSrc=e=>"https://maps.google.com/maps?q="+encodeURIComponent(e.venue+", "+(e.bairro?e.bairro+", ":"")+e.city+", Portugal")+"&z=16&output=embed";
 function evArtista(e){
   const bio=e.bio?e.bio.split(/\n{2,}/).map(p=>`<p>${esc(p)}</p>`).join(""):`<p class="aumute">Ainda não temos a bio de ${esc(e.artist)}.</p>`;
   const sp=e.spotify&&!EMBED_OK?`<a class="evext" href="https://open.spotify.com/${esc(e.spotify)}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-nota"/></svg><span><b>Ouvir ${esc(e.artist)} no Spotify</b><small>Abre as músicas mais ouvidas em nova aba</small></span><span aria-hidden="true">↗</span></a>`:e.spotify?`<iframe class="evspot" title="Músicas mais ouvidas de ${esc(e.artist)} no Spotify" src="https://open.spotify.com/embed/${esc(e.spotify)}?utm_source=generator&theme=0" height="352" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`:`<a class="evlink" href="https://open.spotify.com/search/${encodeURIComponent(e.artist)}" target="_blank" rel="noopener">Ouvir ${esc(e.artist)} no Spotify ↗</a>`;
-  return `<section class="evsec"><h3>Sobre ${esc(e.artist)}</h3><div class="evbio">${bio}</div></section><section class="evsec"><h3>Ver e ouvir</h3>${sp}</section>`}
+  return `<section class="evsec"><h3>Sobre ${esc(e.artist)}</h3><div class="evbio">${bio}</div></section>${MUSICA(e.type)?`<section class="evsec"><h3>Ver e ouvir</h3>${sp}</section>`:""}`}
 function evLocal(e){
-  return `<section class="evsec evloc"><h3>${esc(e.venue)}</h3><p>${esc(e.bairro)}, ${esc(e.city)}</p>${EMBED_OK?`<iframe class="evmap" title="Mapa do Google: ${esc(e.venue)}, ${esc(e.city)}" src="${mapSrc(e)}" height="320" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`:`<a class="evext" href="${gmaps(e)}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span><b>Ver ${esc(e.venue)} no Google Maps</b><small>Abre o mapa em nova aba</small></span><span aria-hidden="true">↗</span></a>`}${EMBED_OK?`<a href="${gmaps(e)}" target="_blank" rel="noopener">Como chegar (abre o mapa em nova aba) ↗</a>`:""}<p class="aumute">Acessibilidade e duração: confirme com a sala ou na bilheteira.</p></section>`}
+  return `<section class="evsec evloc"><h3>${esc(e.venue)}</h3><p>${esc(e.bairro)}, ${esc(e.city)}</p>${EMBED_OK?`<iframe class="evmap" title="Mapa do Google: ${esc(e.venue)}, ${esc(e.city)}" src="${mapSrc(e)}" height="320" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>`:`<a class="evext" href="${gmaps(e)}" target="_blank" rel="noopener"><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span><b>Ver ${esc(e.venue)} no Google Maps</b><small>Abre o mapa em nova aba</small></span><span aria-hidden="true">↗</span></a>`}${EMBED_OK?`<a href="${gmaps(e)}" target="_blank" rel="noopener">Como chegar (abre o mapa em nova aba) ↗</a>`:""}<p class="aumute">Acessibilidade e duração: confirme com a sala ou na bilheteria.</p></section>`}
 function renderEvent(e){
   const on=saved.has(e.id),k=TS[e.type],ss=sessoesDe(e);
   const fdt=x=>DOW[x.getDay()]+" "+x.getDate()+"/"+(x.getMonth()+1);
@@ -1223,16 +1372,15 @@ function renderEvent(e){
   $("evd").innerHTML=`<div class="media m-${k}${e.imagem?" has-photo":""}">${art(e)}<span class="pname">${esc(e.artist)}</span><button class="evx" data-evclose aria-label="Fechar detalhes">${CLOSE}</button></div>
   <div class="evb">${(e.estado||"")?`<span class="badge${/Esgotado|Adiado/.test((e.estado||""))?" off":""}">${(e.estado||"")}</span>`:""}<h2>${esc(e.title)}</h2>
   <div class="evk"><span class="k">${esc(e.type)} · ${esc(e.city)}</span><b>${esc(e.venue)}</b><span>${esc(e.bairro)}, ${esc(e.city)}</span></div>
-  ${MUSICA(e.type)?`<div class="ptabs evtabs" role="tablist" aria-label="Detalhes do evento">${[["resumo","Resumo"],["artista","Artista"],["local","Localização"]].map(([k,l])=>`<button type="button" class="ptab" role="tab" id="evt-${k}" aria-controls="evp" aria-selected="${evTab===k}" tabindex="${evTab===k?0:-1}" data-evtab="${k}">${l}</button>`).join("")}</div>`:""}
-  <div id="evp" class="evpanel"${MUSICA(e.type)?` role="tabpanel" aria-labelledby="evt-${evTab}"`:""}>${MUSICA(e.type)&&evTab==="artista"?evArtista(e):MUSICA(e.type)&&evTab==="local"?evLocal(e):`
+  ${`<div class="ptabs evtabs" role="tablist" aria-label="Detalhes do evento">${tabsDe(e).map(([k,l])=>`<button type="button" class="ptab" role="tab" id="evt-${k}" aria-controls="evp" aria-selected="${evTab===k}" tabindex="${evTab===k?0:-1}" data-evtab="${k}">${l}</button>`).join("")}</div>`}
+  <div id="evp" class="evpanel" role="tabpanel" aria-labelledby="evt-${evTab}">${evTab==="artista"?(TEATRO(e.type)?evElenco(e):evArtista(e)):evTab==="local"?evLocal(e):`
   <dl class="evi"><div><dt>Preço</dt><dd>${esc(precoTxt(e))}</dd></div><div><dt>Idade</dt><dd>${esc(idadeTxt(e.idade))}</dd></div><div><dt>Via</dt><dd>${esc(e.src)}</dd></div></dl>
-  <p class="evtax">Preço da bilheteira. Taxas podem ser somadas no pagamento.</p>
+  <p class="evtax">Preço da bilheteria. Taxas podem ser somadas no pagamento.</p>
   <section class="evsec"><h3>${e.sessoes==null?"Período":"Próximas sessões"}</h3>${sess}</section>
-  <section class="evsec evloc"><h3>Local</h3><p>${esc(e.venue)}, ${esc(e.bairro)}, ${esc(e.city)}</p><a href="${gmaps(e)}" target="_blank" rel="noopener">Como chegar (abre o mapa em nova aba) ↗</a><p class="aumute">Acessibilidade e duração: confirme com a sala ou na bilheteira.</p></section>
-  <div class="evact"><a class="shbtn" href="${icsLink(e)}" target="_blank" rel="noopener">Adicionar ao Google Agenda ↗</a><button type="button" class="shbtn" data-lembrete="${e.id}" aria-pressed="${lembr.has(e.id)}">${lembr.has(e.id)?"Lembrete ativo (1 dia antes)":"Lembrar-me 1 dia antes"}</button></div>
+  <div class="evact"><a class="shbtn" href="${icsLink(e)}" target="_blank" rel="noopener">Adicionar ao Google Agenda ↗</a><button type="button" class="shbtn" data-lembrete="${e.id}" aria-pressed="${lembr.has(e.id)}">${lembr.has(e.id)?"Lembrete ativo (1 dia antes)":"Me lembre 1 dia antes"}</button></div>
   <section class="evsec"><h3>Sinopse</h3><p>${esc(e.sinopse||"")}</p></section>`}</div>
-  <p class="evnote"><span>Atualizado em</span> ${npUpd()}. <span>Confirme datas e preços no site da bilheteira antes de comprar.</span></p></div>
-  <div class="evcta">${(e.estado||"")==="Esgotado"?`<button type="button" class="buy" data-lembrete="${e.id}">Avisar-me se abrir</button>`:`<a class="buy" href="${e.url}" target="_blank" rel="noopener">Ir para ${esc(e.src)} ↗</a>`}<button class="plus fav" data-id="${e.id}" aria-pressed="${on}" aria-label="${on?"Remover da minha lista":"Salvar na minha lista"}">${HEART()}</button><button class="plus shr" data-share="${e.id}" aria-label="Compartilhar">${SHARE}</button></div>`;
+  <p class="evnote"><span>Atualizado em</span> ${npUpd()}. <span>Confirme datas e preços no site da bilheteria antes de comprar.</span></p></div>
+  <div class="evcta">${(e.estado||"")==="Esgotado"?`<button type="button" class="buy" data-lembrete="${e.id}">Me avise se abrir</button>`:`<a class="buy" href="${e.url}" target="_blank" rel="noopener">Ir para ${esc(e.src)} ↗</a>`}<button class="plus fav" data-id="${e.id}" aria-pressed="${on}" aria-label="${on?"Remover da minha lista":"Salvar na minha lista"}">${HEART()}</button><button class="plus shr" data-share="${e.id}" aria-label="Compartilhar">${SHARE}</button></div>`;
 }
 function openEvent(id,from){const e=EVENTS.find(x=>x.id===id);if(!e)return;if(evOpen!==id){evTab="resumo";mtr("ver_evento",evInfo(id))}evOpen=id;evFrom=from||document.activeElement;renderEvent(e);$("evd").hidden=false;$("evd").scrollTop=0;$("scrim").hidden=false;document.body.style.overflow="hidden";$("evd").querySelector(".evx").focus()}
 function closeEvent(){if(evOpen==null)return;evOpen=null;$("evd").hidden=true;if($("drawer").hidden)$("scrim").hidden=true;document.body.style.overflow="";try{evFrom&&evFrom.focus()}catch(x){}}
@@ -1242,7 +1390,7 @@ document.addEventListener("click",ev=>{
   const a=ev.target.closest("a.stretch");
   if(a){ev.preventDefault();ev.stopPropagation();const id=+(a.dataset.ev||a.closest(".card").querySelector("[data-id]").dataset.id);openEvent(id,a);return}
   if(ev.target.closest("[data-evclose],#scrim"))closeEvent();
-  const lb=ev.target.closest("[data-lembrete]");if(lb){const id=+lb.dataset.lembrete;lembr.has(id)?lembr.delete(id):lembr.add(id);lembrSave();toast(lembr.has(id)?"Combinado. Avisamos 1 dia antes (protótipo: nada é enviado).":"Lembrete removido.");const e=EVENTS.find(x=>x.id===id);if(e&&evOpen===id)renderEvent(e)}
+  const lb=ev.target.closest("[data-lembrete]");if(lb){const id=+lb.dataset.lembrete;lembr.has(id)?lembr.delete(id):lembr.add(id);lembrSave();notify(lembr.has(id)?{key:"lembrete",type:"success",title:"Lembrete criado",body:"Avisamos 1 dia antes de "+evTit(id)+". Em breve: os avisos ainda não estão sendo enviados."}:{key:"lembrete",type:"info",title:"Lembrete removido",body:evTit(id)});const e=EVENTS.find(x=>x.id===id);if(e&&evOpen===id)renderEvent(e)}
   const m=ev.target.closest("[data-evmore]");if(m){document.querySelectorAll("#evd [data-more]").forEach(l=>l.hidden=false);m.remove()}
 });
 document.addEventListener("click",ev=>{if(evOpen!=null&&ev.target.closest(".fav")&&ev.target.closest("#evd,.card")){const e=EVENTS.find(x=>x.id===evOpen);renderEvent(e);const b=$("evd").querySelector(".fav");if(ev.target.closest("#evd")&&b)b.focus()}});
@@ -1250,7 +1398,7 @@ document.addEventListener("keydown",ev=>{if(ev.key==="Escape"){if(shOpen!=null){
 
 /* compartilhar */
 const slug=t=>t.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
-const linkOf=e=>"https://brasilnospalcos.com.pt/e/"+slug(e.title);
+const SITE="https://obrasilnospalcos.com/";const linkOf=e=>SITE+"#/evento/"+slug(e.title);
 let shOpen=null,shFrom=null;
 function shText(e){const m=($("shmsg")?$("shmsg").value.trim():"");const line=e.title+" — "+e.venue+", "+e.city+" · "+quando(e)+" · "+e.price;return{m,line:(typeof LANG!=="undefined"&&LANG!=="pt")?post(line):line}}
 function openShare(id,from){const e=EVENTS.find(x=>x.id===id);if(!e)return;shOpen=id;shFrom=from||document.activeElement;
@@ -1266,7 +1414,7 @@ document.addEventListener("click",async ev=>{
   const sb=ev.target.closest("[data-share]");if(sb){ev.preventDefault();openShare(+sb.dataset.share,sb);return}
   if(shOpen==null)return;const e=EVENTS.find(x=>x.id===shOpen);
   if(ev.target.id==="shbk"||ev.target.closest("[data-shclose]")){closeShare();return}
-  const cp=ev.target.closest("[data-shcopy]");if(cp){try{await navigator.clipboard.writeText(linkOf(e))}catch(z){$("shlink").select();try{document.execCommand("copy")}catch(w){}}cp.querySelector("span").textContent="Copiado";setTimeout(()=>{if(cp.isConnected)cp.querySelector("span").textContent="Copiar"},2000);return}
+  const cp=ev.target.closest("[data-shcopy]");if(cp){try{await navigator.clipboard.writeText(linkOf(e))}catch(z){$("shlink").select();try{document.execCommand("copy")}catch(w){}}cp.querySelector("span").textContent="Copiado";notify({key:"copiar",type:"success",title:"Link copiado",body:"Cole em uma conversa ou rede social para compartilhar."});setTimeout(()=>{if(cp.isConnected)cp.querySelector("span").textContent="Copiar"},2000);return}
 });
 document.addEventListener("input",ev=>{if(shOpen==null)return;if(ev.target.id==="shmsg"){shWa(EVENTS.find(x=>x.id===shOpen))}});
 document.addEventListener("keydown",ev=>{if(shOpen==null)return;
@@ -1279,7 +1427,9 @@ const PALCOS={setores:[
   {id:"exposicoes",tipo:"Exposição",icone:"quadro",rotulo:"Exposições",setor:"D",fila:"01"}
 ]};
 /* Os números dos cards vêm da agenda publicada (events.js): eventos em cartaz, por tipo. */
-PALCOS.setores.forEach(s=>{s.br=0;s.pt=EVENTS.filter(e=>e.type===s.tipo&&d0(e.fim||e.date)>=HOJE).length});
+let foldCity=null;
+/* Conta os eventos em cartaz da cidade escolhida, por tipo. */
+function contarPalcos(){PALCOS.setores.forEach(s=>{s.br=0;s.pt=EVENTS.filter(e=>e.city===S.city&&e.type===s.tipo&&d0(e.fim||e.date)>=HOJE).length})}
 const REDUCED=matchMedia("(prefers-reduced-motion: reduce)").matches;
 function countUp(el,n){el.textContent="0";const t0=performance.now();const f=t=>{const p=Math.min(1,(t-t0)/1100);el.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}
 function seatsSvg(s,total,grand,si){
@@ -1293,12 +1443,13 @@ function seatsSvg(s,total,grand,si){
   return h;
 }
 function initFold(){
+  contarPalcos();foldCity=S.city;
   const L=PALCOS.setores,grand=Math.max(1,L.reduce((a,s)=>a+s.br+s.pt,0));
   $("sectors").innerHTML=L.map((s,si)=>{const t=s.br+s.pt;return `<a class="sector k-${s.id}" href="#seg-${TS[s.tipo]}" aria-labelledby="cat-${s.id}" style="--dg:${Math.max(3,String(t).length)}">
     <h2 class="cat" id="cat-${s.id}">${s.rotulo}</h2>
     <svg class="ic ico" aria-hidden="true"><use href="#i-${s.icone}"/></svg>
     <svg class="seats" viewBox="0 0 100 66" preserveAspectRatio="xMidYMid meet" aria-hidden="true">${seatsSvg(s,t,grand,si)}</svg>
-    <div class="stub"><p class="num"><span class="n" data-n="${t}">${t}</span><span class="sr"> ${t===1?"evento publicado":"eventos publicados"}</span></p></div></a>`}).join("");
+    <div class="stub"><p class="num"><span class="n" data-n="${t}">${t}</span><span class="sr"> ${t===1?"evento em cartaz em":"eventos em cartaz em"} ${S.city}</span></p></div></a>`}).join("");
   const els=[...document.querySelectorAll(".sector")];
   const light=el=>{if(el.classList.contains("lit"))return;el.classList.add("lit");const n=el.querySelector(".n");if(!REDUCED)countUp(n,+n.dataset.n)};
   if(REDUCED||!("IntersectionObserver" in window)){els.forEach(el=>el.classList.add("lit"));return}
@@ -1306,7 +1457,7 @@ function initFold(){
   els.forEach(el=>io.observe(el));
 }
 function syncArrows(){document.querySelectorAll(".seg-row").forEach(r=>{const st=r.querySelector(".strip"),ar=r.querySelector(".arrows");if(st&&ar)ar.hidden=st.scrollWidth<=st.clientWidth+1})}
-const __render=render;render=function(){__render();requestAnimationFrame(syncArrows)};
+const __render=render;render=function(){__render();renderRstat();if(foldCity!==null&&foldCity!==S.city)initFold();requestAnimationFrame(syncArrows)};
 window.addEventListener("resize",syncArrows);
 
 /* conta, login com Google (simulado), perfil e personalização */
@@ -1363,14 +1514,14 @@ function renderAuth(){
   $("profBtn").innerHTML=ACC?avEl(ACC,42):'<svg class="ic" aria-hidden="true"><use href="#i-user"/></svg>';
   $("profBtn").setAttribute("aria-label",ACC?"Perfil de "+ACC.nome:"Entrar");
   $("profMenu").innerHTML=ACC?`<div class="mhd">${avEl(ACC,44)}<div><b>${esc(ACC.nome)}</b><small>${esc(ACC.email)}</small></div></div><ul><li><button data-go="#/perfil">Meu perfil</button></li><li><button data-pf-list>Minha lista</button></li><li><button class="out" data-pf-out>Sair</button></li></ul>`
-    :`<p>Entre para guardar a sua lista na conta e receber avisos de novos eventos.</p><button class="btn" data-auth-open>Entrar ou criar conta</button>`;
-  $("dnudge").innerHTML=ACC?"":`<div class="nudge"><span>Entre para guardar a sua lista na conta.</span><button class="shbtn" data-auth-open style="min-height:40px">Entrar</button></div>`;
+    :`<p>Entre para salvar sua lista na conta e receber avisos de novos eventos.</p><button class="btn" data-auth-open>Entrar ou criar conta</button>`;
+  $("dnudge").innerHTML=ACC?"":`<div class="nudge"><span>Entre para salvar sua lista na conta.</span><button class="shbtn" data-auth-open style="min-height:40px">Entrar</button></div>`;
 }
 function openAuth(step,from){auFrom=from||document.activeElement;auOpen=true;auStep(step||"entrar");$("aubk").hidden=false;document.body.style.overflow="hidden";const f=$("aum").querySelector("button");f&&f.focus()}
 function closeAuth(){if(!auOpen)return;auOpen=false;$("aubk").hidden=true;document.body.style.overflow=(evOpen!=null||epOpen)?"hidden":"";try{auFrom&&auFrom.isConnected&&auFrom.focus()}catch(x){}}
 function auStep(step,busy){
   const head=`<div class="media m-concerto">${art({id:2})}<button class="evx" data-au-close aria-label="Fechar">${CLOSE}</button></div>`;
-  if(step==="entrar")$("aum").innerHTML=head+`<div class="shb"><div><h2 id="aut">Entrar ou criar conta</h2><div class="shsub"><span>Guarde a sua lista de eventos e receba avisos de novidades na sua cidade.</span></div></div>
+  if(step==="entrar")$("aum").innerHTML=head+`<div class="shb"><div><h2 id="aut">Entrar ou criar conta</h2><div class="shsub"><span>Salve sua lista de eventos e receba avisos de novidades na sua cidade.</span></div></div>
     <button class="gbtn" data-au-google ${busy?"disabled":""}>${GICON}<span>${busy?"Conectando ao Google…":"Continuar com Google"}</span></button>
     <p class="aumute">Se você ainda não tem conta, ela é criada automaticamente. Ao continuar, você concorda com os Termos e a Política de Privacidade.</p></div>`;
   else $("aum").innerHTML=head+`<div class="shb"><div><h2 id="aut">Conta criada, ${esc(first(DEMO.nome))}!</h2><div class="shsub"><span>Entrou com Google como ${esc(DEMO.email)}. Só falta personalizar.</span></div></div>
@@ -1378,11 +1529,11 @@ function auStep(step,busy){
     <label class="tg"><input type="checkbox" id="auavisos" checked><span>Avisar por e-mail quando houver novos eventos brasileiros na minha cidade</span></label>
     <button class="shbtn pri" data-au-done style="width:100%">Concluir</button></div>`;
 }
-function entrou(msg){lss("sessao",true);ACC=mig(lsj("conta"));if(ACC.cidade&&CITIES.includes(ACC.cidade))S.city=ACC.cidade;render();renderAuth();closeAuth();toast(msg)}
+function entrou(msg){lss("sessao",true);ACC=mig(lsj("conta"));if(ACC.cidade&&CITIES.includes(ACC.cidade))S.city=ACC.cidade;render();renderAuth();closeAuth();toast(msg,"success")}
 const salvarConta=()=>{lss("conta",ACC);renderAuth()};
 
 /* ---------- conta real: Firebase (ver conta.js). A página guarda uma cópia local e sincroniza com a nuvem. ---------- */
-const fbOff=()=>toast("Para entrar, use o site obrasilnospalcos.com.");
+const fbOff=()=>notify({type:"warning",title:"Entrar só no site oficial",body:"Para entrar ou criar conta, use obrasilnospalcos.com."});
 let nuvemT=null;
 function nuvem(){if(!window.FB||!FB.user||!lsj("sessao"))return;clearTimeout(nuvemT);nuvemT=setTimeout(()=>{const c=lsj("conta");if(!c||!FB.user)return;FB.salvar({conta:c,agenda:[...saved],lembretes:[...lembr]}).catch(e=>console.warn("[conta] não sincronizou",e))},700)}
 const nomeDe=u=>u.nome||(u.email||"").split("@")[0].replace(/[._-]+/g," ").replace(/\b\w/g,c=>c.toUpperCase());
@@ -1433,7 +1584,7 @@ function ckAplicar(){if(lsj("cookies")==="sim"&&window.FB)FB.consentir(true)}
 function ckMostrar(v){$("ck").hidden=!v}
 addEventListener("fb:carregado",ckAplicar);
 document.addEventListener("click",ev=>{const t=ev.target;
-  const ck=t.closest("[data-ck]");if(ck){const sim=ck.dataset.ck==="sim";lss("cookies",sim?"sim":"nao");ckMostrar(false);if(sim){ckAplicar();setTimeout(()=>mtr("cookies_aceitos"),1500)}else toast("Tudo bem. Não vamos medir a sua visita.");return}
+  const ck=t.closest("[data-ck]");if(ck){const sim=ck.dataset.ck==="sim";lss("cookies",sim?"sim":"nao");ckMostrar(false);if(sim){ckAplicar();setTimeout(()=>mtr("cookies_aceitos"),1500);notify({type:"success",title:"Obrigado!",body:"Vamos medir as visitas de forma anónima para melhorar o site."})}else notify({type:"info",title:"Medição de visitas desativada",body:"Tudo bem. Não vamos medir a sua visita. Pode mudar isso em Cookies, no rodapé."});return}
   if(t.closest("[data-ck-rever]")){ckMostrar(true);return}
   const b=t.closest("a.buy");if(b){const e=EVENTS.find(x=>x.id===evOpen);mtr("clique_bilheteira",{...evInfo(evOpen),bilheteira:e?e.src:"",link_url:b.href})}
   const f=t.closest(".save,.fav");if(f&&f.dataset.id)mtr(saved.has(+f.dataset.id)?"remover_lista":"adicionar_lista",evInfo(f.dataset.id));
@@ -1447,35 +1598,35 @@ let trBusca=null;$("q").addEventListener("input",e=>{clearTimeout(trBusca);const
 
 const LEGAL={
 privacidade:`<h1>Política de privacidade</h1><p class="upd">Última atualização: 16 de novembro de 2026</p>
-<p>O Brasil nos palcos é um portal independente que reúne shows, teatro, concertos e exposições de artistas brasileiros em Portugal. Esta política explica, em linguagem simples, que dados guardamos, para quê e como você controla tudo.</p>
+<p>O Brasil nos palcos é um portal independente que reúne shows, teatro, concertos e exposições de artistas brasileiros em Portugal. Esta política explica, em linguagem simples, que dados armazenamos, para que servem e como você controla tudo.</p>
 <h2>Quem é responsável</h2><p>O site é criado e mantido por Luana Camará. Para qualquer pedido sobre os seus dados, escreva para <a href="mailto:${CONTATO}">${CONTATO}</a>.</p>
-<h2>Que dados guardamos</h2><ul>
+<h2>Que dados armazenamos</h2><ul>
 <li><b>Sem conta:</b> a sua lista, os lembretes, o idioma e a cidade escolhida ficam só no seu navegador. Não chegam até nós.</li>
 <li><b>Com conta:</b> nome, e-mail, método de login (Google ou e-mail e senha), cidade, preferências, interesses, bio, avatar ou foto, lista de eventos, lembretes e, se você ativar avisos por WhatsApp, o seu número.</li>
-<li><b>Senha:</b> nunca vemos nem guardamos a sua senha. Quem a verifica é o Google Firebase, de forma cifrada.</li>
-<li><b>Métricas de uso:</b> só se você aceitar os cookies. Páginas vistas, eventos abertos, cliques para as bilheteiras, buscas e filtros, de forma agregada, pelo Google Analytics.</li></ul>
+<li><b>Senha:</b> nunca vemos nem armazenamos sua senha. Quem a verifica é o Google Firebase, de forma cifrada.</li>
+<li><b>Métricas de uso:</b> só se você aceitar os cookies. Páginas vistas, eventos abertos, cliques para as bilheterias, buscas e filtros, de forma agregada, pelo Google Analytics.</li></ul>
 <h2>Para que usamos</h2><ul>
-<li>Criar e manter a sua conta e guardar a sua lista em qualquer aparelho (execução do serviço que você pediu).</li>
+<li>Criar e manter a sua conta e salvar sua lista em qualquer aparelho (execução do serviço que você pediu).</li>
 <li>Entender como o site é usado e melhorá-lo (só com o seu consentimento).</li>
 <li>Proteger o site contra abusos (interesse legítimo).</li></ul>
-<p>Não vendemos dados, não fazemos publicidade e não partilhamos a sua informação com as bilheteiras.</p>
+<p>Não vendemos dados, não fazemos publicidade e não compartilhamos suas informações com as bilheterias.</p>
 <h2>Com quem os dados ficam</h2><ul>
-<li><b>Google Firebase</b> (login e base de dados), com os dados guardados na União Europeia.</li>
+<li><b>Google Firebase</b> (login e base de dados), com os dados armazenados na União Europeia.</li>
 <li><b>Google Analytics</b>, apenas se aceitar os cookies.</li>
 <li><b>GitHub Pages</b>, que hospeda o site e pode registar dados técnicos de acesso, como o endereço IP.</li>
-<li><b>Spotify e Google Maps</b>: quando você abre as abas Artista ou Localização de um evento, estes serviços são carregados e podem recolher dados segundo as suas próprias políticas.</li></ul>
+<li><b>Spotify e Google Maps</b>: quando você abre as abas Artista ou Localização de um evento, estes serviços são carregados e podem coletar dados segundo as suas próprias políticas.</li></ul>
 <p>Alguns destes fornecedores podem tratar dados fora da União Europeia, com as garantias exigidas pelo RGPD.</p>
-<h2>Por quanto tempo</h2><p>Os dados da conta ficam guardados enquanto a conta existir. Quando você exclui a conta, apagamos o seu perfil e a sua lista. As métricas do Analytics são mantidas pelo período configurado no Google Analytics, no máximo 14 meses.</p>
-<h2>Os seus direitos</h2><p>Você pode pedir acesso, correção, cópia ou exclusão dos seus dados, opor-se ao tratamento e retirar o consentimento a qualquer momento. Pode excluir a conta você mesmo em <b>Meu perfil › Configurações › Excluir conta</b>, ou escrever para <a href="mailto:${CONTATO}">${CONTATO}</a>. Se achar que os seus direitos não foram respeitados, pode apresentar queixa à <a href="https://www.cnpd.pt" target="_blank" rel="noopener">CNPD</a>, a autoridade portuguesa de proteção de dados.</p>
+<h2>Por quanto tempo</h2><p>Os dados da conta ficam armazenados enquanto a conta existir. Quando você exclui a conta, apagamos o seu perfil e a sua lista. As métricas do Analytics são mantidas pelo período configurado no Google Analytics, no máximo 14 meses.</p>
+<h2>Os seus direitos</h2><p>Você pode pedir acesso, correção, cópia ou exclusão dos seus dados, se opor ao tratamento e retirar o consentimento a qualquer momento. Pode excluir a conta você mesmo em <b>Meu perfil › Configurações › Excluir conta</b>, ou escrever para <a href="mailto:${CONTATO}">${CONTATO}</a>. Se achar que os seus direitos não foram respeitados, pode registrar uma reclamação na <a href="https://www.cnpd.pt" target="_blank" rel="noopener">CNPD</a>, a autoridade portuguesa de proteção de dados.</p>
 <h2>Mudanças</h2><p>Se esta política mudar, atualizamos a data no topo da página. Mudanças importantes serão avisadas no site.</p>`,
 termos:`<h1>Termos de uso</h1><p class="upd">Última atualização: 16 de novembro de 2026</p>
-<h2>O que é o site</h2><p>O Brasil nos palcos é uma agenda gratuita de eventos de artistas brasileiros em Portugal. Não vendemos bilhetes: o botão de compra leva sempre ao site da bilheteira ou da sala, onde a compra acontece segundo as regras deles.</p>
-<h2>Informação dos eventos</h2><p>Datas, horários, preços e classificação etária vêm das bilheteiras e das salas e são conferidos antes de publicar. Ainda assim, podem mudar sem aviso. Confirme sempre na bilheteira antes de comprar. Não nos responsabilizamos por cancelamentos, alterações ou problemas na compra.</p>
+<h2>O que é o site</h2><p>O Brasil nos palcos é uma agenda gratuita de eventos de artistas brasileiros em Portugal. Não vendemos ingressos: o botão de compra leva sempre ao site da bilheteria ou da sala, onde a compra acontece segundo as regras deles.</p>
+<h2>Informação dos eventos</h2><p>Datas, horários, preços e classificação etária vêm das bilheterias e das salas e são conferidos antes de publicar. Ainda assim, podem mudar sem aviso. Confirme sempre na bilheteria antes de comprar. Não nos responsabilizamos por cancelamentos, alterações ou problemas na compra.</p>
 <h2>A sua conta</h2><p>A conta é pessoal. Mantenha a sua senha em segurança e não use o site para fins ilegais ou para prejudicar outras pessoas. Podemos suspender contas usadas de forma abusiva. Você pode excluir a sua conta quando quiser.</p>
 <h2>Conteúdo</h2><p>Imagens e nomes de eventos pertencem aos seus artistas, produtoras e salas e são usados apenas para divulgar os eventos. Se for titular de algum conteúdo e quiser que seja retirado, escreva para <a href="mailto:${CONTATO}">${CONTATO}</a>.</p>
 <h2>Lei aplicável</h2><p>Estes termos seguem a lei portuguesa. Ao usar o site, você concorda com eles e com a <a href="#/privacidade">Política de privacidade</a>.</p>`,
 cookies:`<h1>Cookies</h1><p class="upd">Última atualização: 16 de novembro de 2026</p>
-<h2>Essenciais (sempre ativos)</h2><p>Guardamos no seu navegador a sua lista, os lembretes, o idioma, a cidade escolhida, a sua escolha sobre cookies e, se tiver conta, a sessão de login do Google Firebase. Sem isto o site não funciona como espera. Estes dados não servem para medir nem para publicidade.</p>
+<h2>Essenciais (sempre ativos)</h2><p>Salvamos no seu navegador a sua lista, os lembretes, o idioma, a cidade escolhida, a sua escolha sobre cookies e, se tiver conta, a sessão de login do Google Firebase. Sem isto o site não funciona como espera. Estes dados não servem para medir nem para publicidade.</p>
 <h2>Métricas (só com o seu consentimento)</h2><p>Se aceitar, o Google Analytics usa os cookies <code>_ga</code> e <code>_ga_YJYBDFL18L</code> para contar visitas e entender como o site é usado. Se recusar, nada disso é carregado.</p>
 <h2>Conteúdo de terceiros</h2><p>O player do Spotify e o mapa do Google Maps, nas abas Artista e Localização, só carregam quando você abre essas abas e podem usar cookies próprios.</p>
 <p><button type="button" class="shbtn pri" data-ck-rever>Rever a minha escolha</button></p>`};
@@ -1497,7 +1648,7 @@ function applyRoute(){
   const m=ROUTE.match(PERFIL);
   if(m&&!ACC){LGfrom=ROUTE;go("#/entrar");return}
   document.body.classList.toggle("on-perfil",!!m);
-  if(m){PT.tab=m[1]||"sobre";if(PT.tab!=="editar"&&EM){const w=EM.dirty;EM=null;if(w)toast("Alterações descartadas")}try{renderPerfil()}catch(e){}window.scrollTo(0,0)}else if(EM)EM=null;
+  if(m){PT.tab=m[1]||"sobre";if(PT.tab!=="editar"&&EM){const w=EM.dirty;EM=null;if(w)notify({type:"info",title:"Alterações descartadas",body:"O seu perfil continua como estava."})}try{renderPerfil()}catch(e){}window.scrollTo(0,0)}else if(EM)EM=null;
 }
 function go(r){ROUTE=r;try{if(location.hash!==r)location.hash=r}catch(e){}applyRoute()}
 window.addEventListener("hashchange",()=>{ROUTE=location.hash;applyRoute()});
@@ -1514,11 +1665,11 @@ function renderPerfil(){
   if(PT.tab==="sobre")body=`<div class="pgrid"><div class="pcol">
     <section class="evsec"><div class="psh"><h3>Sobre mim</h3><button class="save" data-ep="bio">Editar</button></div>${a.bio.trim()?`<p class="pbio">${esc(a.bio)}</p>`:`<p class="pmute">Conte um pouco sobre você e o que gosta de ver nos palcos. <button class="save" data-ep="bio">Escrever bio</button></p>`}</section>
     <section class="evsec" id="pint"><div class="psh"><h3>Interesses</h3><button class="save" data-ep="int">Editar</button></div>${pintView(a)}</section>
-    <section class="evsec"><div class="psh"><h3>Eventos salvos</h3>${sv.length>3?`<button class="save" data-go="#/perfil/lista">Ver todos</button>`:""}</div>${sv.length?sv.slice(0,3).map(row).join(""):emptyState({ill:"ingresso",sm:true,box:true,t:"Nenhum evento salvo ainda",p:"Toque no coração de um evento para guardá-lo aqui.",cta:'<button class="save" data-es-agenda>Explorar a agenda</button>'})}</section></div>
+    <section class="evsec"><div class="psh"><h3>Eventos salvos</h3>${sv.length>3?`<button class="save" data-go="#/perfil/lista">Ver todos</button>`:""}</div>${sv.length?sv.slice(0,3).map(row).join(""):emptyState({ill:"ingresso",sm:true,box:true,t:"Nenhum evento salvo ainda",p:"Toque no coração de um evento para salvá-lo aqui.",cta:'<button class="save" data-es-agenda>Explorar a agenda</button>'})}</section></div>
     <aside class="pcol"><section class="pcard"><h3>Complete seu perfil</h3><p class="pmute">${pct===100?"Seu perfil está completo.":"Você completou "+pct+"% do seu perfil."}</p><div class="pbar" role="progressbar" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"><i style="width:${pct}%"></i></div></section>
     <section class="pcard"><h3>Sua atividade</h3><div class="pst"><div><small>Salvos</small><b>${sv.length}</b></div><div><small>Cidades</small><b>${cidades}</b></div><div><small>Categorias</small><b>${cats}</b></div></div></section>
     <p class="pmute pdesde"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg>Entrou em ${esc(desdeTxt(a.desde))}</p></aside></div>`;
-  else if(PT.tab==="lista")body=sv.length?`<div class="cards">${sv.map(card).join("")}</div>`:emptyState({ill:"ingresso",box:true,t:"Nenhum evento salvo ainda",p:"Toque no coração de um evento para guardá-lo aqui e não perder a data.",cta:'<button class="shbtn" data-es-agenda>Explorar a agenda</button>'});
+  else if(PT.tab==="lista")body=sv.length?`<div class="cards">${sv.map(card).join("")}</div>`:emptyState({ill:"ingresso",box:true,t:"Nenhum evento salvo ainda",p:"Toque no coração de um evento para salvá-lo aqui e não perder a data.",cta:'<button class="shbtn" data-es-agenda>Explorar a agenda</button>'});
   else body=`<div class="pgrid"><div class="pcol"><section class="evsec cfg"><div class="psh"><h3>Preferências</h3></div><div class="shf"><span class="lb">Cidade padrão</span><div class="opts" role="group" aria-label="Cidade padrão">${CITIES.map(c=>`<button class="opt" data-pf-city="${c}" aria-pressed="${c===a.cidade}">${c}</button>`).join("")}</div></div><div class="shf cfg-redo"><span class="lb">Personalização</span><p class="aumute">Cidade, tipos de evento, gêneros, artistas e alertas.</p><button class="save" data-ob-redo>Refazer personalização</button></div><label class="tg"><input type="checkbox" data-pf-avisos ${a.avisos?"checked":""}><span>Avisar por e-mail sobre novos eventos na minha cidade</span></label></section>
     <section class="evsec"><div class="psh"><h3>Conta</h3></div><p class="pmute" style="margin-bottom:var(--space-150)">${a.metodo==="email"?"E-mail e senha":"Conta Google"} · ${esc(a.email)}</p>${a.metodo==="email"?`<p class="aumute" style="margin:0 0 var(--space-150)"><button type="button" class="lgforgot" data-pf-pass>Alterar senha</button></p>`:""}<div class="shrow" style="justify-content:flex-start"><button class="shbtn" data-pf-out>Sair</button><button class="shbtn dng" data-pf-del>Excluir conta</button></div><p class="aumute" style="margin-top:var(--space-150)">Excluir a conta apaga o seu perfil e as suas preferências. A lista salva neste aparelho continua.</p></section></div></div>`;
   $("pgin").innerHTML=`<div class="pcover">${coverSvg(a.capa)}<button class="pavb pcb" data-ep="capa" aria-label="Alterar capa"><svg class="ic" aria-hidden="true"><use href="#i-camera"/></svg></button></div>
@@ -1538,7 +1689,7 @@ function epBody(){
   if(ED.tab==="info")h=`<div class="shf"><label for="epnome">Nome</label><input id="epnome" class="shin" maxlength="40" value="${esc(ED.nome)}" autocomplete="name"></div>
   <div class="shf" style="margin-top:var(--space-200)"><label for="epbio">Sobre mim</label><textarea id="epbio" class="shta" maxlength="280" placeholder="Conte um pouco sobre você e o que gosta de ver nos palcos.">${esc(ED.bio)}</textarea><small class="aumute" id="epcnt">${ED.bio.length}/280</small></div>`;
   else if(ED.tab==="capa")h=["br","pt"].map(p=>`<div class="shf" style="margin-bottom:var(--space-250)"><span class="lb">${p==="br"?"Cidades do Brasil":"Cidades de Portugal"}</span><div class="cgrid">${COVERS.filter(c=>c.pais===p).map(c=>`<button class="cth" data-capa="${c.id}" aria-pressed="${c.id===ED.capa}" title="${esc(c.mon)}">${coverSvg(c.id)}<span>${esc(c.nome)}</span></button>`).join("")}</div></div>`).join("");
-  else h=`<div class="shf"><span class="lb">Sua foto</span><div class="shrow" style="flex-wrap:wrap"><button class="shbtn" data-ep-up><svg class="ic" aria-hidden="true"><use href="#i-upload"/></svg>Enviar foto</button>${ED.foto?`<button class="shbtn" data-ep-rmfoto>Remover foto</button>`:""}<input type="file" id="epfile" accept="image/*" hidden></div><small class="aumute" id="eperr">JPG ou PNG. A foto é recortada em círculo e fica guardada só neste aparelho.</small></div>
+  else h=`<div class="shf"><span class="lb">Sua foto</span><div class="shrow" style="flex-wrap:wrap"><button class="shbtn" data-ep-up><svg class="ic" aria-hidden="true"><use href="#i-upload"/></svg>Enviar foto</button>${ED.foto?`<button class="shbtn" data-ep-rmfoto>Remover foto</button>`:""}<input type="file" id="epfile" accept="image/*" hidden></div><small class="aumute" id="eperr">JPG ou PNG. A foto é recortada em círculo e fica salva só neste aparelho.</small></div>
   <div class="shf" style="margin-top:var(--space-250)"><span class="lb">Ou escolha um avatar</span>${Object.keys(AVS).length>1?`<div class="opts" role="tablist">${Object.keys(AVS).map(k=>`<button class="opt" role="tab" data-avtab="${k}" aria-pressed="${k===ED.avTab}">${AVLAB[k]}</button>`).join("")}</div>`:""}
   <div class="agrid">${AVS[ED.avTab].map(x=>`<button class="atile" data-av="${x.id}" aria-pressed="${!ED.foto&&x.id===ED.avatar}"><span class="av" style="width:72px;height:72px">${x.img?`<img src="${x.img}" alt="">`:`<svg viewBox="0 0 100 100" aria-hidden="true">${x.svg}</svg>`}</span><span>${esc(x.nome)}</span></button>`).join("")}</div>
 </div>`;
@@ -1562,11 +1713,11 @@ document.addEventListener("click",ev=>{
   const ac=t.closest("[data-au-city]");if(ac){auCity=ac.dataset.auCity;$("aum").querySelectorAll("[data-au-city]").forEach(b=>b.setAttribute("aria-pressed",b===ac));return}
   if(t.closest("[data-au-done]")){lss("conta",{...DEMO,cidade:auCity,avisos:$("auavisos").checked,capa:CITYCOVER[auCity]||"lisboa",avatar:null,foto:null,bio:"",interesses:[],desde:hoje()});entrou("Conta criada. Boas-vindas, "+first(DEMO.nome)+"!");return}
   const pl=t.closest("[data-pf-list]");if(pl){setMenu("profMenu","profBtn",false);drawer(true);return}
-  if(t.closest("[data-pf-out]")){if(window.FB)FB.sair().catch(()=>{});sairLocal();setMenu("profMenu","profBtn",false);if(ROUTE)go("");toast("Você saiu da conta");return}
-  const pc=t.closest("[data-pf-city]");if(pc&&ACC){ACC.cidade=pc.dataset.pfCity;salvarConta();S.city=ACC.cidade;render();return}
-  const pd=t.closest("[data-pf-del]");if(pd){if(delArm){clearTimeout(delArm);delArm=null;const fim=()=>{sairLocal();go("");toast("Conta excluída")};if(!window.FB||!FB.user){fim();return}pd.disabled=true;pd.textContent="Excluindo…";FB.excluir().then(()=>{FB.track("conta_excluida");fim()}).catch(e=>{pd.disabled=false;pd.textContent="Excluir conta";toast(FB.erro(e));if(e&&e.code==="auth/requires-recent-login"){FB.sair().catch(()=>{});sairLocal();LGfrom="#/perfil/config";go("#/entrar")}})}else{pd.textContent="Confirmar exclusão";delArm=setTimeout(()=>{delArm=null;if(pd.isConnected)pd.textContent="Excluir conta"},4000)}return}
+  if(t.closest("[data-pf-out]")){if(window.FB)FB.sair().catch(()=>{});sairLocal();setMenu("profMenu","profBtn",false);if(ROUTE)go("");notify({type:"info",title:"Você saiu da conta",body:"Entre de novo quando quiser."});return}
+  const pc=t.closest("[data-pf-city]");if(pc&&ACC){ACC.cidade=pc.dataset.pfCity;salvarConta();S.city=ACC.cidade;render();notify({key:"cidadepadrao",type:"success",title:"Cidade padrão: "+ACC.cidade,body:"A agenda vai abrir sempre em "+ACC.cidade+"."});return}
+  const pd=t.closest("[data-pf-del]");if(pd){if(delArm){clearTimeout(delArm);delArm=null;const fim=()=>{sairLocal();go("");notify({type:"success",title:"Conta excluída",body:"Os dados da sua conta foram apagados."})};if(!window.FB||!FB.user){fim();return}pd.disabled=true;pd.textContent="Excluindo…";FB.excluir().then(()=>{FB.track("conta_excluida");fim()}).catch(e=>{pd.disabled=false;pd.textContent="Excluir conta";notify({type:"error",title:"Não foi possível concluir",body:FB.erro(e)});if(e&&e.code==="auth/requires-recent-login"){FB.sair().catch(()=>{});sairLocal();LGfrom="#/perfil/config";go("#/entrar")}})}else{pd.textContent="Confirmar exclusão";delArm=setTimeout(()=>{delArm=null;if(pd.isConnected)pd.textContent="Excluir conta"},4000)}return}
   const oe=t.closest("[data-open-ev]");if(oe){openEvent(+oe.dataset.openEv,oe);return}
-  const ii=t.closest("[data-int]");if(ii&&ACC){const k=ii.dataset.int,s=ACC.interesses;s.includes(k)?s.splice(s.indexOf(k),1):s.push(k);salvarConta();renderPerfil();return}
+  const ii=t.closest("[data-int]");if(ii&&ACC){const k=ii.dataset.int,s=ACC.interesses;s.includes(k)?s.splice(s.indexOf(k),1):s.push(k);salvarConta();renderPerfil();notify({key:"interesses",type:"success",title:"Interesses atualizados",body:s.length?s.join(", "):"Nenhum tipo escolhido: mostramos tudo."});return}
   const st=t.closest("[data-step]");if(st){const k=st.dataset.step;if(k==="home")go("");else if(k==="int"){const el=$("pint");el&&el.scrollIntoView({behavior:"smooth",block:"center"})}else goEdit(k);return}
   const ep=t.closest("[data-ep]");if(ep){goEdit(ep.dataset.ep);return}
   if(!epOpen)return;
@@ -1578,11 +1729,11 @@ document.addEventListener("click",ev=>{
   if(t.closest("[data-ep-up]")){$("epfile").click();return}
   if(t.closest("[data-ep-rmfoto]")){ED.foto=null;epPreview();epBody();return}
   if(t.closest("[data-ep-save]")){const n=ED.nome.trim();if(!n){ED.tab="info";epTabs();epBody();$("epnome").focus();return}
-    Object.assign(ACC,{nome:n,bio:ED.bio.trim(),capa:ED.capa,avatar:ED.foto?null:ED.avatar,foto:ED.foto});salvarConta();closeEdit();renderPerfil();toast("Perfil atualizado")}
+    Object.assign(ACC,{nome:n,bio:ED.bio.trim(),capa:ED.capa,avatar:ED.foto?null:ED.avatar,foto:ED.foto});salvarConta();closeEdit();renderPerfil();notify({type:"success",title:"Perfil atualizado",body:"As alterações já aparecem no seu perfil."})}
 });
 document.addEventListener("input",ev=>{if(!epOpen)return;if(ev.target.id==="epnome"){ED.nome=ev.target.value;epPreview()}else if(ev.target.id==="epbio"){ED.bio=ev.target.value;$("epcnt").textContent=ED.bio.length+"/280"}});
 document.addEventListener("change",async ev=>{
-  if(ev.target.matches("[data-pf-avisos]")&&ACC){ACC.avisos=ev.target.checked;salvarConta();toast(ACC.avisos?"Avisos ativados":"Avisos desativados");return}
+  if(ev.target.matches("[data-pf-avisos]")&&ACC){ACC.avisos=ev.target.checked;salvarConta();notify(ACC.avisos?{key:"avisos",type:"success",title:"Avisos por e-mail ativados",body:"Você vai receber novidades, até 1 por semana. Em breve: o envio ainda não está ativo."}:{key:"avisos",type:"info",title:"Avisos por e-mail desativados",body:"Você não vai receber e-mails de novidades."});return}
   if(ev.target.id==="epfile"&&epOpen){const f=ev.target.files[0];if(!f)return;if(!/^image\//.test(f.type)||f.size>8e6){$("eperr").textContent="Escolha uma imagem de até 8 MB.";return}
     try{ED.foto=await lerFoto(f);ED.avatar=null;epPreview();epBody()}catch(x){$("eperr").textContent="Não foi possível ler essa imagem."}}});
 document.addEventListener("keydown",ev=>{
@@ -1591,6 +1742,9 @@ document.addEventListener("keydown",ev=>{
 ROUTE=location.hash;renderAuth();render();applyRoute();
 initFold();
 render();
+function abrirEventoDoLink(){const m=(location.hash||"").match(/^#\/evento\/([a-z0-9-]+)$/);if(!m)return;const e=EVENTS.find(x=>slug(x.title)===m[1]);if(!e)return;if(e.city!==S.city){S.city=e.city;render()}openEvent(e.id)}
+window.addEventListener("hashchange",abrirEventoDoLink);abrirEventoDoLink();
+
 /* ---------- idiomas: Português (padrão), English, Español ---------- */
 const LANGS={pt:{nome:"Português",cod:"PT",flag:"br",html:"pt-BR"},en:{nome:"English",cod:"EN",flag:"gb",html:"en"},es:{nome:"Español",cod:"ES",flag:"es",html:"es"}};
 let LANG=lsj("lang");if(!LANGS[LANG])LANG="pt";
@@ -1604,28 +1758,28 @@ const DICT={
 "Semana":["Week","Semana"],"Mês":["Month","Mes"],"Tudo":["All","Todo"],"Cards":["Cards","Tarjetas"],"Lista":["List","Lista"],
 "Minha lista":["My list","Mi lista"],"Meu perfil":["My profile","Mi perfil"],"Sair":["Sign out","Cerrar sesión"],"Entrar":["Sign in","Entrar"],
 "Buscar artista, local ou bairro":["Search artist, venue or neighbourhood","Buscar artista, lugar o barrio"],
-"A agenda é atualizada todos os dias com eventos à venda nas bilheteiras e salas de Portugal. Horários e preços podem mudar: confirme sempre antes de comprar.":["Listings are updated daily with events on sale at box offices and venues in Portugal. Times and prices may change: always check before buying.","La cartelera se actualiza a diario con eventos a la venta en taquillas y salas de Portugal. Horarios y precios pueden cambiar: confírmalo siempre antes de comprar."],
-"Feito com muito café":["Made with lots of coffee","Hecho con mucho café"],"por":["by","por"],"Horários e preços podem mudar. Confirme sempre na bilheteira.":["Times and prices may change. Always confirm with the box office.","Los horarios y precios pueden cambiar. Confirma siempre en la taquilla."],
+"A agenda é atualizada todos os dias com eventos à venda nas bilheterias e salas de Portugal. Horários e preços podem mudar: confirme sempre antes de comprar.":["Listings are updated daily with events on sale at box offices and venues in Portugal. Times and prices may change: always check before buying.","La cartelera se actualiza a diario con eventos a la venta en taquillas y salas de Portugal. Horarios y precios pueden cambiar: confírmalo siempre antes de comprar."],
+"Feito com muito café":["Made with lots of coffee","Hecho con mucho café"],"por":["by","por"],"Horários e preços podem mudar. Confirme sempre na bilheteria.":["Times and prices may change. Always confirm with the box office.","Los horarios y precios pueden cambiar. Confirma siempre en la taquilla."],
 "Em cartaz":["Now showing","En cartelera"],"Período":["Period","Período"],"Quando":["When","Cuándo"],"Preço":["Price","Precio"],"Idade":["Age","Edad"],"Via":["Via","Vía"],
 "Entrada livre":["Free entry","Entrada libre"],"Todas as idades":["All ages","Todas las edades"],
 "Próximas sessões":["Upcoming sessions","Próximas sesiones"],"Visitação":["Visiting hours","Horario de visita"],"Sinopse":["Synopsis","Sinopsis"],
-"Atualizado em":["Updated on","Actualizado el"],"Confirme datas e preços no site da bilheteira antes de comprar.":["Check dates and prices on the box office website before buying.","Confirma fechas y precios en el sitio de la taquilla antes de comprar."],
+"Atualizado em":["Updated on","Actualizado el"],"Confirme datas e preços no site da bilheteria antes de comprar.":["Check dates and prices on the box office website before buying.","Confirma fechas y precios en el sitio de la taquilla antes de comprar."],
 "Ver todos":["See all","Ver todos"],"Remover":["Remove","Quitar"],"Salvar":["Save","Guardar"],"Cancelar":["Cancel","Cancelar"],"Fechar":["Close","Cerrar"],"Editar":["Edit","Editar"],"Concluir":["Done","Terminar"],
-"Sua lista está vazia. Use “Salvar na lista” numa atração para guardá-la aqui.":["Your list is empty. Use “Save to list” on an attraction to keep it here.","Tu lista está vacía. Usa “Guardar en la lista” en una atracción para tenerla aquí."],
-"Sua lista está vazia. Use o coração nos cards para guardar eventos aqui.":["Your list is empty. Use the heart on the cards to save events here.","Tu lista está vacía. Usa el corazón en las tarjetas para guardar eventos aquí."],
+"Sua lista está vazia. Use “Salvar na lista” em uma atração para salvá-la aqui.":["Your list is empty. Use “Save to list” on an attraction to keep it here.","Tu lista está vacía. Usa “Guardar en la lista” en una atracción para tenerla aquí."],
+"Sua lista está vazia. Use o coração nos cards para salvar eventos aqui.":["Your list is empty. Use the heart on the cards to save events here.","Tu lista está vacía. Usa el corazón en las tarjetas para guardar eventos aquí."],
 "Você ainda não salvou nenhum evento. Use o coração nos cards para montar a sua lista.":["You haven't saved any events yet. Use the heart on the cards to build your list.","Aún no has guardado ningún evento. Usa el corazón en las tarjetas para armar tu lista."],
 "Compartilhar este evento":["Share this event","Compartir este evento"],"Compartilhar este link":["Share this link","Compartir este enlace"],"Copiar":["Copy","Copiar"],"Copiado":["Copied","Copiado"],
 "Mensagem (opcional)":["Message (optional)","Mensaje (opcional)"],"Enviar pelo WhatsApp":["Send on WhatsApp","Enviar por WhatsApp"],
 "Lembrei de você quando vi este evento!":["I thought of you when I saw this event!","¡Me acordé de ti cuando vi este evento!"],
 "Entrar ou criar conta":["Sign in or create an account","Iniciar sesión o crear cuenta"],
-"Guarde a sua lista de eventos e receba avisos de novidades na sua cidade.":["Keep your event list and get alerts about what's new in your city.","Guarda tu lista de eventos y recibe avisos de novedades en tu ciudad."],
+"Salve sua lista de eventos e receba avisos de novidades na sua cidade.":["Keep your event list and get alerts about what's new in your city.","Guarda tu lista de eventos y recibe avisos de novedades en tu ciudad."],
 "Continuar com Google":["Continue with Google","Continuar con Google"],"Conectando ao Google…":["Connecting to Google…","Conectando con Google…"],
 "Protótipo: este botão entra com uma conta de demonstração. Na versão real, abre a janela de login do Google.":["Prototype: this button signs in with a demo account. In the real version, it opens Google's sign-in window.","Prototipo: este botón entra con una cuenta de demostración. En la versión real, abre la ventana de inicio de sesión de Google."],
 "Se você ainda não tem conta, ela é criada automaticamente. Ao continuar, você concorda com os Termos e a Política de Privacidade.":["If you don't have an account yet, one is created automatically. By continuing, you agree to the Terms and Privacy Policy.","Si aún no tienes cuenta, se crea automáticamente. Al continuar, aceptas los Términos y la Política de Privacidad."],
 "Avisar por e-mail quando houver novos eventos brasileiros na minha cidade":["Email me when new Brazilian events are added in my city","Avisarme por correo cuando haya nuevos eventos brasileños en mi ciudad"],
 "Avisar por e-mail sobre novos eventos na minha cidade":["Email me about new events in my city","Avisarme por correo de nuevos eventos en mi ciudad"],
-"Entre para guardar a sua lista na conta e receber avisos de novos eventos.":["Sign in to keep your list in your account and get alerts about new events.","Inicia sesión para guardar tu lista en tu cuenta y recibir avisos de nuevos eventos."],
-"Entre para guardar a sua lista na conta.":["Sign in to keep your list in your account.","Inicia sesión para guardar tu lista en tu cuenta."],
+"Entre para salvar sua lista na conta e receber avisos de novos eventos.":["Sign in to keep your list in your account and get alerts about new events.","Inicia sesión para guardar tu lista en tu cuenta y recibir avisos de nuevos eventos."],
+"Entre para salvar sua lista na conta.":["Sign in to keep your list in your account.","Inicia sesión para guardar tu lista en tu cuenta."],
 "Sua cidade":["Your city","Tu ciudad"],"Cidade padrão":["Default city","Ciudad predeterminada"],
 "Alterar capa":["Change cover","Cambiar portada"],"Editar perfil":["Edit profile","Editar perfil"],"Configurações":["Settings","Configuración"],"Sobre":["About","Acerca de"],"Sobre mim":["About me","Sobre mí"],
 "Escrever bio":["Write a bio","Escribir bio"],"Escrever uma bio":["Write a bio","Escribir una bio"],"Interesses":["Interests","Intereses"],"Eventos salvos":["Saved events","Eventos guardados"],
@@ -1638,7 +1792,7 @@ const DICT={
 "Conte um pouco sobre você e o que gosta de ver nos palcos.":["Tell us a bit about yourself and what you like to see on stage.","Cuéntanos un poco sobre ti y lo que te gusta ver en los escenarios."],
 "Cidades do Brasil":["Cities in Brazil","Ciudades de Brasil"],"Cidades de Portugal":["Cities in Portugal","Ciudades de Portugal"],
 "Sua foto":["Your photo","Tu foto"],"Enviar foto":["Upload photo","Subir foto"],"Remover foto":["Remove photo","Quitar foto"],"Ou escolha um avatar":["Or choose an avatar","O elige un avatar"],
-"JPG ou PNG. A foto é recortada em círculo e fica guardada só neste aparelho.":["JPG or PNG. The photo is cropped to a circle and stored only on this device.","JPG o PNG. La foto se recorta en círculo y se guarda solo en este dispositivo."],
+"JPG ou PNG. A foto é recortada em círculo e fica salva só neste aparelho.":["JPG or PNG. The photo is cropped to a circle and stored only on this device.","JPG o PNG. La foto se recorta en círculo y se guarda solo en este dispositivo."],
 "Escolha uma imagem de até 8 MB.":["Choose an image up to 8 MB.","Elige una imagen de hasta 8 MB."],"Não foi possível ler essa imagem.":["Couldn't read that image.","No se pudo leer esa imagen."],
 "Capivara":["Capybara","Capibara"],"Tartaruga":["Turtle","Tortuga"],"Tucano":["Toucan","Tucán"],"Ararinha-azul":["Spix's macaw","Guacamayo de Spix"],"Onça-pintada":["Jaguar","Jaguar"],"Tatu":["Armadillo","Armadillo"],"Peixe-boi":["Manatee","Manatí"],"Caramelo":["Caramel dog","Perro caramelo"],
 "Link copiado":["Link copied","Enlace copiado"],"Não foi possível compartilhar":["Couldn't share","No se pudo compartir"],"Perfil atualizado":["Profile updated","Perfil actualizado"],"Você saiu da conta":["You signed out","Cerraste sesión"],"Conta excluída":["Account deleted","Cuenta eliminada"],"Avisos ativados":["Alerts on","Avisos activados"],"Avisos desativados":["Alerts off","Avisos desactivados"],
@@ -1735,14 +1889,14 @@ function setLang(l){if(!LANGS[l])return;LANG=l;lss("lang",l==="pt"?null:l);docum
 document.addEventListener("click",ev=>{
   const t=ev.target;
   if(t.closest("#langBtn")){setMenu("langMenu","langBtn",$("langMenu").hidden);return}
-  const x=t.closest("[data-lang]");if(x){setMenu("langMenu","langBtn",false);setLang(x.dataset.lang);$("langBtn").focus();return}
+  const x=t.closest("[data-lang]");if(x){const novo=x.dataset.lang!==LANG;setMenu("langMenu","langBtn",false);setLang(x.dataset.lang);$("langBtn").focus();if(novo)notify({key:"idioma",type:"success",title:txl("Idioma: Português","Language: English","Idioma: Español"),body:txl("A interface está agora em português.","The interface is now in English.","La interfaz ahora está en español.")});return}
   setMenu("langMenu","langBtn",false);
 });
 document.addEventListener("keydown",ev=>{if(ev.key==="Escape"&&!$("langMenu").hidden){setMenu("langMenu","langBtn",false);$("langBtn").focus()}});
 renderLang();document.documentElement.lang=LANGS[LANG].html;if(LANG!=="pt"){watch(true);trTree(document.body)}setTitle();
 /* ---------- ilustrações do onboarding: identidade das capas do perfil (campo chapado, traço fino claro, sol ocre, chão escuro) ---------- */
 const OBC={cream:"#F5F3EE",ink:"#23262D",red:"#D2452B",ochre:"#E2A62B",green:"#1E5A44",cobalt:"#1F3E9C"};
-const obWrap=g=>`<svg class="ill" viewBox="0 0 400 322" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false">${g}</svg>`;
+const obWrap=g=>`<svg class="ill" viewBox="0 0 400 322" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">${g}</svg>`;
 const obLn=(s,d,w)=>`<g fill="none" stroke="${s}" stroke-width="${w||3}" stroke-linecap="round" stroke-linejoin="round">${d}</g>`;
 const MASK="M0-66C40-66 64-42 64-6 64 44 34 82 0 82S-64 44-64-6C-64-42-40-66 0-66z";
 const ILL={
@@ -1812,7 +1966,7 @@ const obChip=(k,v,on,x)=>`<button type="button" class="obchip" data-ob-${k}="${e
 const GBACK='<svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
 function openOb(redo,signup){
   const a=redo&&ACC?ACC:null;
-  OB={redo:!!a,i:0,d:{cidade:a?a.cidade:S.city,tipos:a?[...(a.interesses||[])]:[],musica:a?[...(a.musica||[])]:[],artistas:a?[...(a.artistas||[])]:[],teatro:a?[...(a.gTeatro||[])]:[],concerto:a?[...(a.gConcerto||[])]:[],expo:a?[...(a.gExpo||[])]:[],email:a?!!a.avisos:false,whats:a&&a.whats?!!a.whats.on:false,ddi:a&&a.whats?a.whats.ddi:"+351",tel:a&&a.whats?a.whats.tel:""}};
+  OB={redo:!!a,i:0,d:{cidade:a?a.cidade:S.city,tipos:a?[...(a.interesses||[])]:[],musica:a?[...(a.musica||[])]:[],artistas:a?[...(a.artistas||[])]:[],teatro:a?[...(a.gTeatro||[])]:[],concerto:a?[...(a.gConcerto||[])]:[],expo:a?[...(a.gExpo||[])]:[],email:a?!!a.avisos:false,whats:ALERTAS_WHATS&&a&&a.whats?!!a.whats.on:false,ddi:a&&a.whats?a.whats.ddi:"+351",tel:a&&a.whats?a.whats.tel:""}};
   if(!CITIES.includes(OB.d.cidade))OB.d.cidade="Lisboa";OB.signup=!!signup&&!a;
   document.body.style.overflow="hidden";$("ob").hidden=false;obRender(true)}
 function obRender(first){
@@ -1840,8 +1994,8 @@ function obRender(first){
   else if(id==="expo")h=q("O que você quer ver nas exposições?","Escolha as linguagens e movimentos que mais chamam a sua atenção.")+`<div class="obchips" role="group" aria-label="Tipos de exposição">${GEN_EXP.map(g=>obChip("e",g,d.expo.includes(g))).join("")}</div>`+cont(true,d.expo.length?"Continuar":"Pular esta");
   else h=q("Quer ser avisado quando chegar algo para você?","Avisamos só do que combina com as suas escolhas.")+`<div class="obal">
     <div class="obalrow"><div class="obalh"><span class="obalico"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></span><div><b>E-mail</b><small>${esc(DEMO.email)} · novidades, até 1 por semana</small></div><label class="sw"><input type="checkbox" data-ob-email ${d.email?"checked":""} aria-label="Ativar alertas por e-mail"><i></i></label></div></div>
-    <div class="obalrow"><div class="obalh"><span class="obalico wa"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg></span><div><b>WhatsApp</b><small>Eventos da sua cidade, até 1 por semana. Responda PARAR para cancelar.</small></div><label class="sw"><input type="checkbox" data-ob-whats ${d.whats?"checked":""} aria-label="Ativar alertas por WhatsApp"><i></i></label></div>
-      <div class="obtel" ${d.whats?"":"hidden"}><div class="ddi"><span class="ddiv" aria-hidden="true">${ddiFace(d.ddi)}</span><select id="obddi" aria-label="País">${[["+351","Portugal +351"],["+55","Brasil +55"]].map(([v,l])=>`<option value="${v}" ${v===d.ddi?"selected":""}>${l}</option>`).join("")}</select></div><input id="obtel" class="shin" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="912 345 678" value="${esc(d.tel)}" aria-label="Número de WhatsApp"><span id="obtelerr" class="obtelerr" role="alert"></span></div></div></div>
+    ${ALERTAS_WHATS?`<div class="obalrow"><div class="obalh"><span class="obalico wa"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg></span><div><b>WhatsApp</b><small>Eventos da sua cidade, até 1 por semana. Responda PARAR para cancelar.</small></div><label class="sw"><input type="checkbox" data-ob-whats ${d.whats?"checked":""} aria-label="Ativar alertas por WhatsApp"><i></i></label></div>
+      <div class="obtel" ${d.whats?"":"hidden"}><div class="ddi"><span class="ddiv" aria-hidden="true">${ddiFace(d.ddi)}</span><select id="obddi" aria-label="País">${[["+351","Portugal +351"],["+55","Brasil +55"]].map(([v,l])=>`<option value="${v}" ${v===d.ddi?"selected":""}>${l}</option>`).join("")}</select></div><input id="obtel" class="shin" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="912 345 678" value="${esc(d.tel)}" aria-label="Número de WhatsApp"><span id="obtelerr" class="obtelerr" role="alert"></span></div></div>`:""}</div>
     <p class="aumute">Você pode mudar isso depois em Perfil › Configurações. Em breve: os avisos ainda não estão sendo enviados.</p>`+cont(true,OB.redo?"Salvar":"Concluir");
   const col=$("obcol");col.innerHTML=h;col.classList.remove("in");void col.offsetWidth;col.classList.add("in");
   if(id==="artistas")obArtChips();
@@ -1874,7 +2028,7 @@ function obFinish(partial){
   const base=(OB.signup?null:lsj("conta"))||{...DEMO,capa:CITYCOVER[d.cidade]||"lisboa",avatar:null,foto:null,bio:"",desde:hoje()};
   const conta={...base,metodo:(OB.acct&&OB.acct.metodo)||base.metodo||"google",cidade:d.cidade,avisos:d.email,whats:{on:!!(d.whats&&tel.length>=9),ddi:d.ddi,tel:d.tel},interesses:[...d.tipos],musica:[...d.musica],artistas:[...d.artistas],gTeatro:[...d.teatro],gConcerto:[...d.concerto],gExpo:[...d.expo]};
   const novo=!OB.redo;lss("conta",conta);document.body.style.overflow=(evOpen!=null||epOpen)?"hidden":"";$("ob").hidden=true;
-  if(novo){entrou(partial?"Conta criada. Você pode terminar a personalização em Perfil › Configurações.":"Conta criada. Boas-vindas, "+first(DEMO.nome)+"!")}else{ACC=mig(conta);S.city=d.cidade;render();renderAuth();if(ROUTE.startsWith("#/perfil"))renderPerfil();toast("Preferências atualizadas")}
+  if(novo){entrou(partial?"Conta criada. Você pode terminar a personalização em Perfil › Configurações.":"Conta criada. Boas-vindas, "+first(DEMO.nome)+"!")}else{ACC=mig(conta);S.city=d.cidade;render();renderAuth();if(ROUTE.startsWith("#/perfil"))renderPerfil();notify({type:"success",title:"Preferências atualizadas",body:"A agenda mostra primeiro o que combina com você."})}
   OB=null}
 document.addEventListener("click",ev=>{
   if(!OB)return;const t=ev.target;
@@ -1888,7 +2042,7 @@ document.addEventListener("click",ev=>{
 });
 document.addEventListener("mousedown",ev=>{if(OB&&ev.target.closest("[data-ob-opt]"))ev.preventDefault()});
 document.addEventListener("input",ev=>{if(!OB)return;const t=ev.target;if(t.id==="obin")obAcShow();if(t.id==="obtel"){OB.d.tel=t.value;$("obtelerr").textContent=""}});
-document.addEventListener("change",ev=>{if(!OB)return;const t=ev.target;if(t.matches("[data-ob-email]"))OB.d.email=t.checked;if(t.matches("[data-ob-whats]")){OB.d.whats=t.checked;document.querySelector(".obtel").hidden=!t.checked;if(t.checked)$("obtel").focus()}if(t.id==="obddi")OB.d.ddi=t.value});
+document.addEventListener("change",ev=>{if(!OB)return;const t=ev.target;if(t.matches("[data-ob-email]"))OB.d.email=t.checked;if(t.matches("[data-ob-whats]")){OB.d.whats=t.checked;document.querySelector(".obtel").hidden=!t.checked;if(t.checked)$("obtel").focus();notify(t.checked?{key:"whats",type:"success",title:"Alerta por WhatsApp ativado",body:"Confirme o seu número abaixo. Em breve: o envio ainda não está ativo."}:{key:"whats",type:"info",title:"Alerta por WhatsApp desativado",body:"Você não vai receber mensagens no WhatsApp."});}if(t.id==="obddi")OB.d.ddi=t.value});
 document.addEventListener("keydown",ev=>{if(!OB)return;
   if(ev.target.id==="obin"){const n=obAcL.length;if(ev.key==="ArrowDown"||ev.key==="ArrowUp"){if(!n)return;ev.preventDefault();obAc=(obAc+(ev.key==="ArrowDown"?1:-1)+n)%n;$("obacl").querySelectorAll("li").forEach((l,i)=>l.setAttribute("aria-selected",i===obAc));$("obin").setAttribute("aria-activedescendant","obo"+obAc);return}
     if(ev.key==="Enter"){ev.preventDefault();if(obAc>=0)obAcPick(obAc);return}
@@ -1936,7 +2090,7 @@ document.addEventListener("click",ev=>{const c=ev.target.closest("[data-pf-f]");
 /* ---------- modo de edição do perfil (na própria página, sem modal) ---------- */
 var EM=null;let edAcL=[],edAcI=-1,edDisc=null;
 function edInit(){const a=ACC,cp=x=>[...(x||[])];
-  EM={d:{nome:a.nome,cidade:a.cidade,bio:a.bio||"",capa:a.capa,avatar:a.avatar,foto:a.foto,interesses:cp(a.interesses),musica:cp(a.musica),artistas:cp(a.artistas),gTeatro:cp(a.gTeatro),gConcerto:cp(a.gConcerto),gExpo:cp(a.gExpo),avisos:!!a.avisos,whats:{on:!!(a.whats&&a.whats.on),ddi:(a.whats&&a.whats.ddi)||"+351",tel:(a.whats&&a.whats.tel)||""}},avTab:"animais",dirty:false,focus:null};
+  EM={d:{nome:a.nome,cidade:a.cidade,bio:a.bio||"",capa:a.capa,avatar:a.avatar,foto:a.foto,interesses:cp(a.interesses),musica:cp(a.musica),artistas:cp(a.artistas),gTeatro:cp(a.gTeatro),gConcerto:cp(a.gConcerto),gExpo:cp(a.gExpo),avisos:!!a.avisos,whats:{on:ALERTAS_WHATS&&!!(a.whats&&a.whats.on),ddi:(a.whats&&a.whats.ddi)||"+351",tel:(a.whats&&a.whats.tel)||""}},avTab:"animais",dirty:false,focus:null};
   const it=AVALL.find(x=>x.id===a.avatar);if(it){const k=Object.keys(AVS).find(k=>AVS[k].includes(it));if(k)EM.avTab=k}}
 function goEdit(k){if(!EM||ROUTE!=="#/perfil/editar"){EM=null;edInit()}EM.focus=k==="bio"?"ed-bio":k==="int"?"ed-int":(k==="capa"||k==="foto")?"ed-foto":null;go("#/perfil/editar")}
 const edChip=(f,v,on)=>`<button type="button" class="obchip" data-ed-f="${f}" data-ed-v="${esc(v)}"${f==="artistas"&&isHom(v)?` data-hom="${esc(v)}"`+homLbl(v):""} aria-pressed="${on}"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>${esc(v)}${f==="artistas"?homYrs(v):""}</button>`;
@@ -1951,13 +2105,13 @@ function edIntHtml(){const d=EM.d,G=[["Show","musica","Gêneros musicais",GEN_MU
   return h}
 function edArtChips(){const el=$("edarts");if(!el)return;const d=EM.d,sg=obSug(d.musica).filter(a=>!d.artistas.includes(a));el.innerHTML=[...d.artistas.filter(a=>!isHom(a)),...sg].map(a=>edChip("artistas",a,d.artistas.includes(a))).join("");const hs=obSugHom(),hm=[...d.artistas.filter(a=>isHom(a)&&!hs.includes(a)),...hs];homFill("edhom",[...new Set(hm)],a=>edChip("artistas",a,d.artistas.includes(a)))}
 function edFotoHtml(){const d=EM.d,av=Object.keys(AVS);
-  return `<div class="edfoto"><span class="av" id="edav2" style="width:72px;height:72px;font-size:27px">${avInner({nome:d.nome||"?",foto:d.foto,avatar:d.avatar})}</span><div><b>Foto de perfil</b><small id="ederr">JPG ou PNG. A foto é recortada em círculo e fica guardada só neste aparelho.</small><div class="shrow" style="justify-content:flex-start;margin-top:var(--space-100)"><button type="button" class="shbtn" data-ed-up><svg class="ic" aria-hidden="true"><use href="#i-upload"/></svg>Enviar foto</button>${d.foto?'<button type="button" class="shbtn" data-ed-rmfoto>Remover foto</button>':""}<input type="file" id="edfile" accept="image/*" hidden></div></div></div>
+  return `<div class="edfoto"><span class="av" id="edav2" style="width:72px;height:72px;font-size:27px">${avInner({nome:d.nome||"?",foto:d.foto,avatar:d.avatar})}</span><div><b>Foto de perfil</b><small id="ederr">JPG ou PNG. A foto é recortada em círculo e fica salva só neste aparelho.</small><div class="shrow" style="justify-content:flex-start;margin-top:var(--space-100)"><button type="button" class="shbtn" data-ed-up><svg class="ic" aria-hidden="true"><use href="#i-upload"/></svg>Enviar foto</button>${d.foto?'<button type="button" class="shbtn" data-ed-rmfoto>Remover foto</button>':""}<input type="file" id="edfile" accept="image/*" hidden></div></div></div>
   <div class="shf" style="margin-top:var(--space-250)"><span class="lb">Ou escolha um avatar</span>${av.length>1?`<div class="opts" role="tablist">${av.map(k=>`<button type="button" class="opt" role="tab" data-ed-avtab="${k}" aria-pressed="${k===EM.avTab}">${AVLAB[k]}</button>`).join("")}</div>`:""}<div class="agrid">${AVS[EM.avTab].map(x=>`<button type="button" class="atile" data-ed-av="${x.id}" aria-pressed="${!d.foto&&x.id===d.avatar}"><span class="av" style="width:64px;height:64px">${x.img?`<img src="${x.img}" alt="">`:`<svg viewBox="0 0 100 100" aria-hidden="true">${x.svg}</svg>`}</span><span>${esc(x.nome)}</span></button>`).join("")}</div></div>
   ${["br","pt"].map(p=>`<div class="shf" style="margin-top:var(--space-250)"><span class="lb">${p==="br"?"Capa: cidades do Brasil":"Capa: cidades de Portugal"}</span><div class="cgrid">${COVERS.filter(c=>c.pais===p).map(c=>`<button type="button" class="cth" data-ed-capa="${c.id}" aria-pressed="${c.id===d.capa}" title="${esc(c.mon)}">${coverSvg(c.id)}<span>${esc(c.nome)}</span></button>`).join("")}</div></div>`).join("")}`}
 function renderEdit(){const d=EM.d,a=ACC;
   const alertas=`<div class="obal" style="margin:0"><div class="obalrow"><div class="obalh"><span class="obalico"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></span><div><b>E-mail</b><small>${esc(a.email)}</small></div><label class="sw"><input type="checkbox" data-ed-email ${d.avisos?"checked":""} aria-label="Ativar alertas por e-mail"><i></i></label></div></div>
-    <div class="obalrow"><div class="obalh"><span class="obalico wa"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg></span><div><b>WhatsApp</b><small>Eventos da sua cidade, até 1 por semana. Responda PARAR para cancelar.</small></div><label class="sw"><input type="checkbox" data-ed-whats ${d.whats.on?"checked":""} aria-label="Ativar alertas por WhatsApp"><i></i></label></div>
-    <div class="obtel" id="edtel" ${d.whats.on?"":"hidden"}><div class="ddi"><span class="ddiv" aria-hidden="true">${ddiFace(d.whats.ddi)}</span><select id="edddi" aria-label="País">${[["+351","Portugal +351"],["+55","Brasil +55"]].map(([v,l])=>`<option value="${v}" ${v===d.whats.ddi?"selected":""}>${l}</option>`).join("")}</select></div><input id="edtelin" class="shin" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="912 345 678" value="${esc(d.whats.tel)}" aria-label="Número de WhatsApp"><span id="edtelerr" class="obtelerr" role="alert"></span></div></div></div>`;
+    ${ALERTAS_WHATS?`<div class="obalrow"><div class="obalh"><span class="obalico wa"><svg class="ic" aria-hidden="true"><use href="#i-wa"/></svg></span><div><b>WhatsApp</b><small>Eventos da sua cidade, até 1 por semana. Responda PARAR para cancelar.</small></div><label class="sw"><input type="checkbox" data-ed-whats ${d.whats.on?"checked":""} aria-label="Ativar alertas por WhatsApp"><i></i></label></div>
+    <div class="obtel" id="edtel" ${d.whats.on?"":"hidden"}><div class="ddi"><span class="ddiv" aria-hidden="true">${ddiFace(d.whats.ddi)}</span><select id="edddi" aria-label="País">${[["+351","Portugal +351"],["+55","Brasil +55"]].map(([v,l])=>`<option value="${v}" ${v===d.whats.ddi?"selected":""}>${l}</option>`).join("")}</select></div><input id="edtelin" class="shin" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="912 345 678" value="${esc(d.whats.tel)}" aria-label="Número de WhatsApp"><span id="edtelerr" class="obtelerr" role="alert"></span></div></div>`:""}</div><p class="aumute" style="margin:var(--space-100) 0 0">Em breve: os avisos ainda não estão sendo enviados.</p>`;
   $("pgin").innerHTML=`<div class="pcover" id="edcover">${coverSvg(d.capa)}</div>
   <div class="phead"><div class="pavw"><div class="pav" id="edav">${avInner({nome:d.nome||"?",foto:d.foto,avatar:d.avatar})}</div></div><div class="pinfo"><h1 id="edname">${esc(d.nome||"Seu nome")}</h1><p class="pmeta"><span><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span id="edcity">${esc(d.cidade)}, Portugal</span></span></p></div></div>
   <div class="edintro"><div><button type="button" class="save" data-go="#/perfil" style="margin-bottom:var(--space-100)">← Voltar ao perfil</button><h2>Editar perfil</h2><p>Todos os blocos são opcionais. Quanto mais completo, melhor a sua agenda é personalizada.</p></div><div class="pcard" id="edprog">${edProgHtml()}</div></div>
@@ -1978,7 +2132,7 @@ function edAcPick(i){const o=edAcL[i];if(!o)return;const a=EM.d.artistas;if(!a.s
 function edSave(){const d=EM.d,n=d.nome.trim();if(!n){$("ednome").focus();$("ednome").scrollIntoView({block:"center"});return}
   const tel=d.whats.tel.replace(/\D/g,"");if(d.whats.on&&(tel.length<9||tel.length>11)){$("edtelerr").textContent="Digite um número válido.";$("edtelin").focus();return}
   Object.assign(ACC,{nome:n,cidade:d.cidade,bio:d.bio.trim(),capa:d.capa,avatar:d.foto?null:d.avatar,foto:d.foto,interesses:[...d.interesses],musica:[...d.musica],artistas:[...d.artistas],gTeatro:[...d.gTeatro],gConcerto:[...d.gConcerto],gExpo:[...d.gExpo],avisos:d.avisos,whats:{on:d.whats.on,ddi:d.whats.ddi,tel:d.whats.tel}});
-  S.city=ACC.cidade;salvarConta();EM.dirty=false;render();go("#/perfil");toast("Perfil atualizado")}
+  S.city=ACC.cidade;salvarConta();EM.dirty=false;render();go("#/perfil");notify({type:"success",title:"Perfil atualizado",body:"As alterações já aparecem no seu perfil."})}
 document.addEventListener("click",async ev=>{
   const t=ev.target;
   if(!EM||ROUTE!=="#/perfil/editar")return;const d=EM.d;
@@ -1999,7 +2153,7 @@ document.addEventListener("input",ev=>{if(!EM||ROUTE!=="#/perfil/editar")return;
 document.addEventListener("change",async ev=>{if(!EM||ROUTE!=="#/perfil/editar")return;const t=ev.target,d=EM.d;
   if(t.id==="edcid"){d.cidade=t.value;edPrev();edTouch()}
   else if(t.matches("[data-ed-email]")){d.avisos=t.checked;edTouch()}
-  else if(t.matches("[data-ed-whats]")){d.whats.on=t.checked;$("edtel").hidden=!t.checked;if(t.checked)$("edtelin").focus();edTouch()}
+  else if(t.matches("[data-ed-whats]")){d.whats.on=t.checked;$("edtel").hidden=!t.checked;if(t.checked)$("edtelin").focus();edTouch();notify(t.checked?{key:"whats",type:"success",title:"Alerta por WhatsApp ativado",body:"Confirme o seu número abaixo e salve. Em breve: o envio ainda não está ativo."}:{key:"whats",type:"info",title:"Alerta por WhatsApp desativado",body:"Você não vai receber mensagens no WhatsApp."});}
   else if(t.id==="edddi"){d.whats.ddi=t.value;edTouch()}
   else if(t.id==="edfile"){const f=t.files[0];if(!f)return;if(!/^image\//.test(f.type)||f.size>8e6){$("ederr").textContent="Escolha uma imagem de até 8 MB.";return}
     try{d.foto=await lerFoto(f);d.avatar=null;$("ed-foto").querySelector(".edr").innerHTML=edFotoHtml();edPrev();edTouch()}catch(x){$("ederr").textContent="Não foi possível ler essa imagem."}}});
@@ -2008,7 +2162,7 @@ document.addEventListener("keydown",ev=>{if(!EM||ROUTE!=="#/perfil/editar"||ev.t
   else if(ev.key==="Enter"){ev.preventDefault();if(edAcI>=0)edAcPick(edAcI)}
   else if(ev.key==="Escape"){ev.stopPropagation();$("edacl").hidden=true;$("edin").setAttribute("aria-expanded","false")}},true);
 
-Object.assign(DICT,{"Nenhum evento encontrado":["No events found","No encontramos eventos"],"Confira a grafia ou busque pelo nome do artista, do local ou do bairro.":["Check the spelling or search by artist, venue or neighbourhood.","Revisa la ortografía o busca por artista, lugar o barrio."],"Limpar busca":["Clear search","Borrar búsqueda"],"Nada em cartaz com esses filtros":["Nothing on with these filters","Nada en cartelera con estos filtros"],"Experimente outro período, outra faixa de preço ou outra cidade.":["Try another period, price range or city.","Prueba otro periodo, otro rango de precio u otra ciudad."],"Limpar filtros":["Clear filters","Borrar filtros"],"Nada por aqui ainda":["Nothing here yet","Nada por aquí todavía"],"Quando entrar um evento novo nesta categoria, ele aparece aqui.":["When a new event lands in this category, it shows up here.","Cuando llegue un evento nuevo en esta categoría, aparecerá aquí."],"Nada por aqui neste período":["Nothing here in this period","Nada por aquí en este periodo"],"Escolha “Tudo” para ver as próximas datas.":["Choose “All” to see upcoming dates.","Elige “Todo” para ver las próximas fechas."],"Nenhum evento salvo ainda":["No saved events yet","Aún no has guardado eventos"],"Toque no coração de um evento para guardá-lo aqui e não perder a data.":["Tap the heart on an event to keep it here and never miss the date.","Toca el corazón de un evento para guardarlo aquí y no perderte la fecha."],"Toque no coração de um evento para guardá-lo aqui.":["Tap the heart on an event to keep it here.","Toca el corazón de un evento para guardarlo aquí."],"Explorar a agenda":["Explore the listings","Explorar la agenda"],"Conte o que você gosta de ver":["Tell us what you like to see","Cuéntanos qué te gusta ver"],"Escolha tipos de evento, gêneros e artistas para receber sugestões sob medida.":["Pick event types, genres and artists to get tailored suggestions.","Elige tipos de evento, géneros y artistas para recibir sugerencias a tu medida."]});
+Object.assign(DICT,{"Nenhum evento encontrado":["No events found","No encontramos eventos"],"Confira a grafia ou busque pelo nome do artista, do local ou do bairro.":["Check the spelling or search by artist, venue or neighbourhood.","Revisa la ortografía o busca por artista, lugar o barrio."],"Limpar busca":["Clear search","Borrar búsqueda"],"Nada em cartaz com esses filtros":["Nothing on with these filters","Nada en cartelera con estos filtros"],"Experimente outro período, outra faixa de preço ou outra cidade.":["Try another period, price range or city.","Prueba otro periodo, otro rango de precio u otra ciudad."],"Limpar filtros":["Clear filters","Borrar filtros"],"Nada por aqui ainda":["Nothing here yet","Nada por aquí todavía"],"Quando entrar um evento novo nesta categoria, ele aparece aqui.":["When a new event lands in this category, it shows up here.","Cuando llegue un evento nuevo en esta categoría, aparecerá aquí."],"Nada por aqui neste período":["Nothing here in this period","Nada por aquí en este periodo"],"Escolha “Tudo” para ver as próximas datas.":["Choose “All” to see upcoming dates.","Elige “Todo” para ver las próximas fechas."],"Nenhum evento salvo ainda":["No saved events yet","Aún no has guardado eventos"],"Toque no coração de um evento para salvá-lo aqui e não perder a data.":["Tap the heart on an event to keep it here and never miss the date.","Toca el corazón de un evento para guardarlo aquí y no perderte la fecha."],"Toque no coração de um evento para salvá-lo aqui.":["Tap the heart on an event to keep it here.","Toca el corazón de un evento para guardarlo aquí."],"Explorar a agenda":["Explore the listings","Explorar la agenda"],"Conte o que você gosta de ver":["Tell us what you like to see","Cuéntanos qué te gusta ver"],"Escolha tipos de evento, gêneros e artistas para receber sugestões sob medida.":["Pick event types, genres and artists to get tailored suggestions.","Elige tipos de evento, géneros y artistas para recibir sugerencias a tu medida."]});
 Object.assign(DICT,{"Para homenagear":["To pay tribute","Para homenajear"],"Artistas que já se foram e seguem inspirando musicais, tributos e exposições.":["Artists who are no longer with us but still inspire musicals, tributes and exhibitions.","Artistas que ya se fueron y siguen inspirando musicales, tributos y exposiciones."],"Vamos te mostrar homenagens a":["We'll show you tributes to","Te mostraremos homenajes a"],"Homenagens":["Tributes","Homenajes"],"Buscar artista para homenagear":["Search an artist to pay tribute to","Buscar un artista para homenajear"],"Nenhum artista com esse nome nesta lista":["No artist with that name on this list","Ningún artista con ese nombre en esta lista"]});
 Object.assign(DICT,{"Você ainda não escolheu seus interesses.":["You haven't chosen your interests yet.","Aún no has elegido tus intereses."],"Escolher interesses":["Choose interests","Elegir intereses"],"Perfil completo":["Profile complete","Perfil completo"],"← Voltar ao perfil":["← Back to profile","← Volver al perfil"],"Editar perfil":["Edit profile","Editar perfil"],"Todos os blocos são opcionais. Quanto mais completo, melhor a sua agenda é personalizada.":["All blocks are optional. The more complete, the better your listings are personalised.","Todos los bloques son opcionales. Cuanto más completo, mejor se personaliza tu cartelera."],
 "Foto de perfil e capa":["Profile photo and cover","Foto de perfil y portada"],"Aparecem no topo do seu perfil.":["They appear at the top of your profile.","Aparecen en la parte superior de tu perfil."],"Foto de perfil":["Profile photo","Foto de perfil"],
@@ -2033,7 +2187,7 @@ function pintView(a){
 var LGM="entrar",LGfrom="";
 var EYE='<svg viewBox="0 0 256 256" width="22" height="22" aria-hidden="true" fill="currentColor"><path d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"/></svg>';
 function renderLogin(){const sg=LGM==="criar";
-  $("lgform").innerHTML=`<h1 class="lgh">${sg?"Criar conta":"Entrar"}</h1><p class="lgsub">${sg?"Crie sua conta para guardar sua lista e receber avisos.":"Boas-vindas de volta! Continue de onde parou."}</p>
+  $("lgform").innerHTML=`<h1 class="lgh">${sg?"Criar conta":"Entrar"}</h1><p class="lgsub">${sg?"Crie sua conta para salvar sua lista e receber avisos.":"Boas-vindas de volta! Continue de onde parou."}</p>
   <form id="lgf" novalidate>
    ${sg?`<div class="shf"><label for="lgnome">Nome</label><input id="lgnome" class="shin" autocomplete="name" placeholder="Seu nome" maxlength="40"></div>`:""}
    <div class="shf"><label for="lgemail">E-mail</label><input id="lgemail" class="shin" type="email" autocomplete="email" placeholder="seu@email.com"></div>
@@ -2064,16 +2218,16 @@ document.addEventListener("submit",ev=>{if(ev.target.id!=="lgf")return;ev.preven
   m.textContent="";if(!window.FB){fbOff();return}const b=ev.target.querySelector(".lgbtn"),lb=b.textContent;b.disabled=true;b.textContent=sg?"Criando conta…":"Entrando…";const to=LGfrom&&LGfrom!=="#/entrar"?LGfrom:"";
   (sg?FB.criar(n,e,p):FB.entrar(e,p)).then(r=>{LGfrom="";aposLogin(r,to)}).catch(x=>{b.disabled=false;b.textContent=lb;m.className="lgmsg err";m.textContent=FB.erro(x);if(x&&/email|user-not-found/.test(x.code))$("lgemail").setAttribute("aria-invalid","true")})});
 
-Object.assign(DICT,{"Entrar":["Sign in","Entrar"],"Criar conta":["Create account","Crear cuenta"],"Boas-vindas de volta! Continue de onde parou.":["Welcome back! Pick up where you left off.","¡Bienvenida de vuelta! Continúa donde lo dejaste."],"Crie sua conta para guardar sua lista e receber avisos.":["Create your account to keep your list and get alerts.","Crea tu cuenta para guardar tu lista y recibir avisos."],"Senha":["Password","Contraseña"],"Digite sua senha":["Enter your password","Escribe tu contraseña"],"Crie uma senha":["Create a password","Crea una contraseña"],"Seu nome":["Your name","Tu nombre"],"seu@email.com":["you@email.com","tu@correo.com"],"Mostrar senha":["Show password","Mostrar contraseña"],"Ocultar senha":["Hide password","Ocultar contraseña"],"Esqueci minha senha":["Forgot my password","Olvidé mi contraseña"],"Entrar com Google":["Sign in with Google","Entrar con Google"],"ou":["or","o"],"Ainda não tem conta?":["Don't have an account yet?","¿Aún no tienes cuenta?"],"Já tem conta?":["Already have an account?","¿Ya tienes cuenta?"],
+Object.assign(DICT,{"Entrar":["Sign in","Entrar"],"Criar conta":["Create account","Crear cuenta"],"Boas-vindas de volta! Continue de onde parou.":["Welcome back! Pick up where you left off.","¡Bienvenida de vuelta! Continúa donde lo dejaste."],"Crie sua conta para salvar sua lista e receber avisos.":["Create your account to keep your list and get alerts.","Crea tu cuenta para guardar tu lista y recibir avisos."],"Senha":["Password","Contraseña"],"Digite sua senha":["Enter your password","Escribe tu contraseña"],"Crie uma senha":["Create a password","Crea una contraseña"],"Seu nome":["Your name","Tu nombre"],"seu@email.com":["you@email.com","tu@correo.com"],"Mostrar senha":["Show password","Mostrar contraseña"],"Ocultar senha":["Hide password","Ocultar contraseña"],"Esqueci minha senha":["Forgot my password","Olvidé mi contraseña"],"Entrar com Google":["Sign in with Google","Entrar con Google"],"ou":["or","o"],"Ainda não tem conta?":["Don't have an account yet?","¿Aún no tienes cuenta?"],"Já tem conta?":["Already have an account?","¿Ya tienes cuenta?"],
 "Digite seu nome.":["Enter your name.","Escribe tu nombre."],"Digite um e-mail válido.":["Enter a valid email.","Escribe un correo válido."],"Digite sua senha (mínimo de 6 caracteres).":["Enter your password (minimum 6 characters).","Escribe tu contraseña (mínimo 6 caracteres)."],"A senha precisa ter pelo menos 8 caracteres.":["The password needs at least 8 characters.","La contraseña necesita al menos 8 caracteres."],"Digite seu e-mail acima para receber o link.":["Enter your email above to get the link.","Escribe tu correo arriba para recibir el enlace."],"Se existir uma conta com esse e-mail, enviamos um link para redefinir a senha.":["If an account exists with that email, we've sent a link to reset the password.","Si existe una cuenta con ese correo, enviamos un enlace para restablecer la contraseña."],
 "Protótipo: qualquer e-mail e senha válidos entram com a conta de demonstração. Na versão real, a senha é verificada no servidor.":["Prototype: any valid email and password signs in with the demo account. In the real version, the password is checked on the server.","Prototipo: cualquier correo y contraseña válidos entran con la cuenta de demostración. En la versión real, la contraseña se verifica en el servidor."],
-"O Brasil nos palcos de Portugal":["Brazil on the stages of Portugal","El Brasil en los escenarios de Portugal"],"Shows, teatro, concertos e exposições brasileiras em cartaz nas cidades portuguesas, num só lugar.":["Brazilian shows, theatre, concerts and exhibitions on in Portuguese cities, all in one place.","Shows, teatro, conciertos y exposiciones brasileñas en cartelera en ciudades portuguesas, en un solo lugar."],"Shows, teatro, concertos e exposições brasileiras em cartaz nas cidades portuguesas, num só lugar. Guarde o que quer ver e receba avisos.":["Brazilian shows, theatre, concerts and exhibitions on in Portuguese cities, all in one place. Save what you want to see and get alerts.","Shows, teatro, conciertos y exposiciones brasileñas en cartelera en ciudades portuguesas, en un solo lugar. Guarda lo que quieres ver y recibe avisos."],"5 cidades portuguesas":["5 Portuguese cities","5 ciudades portuguesas"],"Atualizado todos os dias":["Updated every day","Actualizado todos los días"],"© O Brasil nos palcos 2026":["© O Brasil nos palcos 2026","© O Brasil nos palcos 2026"]});
+"O Brasil nos palcos de Portugal":["Brazil on the stages of Portugal","El Brasil en los escenarios de Portugal"],"Shows, teatro, concertos e exposições brasileiras em cartaz nas cidades portuguesas, em um só lugar.":["Brazilian shows, theatre, concerts and exhibitions on in Portuguese cities, all in one place.","Shows, teatro, conciertos y exposiciones brasileñas en cartelera en ciudades portuguesas, en un solo lugar."],"Shows, teatro, concertos e exposições brasileiras em cartaz nas cidades portuguesas, em um só lugar. Salve o que quer ver e receba avisos.":["Brazilian shows, theatre, concerts and exhibitions on in Portuguese cities, all in one place. Save what you want to see and get alerts.","Shows, teatro, conciertos y exposiciones brasileñas en cartelera en ciudades portuguesas, en un solo lugar. Guarda lo que quieres ver y recibe avisos."],"5 cidades portuguesas":["5 Portuguese cities","5 ciudades portuguesas"],"Atualizado todos os dias":["Updated every day","Actualizado todos los días"],"© O Brasil nos palcos 2026":["© O Brasil nos palcos 2026","© O Brasil nos palcos 2026"]});
 document.addEventListener("click",ev=>{if(ev.target.closest("#lglang [data-lang]"))setTimeout(()=>{document.querySelectorAll("#lglang [data-lang]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===LANG))},0)});
 Object.assign(DICT,{"Guia · Brasil em cartaz":["Guide · Brazil on stage","Guía · Brasil en cartelera"]});
 Object.assign(DICT,{"Crie sua conta":["Create your account","Crea tu cuenta"],"Leva um minuto. Depois personalizamos o que você vê.":["It takes a minute. Then we personalize what you see.","Toma un minuto. Luego personalizamos lo que ves."],"Continuar com Google":["Continue with Google","Continuar con Google"],"Criar conta e continuar":["Create account and continue","Crear cuenta y continuar"],"Nome":["Name","Nombre"],"Conectando ao Google…":["Connecting to Google…","Conectando con Google…"]});
 if(ROUTE==="#/entrar")applyRoute();
-window.addEventListener("offline",()=>{$("offl").hidden=false});window.addEventListener("online",()=>{$("offl").hidden=true;toast("Ligação restabelecida.")});if(navigator.onLine===false)$("offl").hidden=false;
-document.addEventListener("click",ev=>{if(ev.target.closest("[data-pf-pass]"))toast("Enviamos um link para alterar a senha (protótipo: nada é enviado).")});
+window.addEventListener("offline",()=>{$("offl").hidden=false});window.addEventListener("online",()=>{$("offl").hidden=true;notify({type:"success",title:"Conexão restabelecida",body:"Você está online de novo."})});if(navigator.onLine===false)$("offl").hidden=false;
+document.addEventListener("click",ev=>{if(ev.target.closest("[data-pf-pass]"))notify({type:"info",title:"Link enviado",body:"Enviamos um link para alterar a senha (protótipo: nada é enviado)."})});
 </script>
 </body>
 </html>
