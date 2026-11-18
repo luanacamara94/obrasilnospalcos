@@ -1373,12 +1373,14 @@ const iniciais=n=>/^\S+$/.test(n.trim())?n.trim().slice(0,2).toUpperCase():n.rep
 const nomesDe=s=>s.replace(/\s+e\s+/g,", ").split(/\s*,\s*/).map(x=>x.trim()).filter(Boolean);
 const igLink=(h,nome)=>`<a href="https://www.instagram.com/${encodeURIComponent(h)}/" target="_blank" rel="noopener" aria-label="Instagram de ${esc(nome)}: @${esc(h)} (abre em nova aba)"><svg class="ic" aria-hidden="true"><use href="#i-ig"/></svg>@${esc(h)}</a>`;
 function pessoa(p){
-  const redes=p.redes&&p.redes.instagram?`<div class="evsoc">${igLink(p.redes.instagram,p.nome)}</div>`:"";
+  const lk=p.link?`<a href="${esc(p.link)}" target="_blank" rel="noopener" aria-label="${esc((p.linkTxt||"Ingressos")+": "+p.nome)} (abre em nova aba)">${esc(p.linkTxt||"Ingressos")} ↗</a>`:"";
+  const ig=p.redes&&p.redes.instagram?igLink(p.redes.instagram,p.nome):"";
+  const redes=(ig||lk)?`<div class="evsoc">${ig}${lk}</div>`:"";
   return `<li class="evp"><span class="evp-av" aria-hidden="true">${esc(iniciais(p.nome))}</span><div class="evp-tx">${p.papel?`<span class="evp-role">${esc(p.papel)}</span>`:""}<b>${esc(p.nome)}</b>${p.resumo?`<p>${esc(p.resumo)}</p>`:""}${redes}</div></li>`}
 function evLineup(e){
-  const G=e.lineup||[];
+  const G=(e.lineup||[]).filter(g=>!g.dia||d0(g.dia)>=HOJE);
   if(!G.length)return `<section class="evsec"><h3>Line-up</h3><p class="aumute">Os primeiros nomes brasileiros ainda não foram anunciados.</p></section>`;
-  const tit=g=>[g.titulo,g.dia?fd(g.dia):"dia a anunciar",g.palco].filter(Boolean).map(esc).join(" · ");
+  const tit=g=>[g.titulo,g.dia?(x=>DOW[x.getDay()]+" "+x.getDate()+"/"+(x.getMonth()+1))(d0(g.dia)):"dia a anunciar",g.palco].filter(Boolean).map(esc).join(" · ");
   return G.map(g=>`<section class="evsec"><h3>${tit(g)}</h3><ul class="evcast">${g.artistas.map(pessoa).join("")}</ul></section>`).join("")
    +`<p class="aumute">${esc(e.lineupNota||"Mostramos só as atrações brasileiras confirmadas. Novos nomes entram aqui assim que forem anunciados.")}</p>`}
 function evElenco(e){
@@ -1401,7 +1403,8 @@ function evLocal(e){
 function renderEvent(e){
   const on=saved.has(e.id),k=TS[e.type],ss=sessoesDe(e);
   const fdt=x=>DOW[x.getDay()]+" "+x.getDate()+"/"+(x.getMonth()+1);
-  const sess=e.sessoes==null?`<ul class="evs"><li>Em cartaz<span>${esc(fd(e.date))} a ${esc(fd(e.fim))}</span></li><li>Visitação<span>a partir das ${esc(hh(e.time))}</span></li></ul>`
+  const diasF=(e.dias||[]).filter(x=>d0(x.dia)>=HOJE);
+  const sess=diasF.length?`<ul class="evs">${diasF.map(x=>`<li>${fdt(d0(x.dia))}<span>${esc(x.txt)}</span></li>`).join("")}</ul>`:e.sessoes==null?`<ul class="evs"><li>Em cartaz<span>${esc(fd(e.date))} a ${esc(fd(e.fim))}</span></li><li>Visitação<span>a partir das ${esc(hh(e.time))}</span></li></ul>`
     :`<ul class="evs">${ss.map((x,i)=>`<li${i>5?" hidden data-more":""}>${fdt(x)}<span>${esc(hh(e.time))}</span></li>`).join("")}</ul>${ss.length>6?`<button class="evmore" data-evmore>Ver todas as ${ss.length} sessões</button>`:""}`;
   $("evd").innerHTML=`<div class="media m-${k}${e.imagem?" has-photo":""}">${art(e)}<span class="pname">${esc(e.artist)}</span><button class="evx" data-evclose aria-label="Fechar detalhes">${CLOSE}</button></div>
   <div class="evb">${(e.estado||"")?`<span class="badge${/Esgotado|Adiado/.test((e.estado||""))?" off":""}">${(e.estado||"")}</span>`:""}<h2>${esc(e.title)}</h2>
@@ -1409,8 +1412,8 @@ function renderEvent(e){
   ${`<div class="ptabs evtabs" role="tablist" aria-label="Detalhes do evento">${tabsDe(e).map(([k,l])=>`<button type="button" class="ptab" role="tab" id="evt-${k}" aria-controls="evp" aria-selected="${evTab===k}" tabindex="${evTab===k?0:-1}" data-evtab="${k}">${l}</button>`).join("")}</div>`}
   <div id="evp" class="evpanel" role="tabpanel" aria-labelledby="evt-${evTab}">${evTab==="artista"?(TEATRO(e.type)?evElenco(e):FESTIVAL(e.type)?evLineup(e):evArtista(e)):evTab==="local"?evLocal(e):`
   <dl class="evi"><div><dt>Preço</dt><dd>${esc(precoTxt(e))}</dd></div><div><dt>Idade</dt><dd>${esc(idadeTxt(e.idade))}</dd></div><div><dt>Via</dt><dd>${esc(e.src)}</dd></div></dl>
-  ${/anunciar/i.test(e.price)?"":`<p class="evtax">Preço da bilheteria. Taxas podem ser somadas no pagamento.</p>`}
-  <section class="evsec"><h3>${e.sessoes==null?"Período":FESTIVAL(e.type)?"Dias do festival":"Próximas sessões"}</h3>${sess}</section>
+  ${/anunciar|bilheteria/i.test(e.price)?"":`<p class="evtax">Preço da bilheteria. Taxas podem ser somadas no pagamento.</p>`}
+  <section class="evsec"><h3>${FESTIVAL(e.type)?"Dias do festival":e.sessoes==null?"Período":"Próximas sessões"}</h3>${sess}</section>
   <div class="evact"><a class="shbtn" href="${icsLink(e)}" target="_blank" rel="noopener">Adicionar ao Google Agenda ↗</a><button type="button" class="shbtn" data-lembrete="${e.id}" aria-pressed="${lembr.has(e.id)}">${lembr.has(e.id)?"Lembrete ativo (1 dia antes)":"Me lembre 1 dia antes"}</button></div>
   <section class="evsec"><h3>Sinopse</h3><p>${esc(e.sinopse||"")}</p></section>`}</div>
   <p class="evnote"><span>Atualizado em</span> ${npUpd()}. <span>Confirme datas e preços no site da bilheteria antes de comprar.</span></p></div>
