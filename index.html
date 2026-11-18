@@ -1089,12 +1089,12 @@ body.on-login .notifs{top:var(--space-300)}
   <div class="notice">A agenda é atualizada todos os dias com eventos à venda nas bilheterias e salas de Portugal. Horários e preços podem mudar: confirme sempre antes de comprar.</div>
 </main>
 
-<section id="pg" class="pg" aria-label="Perfil"><div class="wrap" id="pgin"></div></section>
+<section id="pg" class="pg" aria-label="Perfil" data-hj-suppress><div class="wrap" id="pgin"></div></section>
 <section id="legal" class="legal" aria-label="Informações legais"><div class="wrap" id="legalin"></div></section>
 
 <footer><div class="wrap ft"><p>Horários e preços podem mudar. Confirme sempre na bilheteria.<br><a href="#/termos">Termos de uso</a> · <a href="#/privacidade">Política de privacidade</a> · <a href="#/cookies">Cookies</a></p><p class="credit">Feito com muito café <span aria-hidden="true">☕</span> por <a class="link" href="https://www.luanacamara.com/" target="_blank" rel="noopener">Luana Camará</a></p></div></footer>
 
-<section id="lg" class="lg" aria-label="Entrar" hidden>
+<section id="lg" class="lg" aria-label="Entrar" hidden data-hj-suppress>
   <div class="lgl"><div class="lgtop"><button type="button" class="lgbrand"><svg viewBox="0 0 46 32" aria-hidden="true"><use href="#f-br"/></svg>O Brasil nos palcos</button><div id="lglang" class="lglang" role="group" aria-label="Idioma"></div></div>
    <div class="lgmid"><div id="lgform" class="lgform"></div></div>
    <div class="lgfoot"><span>© O Brasil nos palcos 2026</span><span>ajuda@obrasilnospalcos.com</span></div></div>
@@ -1109,14 +1109,14 @@ body.on-login .notifs{top:var(--space-300)}
 <div class="lgcopy"><p class="lgkick">Guia · Brasil em cartaz</p><h2>O Brasil nos palcos de Portugal</h2><p>Shows, teatro, festivais, concertos e exposições brasileiras em cartaz nas cidades portuguesas, em um só lugar.</p></div>
 </div></div>
 </section>
-<div id="ob" class="ob" role="dialog" aria-modal="true" aria-labelledby="obq" hidden>
+<div id="ob" class="ob" role="dialog" aria-modal="true" aria-labelledby="obq" hidden data-hj-suppress>
   <div id="obart" class="obart" aria-hidden="true"><div class="obill"></div><div class="obgnd"><div class="obbrand"><svg viewBox="0 0 46 32"><use href="#f-br"/></svg>O Brasil nos palcos</div><div class="obsumw"></div></div></div>
   <div class="obmain"><div class="obtop"><button type="button" id="obback" class="obicon" aria-label="Voltar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="obbar" id="obbar" role="progressbar" aria-label="Progresso do cadastro" aria-valuemin="1" aria-valuemax="9" aria-valuenow="1"><div id="obfill" class="obfill"></div></div><span id="obstep" class="obstep" aria-hidden="true"></span><button type="button" id="obx" class="obicon" aria-label="Concluir depois" title="Concluir depois"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke-linecap="round"/></svg></button></div>
   <div id="obbody" class="obbody"><div id="obcol" class="obcol"></div></div></div></div>
 <div id="offl" class="offl" role="status" hidden>Sem conexão com a internet. Você vê a última lista carregada; preços e datas podem ter mudado.</div>
 <div id="toast" class="toast" aria-hidden="true"></div>
 <div id="notifs" class="notifs" aria-live="polite"></div>
-<div id="ck" class="ck" role="region" aria-label="Cookies" hidden><p>Usamos cookies do Google Analytics para entender como o site é usado e melhorá-lo. Só ativamos se você aceitar. <a href="#/cookies">Saber mais</a></p><div class="ckb"><button type="button" class="shbtn" data-ck="nao">Recusar</button><button type="button" class="shbtn pri" data-ck="sim">Aceitar</button></div></div>
+<div id="ck" class="ck" role="region" aria-label="Cookies" hidden><p>Usamos cookies do Google Analytics e do Hotjar para entender como o site é usado, fazer pesquisas rápidas e melhorá-lo. Só ativamos se você aceitar. <a href="#/cookies">Saber mais</a></p><div class="ckb"><button type="button" class="shbtn" data-ck="nao">Recusar</button><button type="button" class="shbtn pri" data-ck="sim">Aceitar</button></div></div>
 <div id="scrim" class="scrim" hidden></div>
 <div id="shbk" class="shbk" hidden><div id="shm" class="shm" role="dialog" aria-modal="true" aria-labelledby="sht"></div></div>
 <div id="aubk" class="shbk" hidden><div id="aum" class="shm" role="dialog" aria-modal="true" aria-labelledby="aut"></div></div>
@@ -1618,11 +1618,15 @@ const CONTATO="ajuda@obrasilnospalcos.com";
   T.push(setTimeout(acabar,4000))})();
 const mtr=(n,p)=>{try{window.FB&&FB.track(n,p)}catch(e){}};
 const evInfo=id=>{const e=EVENTS.find(x=>x.id===+id);return e?{evento:e.title,artista:e.artist,tipo:e.type,cidade:e.city}:{}};
-function ckAplicar(){if(lsj("cookies")==="sim"&&window.FB)FB.consentir(true)}
+/* Hotjar (pesquisas, mapas de calor e gravações). Coloque aqui o Site ID do Hotjar (só números). Vazio = desligado. */
+const HOTJAR_ID="6855218";
+function hjCarregar(){if(!HOTJAR_ID||window.hj||!/(^|\.)obrasilnospalcos\.com$/.test(location.hostname))return;
+  (function(h,o,t,j,a,r){h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};h._hjSettings={hjid:+HOTJAR_ID,hjsv:6};a=o.getElementsByTagName("head")[0];r=o.createElement("script");r.async=1;r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;a.appendChild(r)})(window,document,"https://static.hotjar.com/c/hotjar-",".js?sv=");}
+function ckAplicar(){if(lsj("cookies")!=="sim")return;if(window.FB)FB.consentir(true);hjCarregar()}
 function ckMostrar(v){$("ck").hidden=!v}
 addEventListener("fb:carregado",ckAplicar);
 document.addEventListener("click",ev=>{const t=ev.target;
-  const ck=t.closest("[data-ck]");if(ck){const sim=ck.dataset.ck==="sim";lss("cookies",sim?"sim":"nao");ckMostrar(false);if(sim){ckAplicar();setTimeout(()=>mtr("cookies_aceitos"),1500);notify({type:"success",title:"Obrigado!",body:"Vamos medir as visitas de forma anônima para melhorar o site."})}else notify({type:"info",title:"Medição de visitas desativada",body:"Tudo bem. Não vamos medir sua visita. Você pode mudar isso em Cookies, no rodapé."});return}
+  const ck=t.closest("[data-ck]");if(ck){const sim=ck.dataset.ck==="sim";lss("cookies",sim?"sim":"nao");ckMostrar(false);if(sim){ckAplicar();setTimeout(()=>mtr("cookies_aceitos"),1500);notify({type:"success",title:"Obrigado!",body:"Vamos medir as visitas de forma anônima e, de vez em quando, fazer uma pergunta rápida para melhorar o site."})}else notify({type:"info",title:"Medição de visitas desativada",body:"Tudo bem. Não vamos medir sua visita. Você pode mudar isso em Cookies, no rodapé."});return}
   if(t.closest("[data-ck-rever]")){ckMostrar(true);return}
   const b=t.closest("a.buy");if(b){const e=EVENTS.find(x=>x.id===evOpen);mtr("clique_bilheteira",{...evInfo(evOpen),bilheteira:e?e.src:"",link_url:b.href})}
   const f=t.closest(".save,.fav");if(f&&f.dataset.id)mtr(saved.has(+f.dataset.id)?"remover_lista":"adicionar_lista",evInfo(f.dataset.id));
@@ -1642,7 +1646,7 @@ privacidade:`<h1>Política de privacidade</h1><p class="upd">Última atualizaç�
 <li><b>Sem conta:</b> sua lista, os lembretes, o idioma e a cidade escolhida ficam só no seu navegador. Não chegam até nós.</li>
 <li><b>Com conta:</b> nome, e-mail, método de login (Google ou e-mail e senha), cidade, preferências, interesses, bio, avatar ou foto, lista de eventos, lembretes e, se você ativar avisos por WhatsApp, seu número.</li>
 <li><b>Senha:</b> nunca vemos nem armazenamos sua senha. Quem a verifica é o Google Firebase, de forma cifrada.</li>
-<li><b>Métricas de uso:</b> só se você aceitar os cookies. Páginas vistas, eventos abertos, cliques para as bilheterias, buscas e filtros, de forma agregada, pelo Google Analytics.</li></ul>
+<li><b>Métricas de uso:</b> só se você aceitar os cookies. Páginas vistas, eventos abertos, cliques para as bilheterias, buscas e filtros, de forma agregada, pelo Google Analytics; mapas de calor, gravações anônimas de navegação (sem o que você digita nem os dados da sua conta) e respostas às pesquisas, pelo Hotjar.</li></ul>
 <h2>Para que usamos</h2><ul>
 <li>Criar e manter sua conta e salvar sua lista em qualquer aparelho (execução do serviço que você pediu).</li>
 <li>Entender como o site é usado e melhorá-lo (só com seu consentimento).</li>
@@ -1650,7 +1654,7 @@ privacidade:`<h1>Política de privacidade</h1><p class="upd">Última atualizaç�
 <p>Não vendemos dados, não fazemos publicidade e não compartilhamos suas informações com as bilheterias.</p>
 <h2>Com quem os dados ficam</h2><ul>
 <li><b>Google Firebase</b> (login e base de dados), com os dados armazenados na União Europeia.</li>
-<li><b>Google Analytics</b>, apenas se aceitar os cookies.</li>
+<li><b>Google Analytics</b> e <b>Hotjar</b> (Contentsquare, na União Europeia), apenas se aceitar os cookies.</li>
 <li><b>GitHub Pages</b>, que hospeda o site e pode registrar dados técnicos de acesso, como o endereço IP.</li>
 <li><b>Spotify e Google Maps</b>: quando você abre as abas Artista ou Localização de um evento, estes serviços são carregados e podem coletar dados segundo suas próprias políticas.</li></ul>
 <p>Alguns destes fornecedores podem tratar dados fora da União Europeia, com as garantias exigidas pelo RGPD.</p>
@@ -1665,7 +1669,7 @@ termos:`<h1>Termos de uso</h1><p class="upd">Última atualização: 16 de novemb
 <h2>Lei aplicável</h2><p>Estes termos seguem a lei portuguesa. Ao usar o site, você concorda com eles e com a <a href="#/privacidade">Política de privacidade</a>.</p>`,
 cookies:`<h1>Cookies</h1><p class="upd">Última atualização: 16 de novembro de 2026</p>
 <h2>Essenciais (sempre ativos)</h2><p>Salvamos no seu navegador sua lista, os lembretes, o idioma, a cidade escolhida, sua escolha sobre cookies e, se tiver conta, a sessão de login do Google Firebase. Sem isto o site não funciona como espera. Estes dados não servem para medir nem para publicidade.</p>
-<h2>Métricas (só com seu consentimento)</h2><p>Se aceitar, o Google Analytics usa os cookies <code>_ga</code> e <code>_ga_YJYBDFL18L</code> para contar visitas e entender como o site é usado. Se recusar, nada disso é carregado.</p>
+<h2>Métricas (só com seu consentimento)</h2><p>Se aceitar, o Google Analytics usa os cookies <code>_ga</code> e <code>_ga_YJYBDFL18L</code> para contar visitas e entender como o site é usado. O Hotjar usa cookies que começam por <code>_hj</code> para mapas de calor, gravações anônimas e pesquisas no site, com o que você digita e os dados da sua conta mascarados. Se recusar, nada disso é carregado.</p>
 <h2>Conteúdo de terceiros</h2><p>O player do Spotify e o mapa do Google Maps, nas abas Artista e Localização, só carregam quando você abre essas abas e podem usar cookies próprios.</p>
 <p><button type="button" class="shbtn pri" data-ck-rever>Rever a minha escolha</button></p>`};
 
@@ -2107,7 +2111,7 @@ const OBT={
 "Receba os avisos no seu número":["Get alerts on your number","Recibe los avisos en tu número"],"Digite um número válido.":["Enter a valid number.","Escribe un número válido."],"Número de WhatsApp":["WhatsApp number","Número de WhatsApp"],"País":["Country","País"],"Portugal +351":["Portugal +351","Portugal +351"],"Brasil +55":["Brazil +55","Brasil +55"],
 "Ativar alertas por e-mail":["Turn on email alerts","Activar alertas por correo"],"Ativar alertas por WhatsApp":["Turn on WhatsApp alerts","Activar alertas por WhatsApp"],
 "Você pode mudar isso depois em Perfil › Configurações. Em breve: os avisos ainda não estão sendo enviados.":["You can change this later in Profile › Settings. Prototype: no alerts are actually sent.","Puedes cambiarlo después en Perfil › Configuración. Prototipo: no se envía ningún aviso de verdad."],
-"Preferências atualizadas":["Preferences updated","Preferencias actualizadas"],"Personalização":["Personalisation","Personalización"],"Refazer personalização":["Redo personalisation","Rehacer personalización"],"Cidade, tipos de evento, gêneros, artistas e alertas.":["City, event types, genres, artists and alerts.","Ciudad, tipos de evento, géneros, artistas y alertas."],"O Brasil nos palcos":["Brazil on stage","Brasil en los escenarios"],"Usamos cookies do Google Analytics para entender como o site é usado e melhorá-lo. Só ativamos se você aceitar.":["We use Google Analytics cookies to understand how the site is used and improve it. They only turn on if you accept.","Usamos cookies de Google Analytics para entender cómo se usa el sitio y mejorarlo. Solo se activan si aceptas."],"Saber mais":["Learn more","Saber más"],"Recusar":["Decline","Rechazar"],"Aceitar":["Accept","Aceptar"],"Tudo bem. Não vamos medir sua visita.":["All right. We won't measure your visit.","De acuerdo. No mediremos tu visita."],"Resumo":["Overview","Resumen"],"Artista":["Artist","Artista"],"Localização":["Location","Ubicación"],"Ver e ouvir":["Watch and listen","Ver y escuchar"],"Detalhes do evento":["Event details","Detalles del evento"],"eventos publicados":["published events","eventos publicados"],"evento publicado":["published event","evento publicado"],
+"Preferências atualizadas":["Preferences updated","Preferencias actualizadas"],"Personalização":["Personalisation","Personalización"],"Refazer personalização":["Redo personalisation","Rehacer personalización"],"Cidade, tipos de evento, gêneros, artistas e alertas.":["City, event types, genres, artists and alerts.","Ciudad, tipos de evento, géneros, artistas y alertas."],"O Brasil nos palcos":["Brazil on stage","Brasil en los escenarios"],"Usamos cookies do Google Analytics e do Hotjar para entender como o site é usado, fazer pesquisas rápidas e melhorá-lo. Só ativamos se você aceitar.":["We use Google Analytics and Hotjar cookies to understand how the site is used, run quick surveys and improve it. They only turn on if you accept.","Usamos cookies de Google Analytics y Hotjar para entender cómo se usa el sitio, hacer encuestas rápidas y mejorarlo. Solo se activan si aceptas."],"Saber mais":["Learn more","Saber más"],"Recusar":["Decline","Rechazar"],"Aceitar":["Accept","Aceptar"],"Tudo bem. Não vamos medir sua visita.":["All right. We won't measure your visit.","De acuerdo. No mediremos tu visita."],"Resumo":["Overview","Resumen"],"Artista":["Artist","Artista"],"Localização":["Location","Ubicación"],"Ver e ouvir":["Watch and listen","Ver y escuchar"],"Detalhes do evento":["Event details","Detalles del evento"],"eventos publicados":["published events","eventos publicados"],"evento publicado":["published event","evento publicado"],
 "Bossa nova":["Bossa nova","Bossa nova"],"Rock brasileiro":["Brazilian rock","Rock brasileño"],"Rap e hip hop":["Rap and hip hop","Rap y hip hop"],"Pop e indie":["Pop and indie","Pop e indie"],"Axé":["Axé","Axé"],"Choro":["Choro","Choro"],"Forró":["Forró","Forró"],"Sertanejo":["Sertanejo","Sertanejo"],"Pagode":["Pagode","Pagode"],"Funk":["Funk","Funk"],"Samba":["Samba","Samba"],"MPB":["MPB","MPB"],
 "Música de câmara":["Chamber music","Música de cámara"],"Orquestra sinfónica":["Symphony orchestra","Orquesta sinfónica"],"Ópera":["Opera","Ópera"],"Coral":["Choral","Coral"],"Jazz instrumental":["Instrumental jazz","Jazz instrumental"],"Música contemporânea":["Contemporary music","Música contemporánea"],"Violão e guitarra clássica":["Classical guitar","Guitarra clásica"],"Villa-Lobos e modernistas":["Villa-Lobos and modernists","Villa-Lobos y modernistas"],
 "Pintura":["Painting","Pintura"],"Fotografia":["Photography","Fotografía"],"Escultura":["Sculpture","Escultura"],"Gravura":["Printmaking","Grabado"],"Arte contemporânea":["Contemporary art","Arte contemporáneo"],"Modernismo":["Modernism","Modernismo"],"Arte popular":["Folk art","Arte popular"],"Design e arquitetura":["Design and architecture","Diseño y arquitectura"],
