@@ -62,6 +62,9 @@ window.NP_FESTIVAIS = [
     estado: "Última semana",
     homenageado: "",
     demo: false,
+    imagem: "img/mostra-ptbr.jpg",
+    foco: "50% 50%",
+    ajuste: "cover",
     sinopse: "Terceira edição da mostra que leva teatro brasileiro ao Chapitô, em Lisboa, e, pela primeira vez, ao Teatro Gil Vicente, em Cascais. São 16 espetáculos e mais de 80 artistas e técnicos vindos da Bahia, de São Paulo e do Rio de Janeiro, com direção-geral de Bruno Mariozz e curadoria dividida com Ricardo Rocha. Em Portugal, a programação vai até 22 de novembro; depois, a mostra segue para a Guiné-Bissau. Ingressos do Chapitô na Ticketline e do Teatro Gil Vicente na BOL.",
     dias: [
       { dia: "2026-11-20", txt: "Tybyra · Poço Inacabado" },
