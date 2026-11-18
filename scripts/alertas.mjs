@@ -78,7 +78,7 @@ function montarEmail(nome, itens) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px">
   <tr><td style="background:#081849;border-radius:16px 16px 0 0;padding:26px 26px 22px">
     <table role="presentation" cellpadding="0" cellspacing="0"><tr>
-      <td style="width:34px;height:24px;background:#009C3B;border-radius:4px;text-align:center;vertical-align:middle"><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#002776;border:3px solid #FFDF00"></span></td>
+      <td style="vertical-align:middle"><img src="${SITE}img/bandeira.png" width="46" height="32" alt="Bandeira do Brasil" style="display:block;width:46px;height:32px;border:0"></td>
       <td style="padding-left:10px;font:600 15px Arial,sans-serif;color:#F5F3EE">O Brasil nos palcos</td>
     </tr></table>
     <p style="margin:18px 0 0;font:800 26px/1.2 Arial,sans-serif;color:#FFFFFF">${primeiro ? esc(primeiro) + ", tem" : "Tem"} novidade para você</p>
