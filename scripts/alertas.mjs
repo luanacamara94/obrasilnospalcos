@@ -132,6 +132,8 @@ async function main() {
   console.log(`Modo: ${MODO}`);
   if (!["simular", "teste", "real"].includes(MODO)) throw new Error(`MODO inválido: ${MODO}`);
   if (MODO === "teste" && !TESTE_EMAIL) throw new Error("No modo teste, informe o e-mail de teste.");
+  if (MODO !== "simular" && !process.env.BREVO_API_KEY) throw new Error("O secret BREVO_API_KEY está vazio ou não existe. Confira em Settings → Secrets and variables → Actions (o nome precisa ser exatamente BREVO_API_KEY).");
+  if (!process.env.FIREBASE_SA) throw new Error("O secret FIREBASE_SA está vazio ou não existe.");
   admin.initializeApp({ credential: admin.credential.cert(JSON.parse(process.env.FIREBASE_SA)) });
   const db = admin.firestore();
 
