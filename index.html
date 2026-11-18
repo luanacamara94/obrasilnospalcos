@@ -1757,7 +1757,7 @@ document.addEventListener("click",ev=>{
 });
 document.addEventListener("input",ev=>{if(!epOpen)return;if(ev.target.id==="epnome"){ED.nome=ev.target.value;epPreview()}else if(ev.target.id==="epbio"){ED.bio=ev.target.value;$("epcnt").textContent=ED.bio.length+"/280"}});
 document.addEventListener("change",async ev=>{
-  if(ev.target.matches("[data-pf-avisos]")&&ACC){ACC.avisos=ev.target.checked;salvarConta();notify(ACC.avisos?{key:"avisos",type:"success",title:"Avisos por e-mail ativados",body:"Você vai receber novidades, até 1 por semana. Em breve: o envio ainda não está ativo."}:{key:"avisos",type:"info",title:"Avisos por e-mail desativados",body:"Você não vai receber e-mails de novidades."});return}
+  if(ev.target.matches("[data-pf-avisos]")&&ACC){ACC.avisos=ev.target.checked;salvarConta();notify(ACC.avisos?{key:"avisos",type:"success",title:"Avisos por e-mail ativados",body:MSG_EMAIL_ON}:{key:"avisos",type:"info",title:"Avisos por e-mail desativados",body:"Você não vai receber e-mails de novidades."});return}
   if(ev.target.id==="epfile"&&epOpen){const f=ev.target.files[0];if(!f)return;if(!/^image\//.test(f.type)||f.size>8e6){$("eperr").textContent="Escolha uma imagem de até 8 MB.";return}
     try{ED.foto=await lerFoto(f);ED.avatar=null;epPreview();epBody()}catch(x){$("eperr").textContent="Não foi possível ler essa imagem."}}});
 document.addEventListener("keydown",ev=>{
@@ -1896,6 +1896,7 @@ const TXT=new WeakMap(),ATT=new WeakMap();
 function trText(n){const v=n.nodeValue;const rec=TXT.get(n);const src=rec&&rec.out===v?rec.src:v;if(!src.trim()){if(rec)TXT.delete(n);return}const out=tr(src);if(out!==v)n.nodeValue=out;TXT.set(n,{src,out})}
 function trAttr(el){for(const a of ["placeholder","aria-label","title","alt"]){const v=el.getAttribute(a);if(v==null)continue;let m=ATT.get(el);if(!m){m={};ATT.set(el,m)}const rec=m[a];const src=rec&&rec.out===v?rec.src:v;const out=tr(src);if(out!==v)el.setAttribute(a,out);m[a]={src,out}}}
 function trTree(r){if(r.nodeType===3){const p=r.parentElement;if(p&&!/^(SCRIPT|STYLE|TITLE)$/.test(p.tagName))trText(r);return}if(r.nodeType!==1||/^(SCRIPT|STYLE|TITLE)$/.test(r.tagName))return;trAttr(r);for(let c=r.firstChild;c;c=c.nextSibling)trTree(c)}
+const MSG_EMAIL_ON="Você vai receber novidades da cultura brasileira que combinem com você!";
 const TITULO_SUF=" · Agenda de shows, teatro e festivais brasileiros";
 const setTitle=()=>{const a=document.querySelector(".wordmark>span"),b=$("prep"),c=$("cityName");if(a&&b&&c){const t=[a,b,c].map(x=>x.textContent.trim()).join(" ")+TITULO_SUF;if(document.title!==t)document.title=t}};
 let MO=null,pend=[],raf=0;
@@ -2067,7 +2068,7 @@ document.addEventListener("click",ev=>{
 });
 document.addEventListener("mousedown",ev=>{if(OB&&ev.target.closest("[data-ob-opt]"))ev.preventDefault()});
 document.addEventListener("input",ev=>{if(!OB)return;const t=ev.target;if(t.id==="obin")obAcShow();if(t.id==="obtel"){OB.d.tel=t.value;$("obtelerr").textContent=""}});
-document.addEventListener("change",ev=>{if(!OB)return;const t=ev.target;if(t.matches("[data-ob-email]"))OB.d.email=t.checked;if(t.matches("[data-ob-whats]")){OB.d.whats=t.checked;document.querySelector(".obtel").hidden=!t.checked;if(t.checked)$("obtel").focus();notify(t.checked?{key:"whats",type:"success",title:"Alerta por WhatsApp ativado",body:"Confirme seu número abaixo. Em breve: o envio ainda não está ativo."}:{key:"whats",type:"info",title:"Alerta por WhatsApp desativado",body:"Você não vai receber mensagens no WhatsApp."});}if(t.id==="obddi")OB.d.ddi=t.value});
+document.addEventListener("change",ev=>{if(!OB)return;const t=ev.target;if(t.matches("[data-ob-email]")){OB.d.email=t.checked;notify(t.checked?{key:"avisos",type:"success",title:"Avisos por e-mail ativados",body:MSG_EMAIL_ON}:{key:"avisos",type:"info",title:"Avisos por e-mail desativados",body:"Você não vai receber e-mails de novidades."});}if(t.matches("[data-ob-whats]")){OB.d.whats=t.checked;document.querySelector(".obtel").hidden=!t.checked;if(t.checked)$("obtel").focus();notify(t.checked?{key:"whats",type:"success",title:"Alerta por WhatsApp ativado",body:"Confirme seu número abaixo. Em breve: o envio ainda não está ativo."}:{key:"whats",type:"info",title:"Alerta por WhatsApp desativado",body:"Você não vai receber mensagens no WhatsApp."});}if(t.id==="obddi")OB.d.ddi=t.value});
 document.addEventListener("keydown",ev=>{if(!OB)return;
   if(ev.target.id==="obin"){const n=obAcL.length;if(ev.key==="ArrowDown"||ev.key==="ArrowUp"){if(!n)return;ev.preventDefault();obAc=(obAc+(ev.key==="ArrowDown"?1:-1)+n)%n;$("obacl").querySelectorAll("li").forEach((l,i)=>l.setAttribute("aria-selected",i===obAc));$("obin").setAttribute("aria-activedescendant","obo"+obAc);return}
     if(ev.key==="Enter"){ev.preventDefault();if(obAc>=0)obAcPick(obAc);return}
@@ -2177,7 +2178,7 @@ document.addEventListener("input",ev=>{if(!EM||ROUTE!=="#/perfil/editar")return;
   if(t.id==="ednome"){d.nome=t.value;edPrev();edTouch()}else if(t.id==="edbio"){d.bio=t.value;$("edcnt").textContent=d.bio.length+"/500";edTouch()}else if(t.id==="edin")edAcShow();else if(t.id==="edtelin"){d.whats.tel=t.value;$("edtelerr").textContent="";edTouch()}});
 document.addEventListener("change",async ev=>{if(!EM||ROUTE!=="#/perfil/editar")return;const t=ev.target,d=EM.d;
   if(t.id==="edcid"){d.cidade=t.value;edPrev();edTouch()}
-  else if(t.matches("[data-ed-email]")){d.avisos=t.checked;edTouch()}
+  else if(t.matches("[data-ed-email]")){d.avisos=t.checked;edTouch();notify(t.checked?{key:"avisos",type:"success",title:"Avisos por e-mail ativados",body:MSG_EMAIL_ON}:{key:"avisos",type:"info",title:"Avisos por e-mail desativados",body:"Você não vai receber e-mails de novidades."});}
   else if(t.matches("[data-ed-whats]")){d.whats.on=t.checked;$("edtel").hidden=!t.checked;if(t.checked)$("edtelin").focus();edTouch();notify(t.checked?{key:"whats",type:"success",title:"Alerta por WhatsApp ativado",body:"Confirme seu número abaixo e salve. Em breve: o envio ainda não está ativo."}:{key:"whats",type:"info",title:"Alerta por WhatsApp desativado",body:"Você não vai receber mensagens no WhatsApp."});}
   else if(t.id==="edddi"){d.whats.ddi=t.value;edTouch()}
   else if(t.id==="edfile"){const f=t.files[0];if(!f)return;if(!/^image\//.test(f.type)||f.size>8e6){$("ederr").textContent="Escolha uma imagem de até 8 MB.";return}
