@@ -1,0 +1,44 @@
+name: Alertas por e-mail
+
+# Todo dia às 10h37 (hora de Lisboa no inverno; 11h37 no verão).
+# Também dá para rodar à mão em Actions → "Alertas por e-mail" → Run workflow.
+on:
+  schedule:
+    - cron: "37 10 * * *"
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "simular (só mostra no log) · teste (envia só para o e-mail abaixo) · real"
+        required: true
+        default: teste
+        type: choice
+        options: [simular, teste, real]
+      teste_email:
+        description: "E-mail da sua conta no site (só para o modo teste)"
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: alertas
+  cancel-in-progress: false
+
+jobs:
+  alertas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-save --no-audit --no-fund firebase-admin@12
+      - run: node scripts/alertas.mjs
+        env:
+          # A execução agendada roda em "simular" até a variável ALERTAS_MODO ser "real"
+          # (Settings → Secrets and variables → Actions → Variables).
+          MODO: ${{ github.event_name == 'schedule' && (vars.ALERTAS_MODO || 'simular') || inputs.modo }}
+          TESTE_EMAIL: ${{ inputs.teste_email }}
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          FIREBASE_SA: ${{ secrets.FIREBASE_SA }}
