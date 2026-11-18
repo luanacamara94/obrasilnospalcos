@@ -25,6 +25,9 @@ window.NP_FESTIVAIS = [
     estado: "",
     homenageado: "",
     demo: false,
+    imagem: "img/coala.jpg",
+    foco: "50% 10%",
+    ajuste: "cover",
     sinopse: "O festival nascido em São Paulo chega à quarta edição portuguesa, de novo no Hipódromo Manuel Possolo, em Cascais, juntando música do Brasil, de Portugal e da África lusófona. Os primeiros confirmados são Zeca Pagodinho, Alcione e Jorge Aragão, que fazem em Cascais a estreia portuguesa de O Maior Encontro do Samba. A curadoria é de Gabriel Andrade e Kalaf Epalanga. Abertura dos portões às 15h; ingressos para os dois dias, na grama ou na Tenda VIP com open bar.",
     lineup: [
       {
