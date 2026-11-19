@@ -123,7 +123,7 @@ window.NP_EVENTS=[
   "price": "20 – 40 €",
   "idade": "M/6",
   "selo": "",
-  "type": "Show",
+  "type": "Teatro",
   "src": "BOL",
   "url": "https://www.bol.pt/Comprar/Bilhetes/178260-bate_papo_com_theo-coliseu_de_lisboa/",
   "sinopse": "O criador de conteúdos carioca leva ao Coliseu uma conversa aberta e sem filtros em que responde em direto às perguntas da plateia. Cerca de 1h10 de espetáculo.",
