@@ -1,0 +1,46 @@
+name: Imagens dos eventos
+
+# Baixa a imagem oficial de divulgação dos eventos publicados que ainda não têm foto.
+# Roda sempre que a agenda (events.js) muda e, por segurança, depois de cada coleta
+# (7h50, 12h50 e 17h50 em Lisboa no inverno; uma hora mais tarde no verão).
+# Também dá para rodar à mão em Actions → "Imagens dos eventos" → Run workflow.
+on:
+  push:
+    branches: [main]
+    paths: [events.js]
+  schedule:
+    - cron: "50 7,12,17 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: imagens
+  cancel-in-progress: false
+
+jobs:
+  imagens:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/imagens.mjs
+      - name: Publicar imagens novas
+        run: |
+          if [ -z "$(git status --porcelain events.js img)" ]; then
+            echo "Nenhuma imagem nova."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add events.js img
+          git commit -m "Imagens: baixadas automaticamente"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 10
+          done
+          exit 1
